@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en"  id="show-tips">
+<head>
+    <title>Оживляем текст</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=792, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="node_modules/shower-bright/styles/screen.css">
+    <style>
+        @@include('./assets/css/style.css')
+    </style>
+</head>
+<body class="list" spellcheck="false">
+    <header class="caption">
+        <h1>Оживляем текст</h1>
+        <p>Бухвалова Юлия, Livejournal</p>
+    </header>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull"><div>
+        <div class="demo-border">
+            <div class="text-fill-video">
+                <video class="video" autoplay loop
+                       preload="none"
+                       src="./assets/video/leaves.mp4?1">
+                </video>
+              </div>
+            <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--intro">
+                <symbol id="s-text--invmask-intro">
+                    <text x="50%" y="40%" dy=".4em"
+                        text-anchor="middle"
+                        class="text--invmask-intro">Оживляем</text>
+                    <text x="50%" y="62%" dy=".4em"
+                        text-anchor="middle"
+                        class="text--invmask-intro">текст</text>
+                </symbol>
+
+                <mask id="mask-text-revert-intro"
+                maskunits="userSpaceOnUse"
+                maskcontentunits="userSpaceOnUse">
+                    <rect width="100%" height="100%" fill="#FFF"/>
+                    <use xlink:href="#s-text--invmask-intro"/>
+                </mask>
+
+                <use xlink:href="#s-text--invmask-intro" class="u-text--stroke"/>
+                <rect mask="url(#mask-text-revert-intro)"
+                    width="100%" height="100%"
+                    fill="#000"/>
+
+                <use xlink:href="#s-text--invmask-intro" class="u-text--transp"/>
+
+            </svg>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <div class="slide__content">
+            <h4>Презентация в лучшем виде:</h4>
+            <ul class="list--glasses list--glasses-best">
+                <li>
+                <span class="browser chrome" data-bubble="41+"></span>&nbsp;&nbsp;
+                <span class="browser opera" data-bubble="29+"></span>&nbsp;&nbsp;&nbsp;
+                <span class="browser safari"></span>
+                </li>
+            </ul>
+            <ul class="list--glasses">
+                <li>
+                    <span class="browser chrome" data-bubble="< 41"></span> <span class="list--glasses__sign">+</span> флаг: <i>chrome://flags/#enable-experimental-web-platform-features</i>
+                </li>
+                <li>
+                    <span class="browser opera" data-bubble="< 29"></span> <span class="list--glasses__sign">+</span> флаг: <i>opera://flags/#enable-experimental-web-platform-features</i>
+                </li>
+            </ul>
+            <p class="tooltip--glasses">Скопируйте ссылку на флаг в адресную строку браузера, включите флаг и&nbsp;перезапустите браузер.</p>
+            <h4>Так себе вид:</h4>
+            <ul class="list--glasses">
+                <li>
+                    <span class="browser firefox"></span>
+                </li>
+            </ul>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h4>Краткое содержание</h4>
+        <ol>
+            <li>HTML + CSS</li>
+            <li>SVG</li>
+            <li>Режимы наложения</li>
+            <li>HTML + SVG</li>
+        </ol>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <h2 class="free-fly">1. HTML + CSS</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Обводки</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">text-shadow</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--shadowstroke">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+<pre><code class="code--condensed">text-shadow: -1px -1px green,  1px -1px green,
+              1px  1px green, -1px  1px green,
+             -2px -2px green,  2px -2px green,
+              2px  2px green, -2px  2px green,
+             -3px -3px green,  3px -3px green,
+              3px  3px green, -3px  3px green,
+             -4px -4px green,  4px -4px green,
+              4px  4px green, -4px  4px green,
+             -5px -5px green,  5px -5px green,
+              5px  5px green, -5px  5px green,
+             -6px -6px green,  6px -6px green,
+              6px  6px green, -6px  6px green,
+             -7px -7px green,  7px -7px green,
+              7px  7px green, -7px  7px green;
+
+</code></pre>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm-code"><div>
+        <div class="slide__content">
+<pre><code class="code--smaller code--condensed">@function shadows($max: 5, $color: white){
+    $out: null;
+
+    @for $i from 0 through $max {
+
+        @if ($i > 0) {
+          $pos: #{$i}px;
+          $pos-n: -$pos;
+
+          $shadow-t-l: $pos-n $pos-n $color;
+          $out: append( $out, $shadow-t-l, comma );
+          $shadow-t-r: $pos $pos-n $color;
+          $out: append( $out, $shadow-t-r, comma );
+          $shadow-b-r: $pos $pos $color;
+          $out: append( $out, $shadow-b-r, comma );
+          $shadow-b-l: $pos-n $pos $color;
+          $out: append( $out, $shadow-b-l, comma );
+        }
+
+    }
+
+    @return $out;
+}</code></pre>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--chasing-shadows">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--multiple-shadows">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h3>Google Fonts Effects</h3>
+        <br/>
+
+        <pre class="next"><code>http://fonts.googleapis.com/css?family=Rancho&<mark>effect=3d</mark></code></pre>
+
+        <pre class="next"><code>&lt;div class="<mark>font-effect-3d</mark>">текст&lt;/div></code></pre>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text font-effect font-effect-outline">
+                текст
+            </div>
+            <div class="next demo demo--text font-effect font-effect-anaglyph">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text font-effect font-effect-3d">
+                текст
+            </div>
+
+            <div class="next demo demo--text font-effect font-effect-shadow-multiple">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm bg--dark"><div>
+        <div class="slide__content">
+            <div class="demo demo--text font-effect font-effect-fire-animation">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <a href="https://developers.google.com/fonts/docs/getting_started#Effects">developers.google.com/fonts/docs/getting_started#Effects</a>
+        <img src="./assets/img/google-fonts.png" alt="Google Fonts Effects" style="margin-top: 25px;"/>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+        <div class="slide__content">
+            <div class="browsers--biglist">
+                <img src="./assets/img/browsers/chrome.png" alt="Chrome"/>
+                <img src="./assets/img/browsers/safari.png" alt="Safari"/>
+                <img src="./assets/img/browsers/opera.png" alt="Opera"/>
+                <img src="./assets/img/browsers/firefox.png" alt="Firefox"/>
+                <span data-bubble="10+"><img src="./assets/img/browsers/ie.png" alt="IE"/></span>
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">-webkit-text-stroke</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--text-stroke">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+<pre><code>.text {
+    -webkit-text-stroke: .05em orangered;
+    }</code></pre>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+        <div class="slide__content">
+            <div class="browsers--biglist">
+                <span data-bubble="-webkit-"><img src="./assets/img/browsers/chrome.png" alt="Chrome"/></span>
+                <span data-bubble="-webkit-"><img src="./assets/img/browsers/safari.png" alt="Safari"/></span>
+                <span data-bubble="-webkit-"><img src="./assets/img/browsers/opera.png" alt="Opera"/></span>
+                <img src="./assets/img/browsers/firefox.png" alt="Firefox" class="no-support"/>
+                <img src="./assets/img/browsers/ie.png" alt="IE" class="no-support"/>
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Заливки</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">-webkit-background-clip: text</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--ps-cells slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--background-clip demo--background-clip-step0">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+<pre><code>.text {
+  background: url(tulips.jpg) 50% 50%;
+
+
+  }</span></code></pre>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--ps-cells slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--background-clip demo--background-clip-step1">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+<pre><code>.text {
+  background: url(tulips.jpg) 50% 50%;
+  -webkit-background-clip: text;
+
+  }</span></code></pre>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--ps-cells slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--background-clip demo--background-clip-step2">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+<pre><code>.text {
+  background: url(tulips.jpg) 50% 50%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }</code></pre>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--ps-cells slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--background-clip demo--background-clip-step3">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--ps-cells slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--background-clip-no-support">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--ps-cells slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--background-clip-fade">
+                текст текст текст текст текст
+                текст текст текст текст текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Анимация заливки</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--background-clip-animation">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark slide--vlm"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--background-clip-animation demo--background-clip-animation-color">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+        <div class="slide__content">
+            <div class="browsers--biglist">
+                <span data-bubble="-webkit-"><img src="./assets/img/browsers/chrome.png" alt="Chrome"/></span>
+                <span data-bubble="-webkit-"><img src="./assets/img/browsers/safari.png" alt="Safari"/></span>
+                <span data-bubble="-webkit-"><img src="./assets/img/browsers/opera.png" alt="Opera"/></span>
+                <img src="./assets/img/browsers/firefox.png" alt="Firefox" class="no-support"/>
+                <img src="./assets/img/browsers/ie.png" alt="IE" class="no-support"/>
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <h2 class="free-fly">2. SVG</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">SVG text</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+<pre><code>&lt;svg viewBox="0 0 1024 620">
+    <span class="next">&lt;text x="50%" y="50%" dy=".2em" text-anchor="middle">
+        <mark class="next">текст</mark>
+    &lt;/text></span>
+&lt;/svg></code></pre>
+
+        <svg viewBox="0 0 1024 280" class="next demo demo--text demo--small-height">
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle">текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Обводки</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+    <h3>Через атрибуты:</h3>
+<pre><code>&lt;text <mark>stroke</mark>="crimson" <mark>stroke-width</mark>="3">текст&lt;/text></code></pre>
+
+    <span class="next"><h3>или в CSS:</h3>
+
+    <pre><code>.text {
+        <mark>stroke</mark>: crimson;
+        <mark>stroke-width</mark>: 3;
+        }</code></pre></span>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text">
+            <text x="50%" y="28%" dy=".2em" text-anchor="middle"
+                class="text--stroke text--stroke-thick">текст</text>
+            <text x="50%" y="72%" dy=".2em" text-anchor="middle"
+                class="text--stroke text--stroke-thin">текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text">
+            <text x="50%" y="50%" dy=".2em" text-anchor="middle"
+                class="text--stroke text--stroke-pulse">текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text">
+            <pattern id="p-lines"
+                       viewBox="0 0 100 100"
+                       patternUnits="userSpaceOnUse"
+                       width="100" height="100">
+                <path d="M 0,0 0,100" class="p-line"/>
+                <path d="M 10,0 10,100" class="p-line"/>
+                <path d="M 20,0 20,100" class="p-line"/>
+                <path d="M 30,0 30,100" class="p-line"/>
+                <path d="M 40,0 40,100" class="p-line"/>
+                <path d="M 50,0 50,100" class="p-line"/>
+                <path d="M 60,0 60,100" class="p-line"/>
+                <path d="M 70,0 70,100" class="p-line"/>
+                <path d="M 80,0 80,100" class="p-line"/>
+                <path d="M 90,0 90,100" class="p-line"/>
+                <path d="M 100,0 100,100" class="p-line"/>
+              </pattern>
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle" stroke="url(#p-lines)"
+                class="text--stroke text--stroke-anim-pattern">текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">stroke-dasharray</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+<pre><code>.text {
+    stroke: orangered;
+    stroke-width: 4;
+    <span class="next"><mark>stroke-dasharray</mark>: 50 30 20 10;
+    }</span></code></pre>
+
+        <svg viewBox="0 0 1024 280" class="demo demo--text next demo--small-height">
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="text--stroke text--stroke-dasharray">текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text">
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="text--stroke text--stroke-run">текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text">
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="text--stroke text--stroke-appear">текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text">
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="text--stroke text--stroke-aunt-walk">текст</text>
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="text--stroke text--stroke-aunt-walk">текст</text>
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="text--stroke text--stroke-aunt-walk">текст</text>
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="text--stroke text--stroke-aunt-walk">текст</text>
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="text--stroke text--stroke-aunt-walk">текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Заливки</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+    <h3>Через атрибут:</h3>
+<pre><code>&lt;text <mark>fill</mark>="url(#gr-blue)">текст&lt;/text></code></pre>
+
+    <span class="next"><h3>или в CSS:</h3>
+    <pre><code>.text {
+        <mark>fill</mark>: url(#gr-blue);
+        }</code></pre></span>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text">
+            <defs>
+                <linearGradient id="gr-blue"
+                        x1="0" y1="0" x2="100%" y2="100%"
+                        gradientUnits="objectBoundingBox">
+                        <animate attributeName="r"
+                           values="0%;150%;100%;0%"
+                           dur="5s" repeatCount="indefinite" />
+                    <stop stop-color="hsl(160, 100%, 80%)" offset="10%"/>
+                    <stop stop-color="hsl(250, 100%, 30%)" offset="90%"/>
+                </linearGradient>
+                <pattern id="pt-grass" width="300" height="300"
+                             patternUnits="userSpaceOnUse">
+                    <image xlink:href="./assets/img/parts/grass.jpg" width="300" height="300"/>
+                  </pattern>
+            </defs>
+
+            <text x="50%" y="16%" dy=".25em" text-anchor="middle"
+                class="text--fill text--fill-solid">текст</text>
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="next text--fill text--fill-gradient"
+                fill="url(#gr-blue)">текст</text>
+            <text x="50%" y="86%" dy=".25em" text-anchor="middle"
+                class="next text--fill text--fill-pattern"
+                fill="url(#pt-grass)">текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Градиенты</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+
+<pre><code>&lt;linearGradient id="gr-blue"
+        x1="0" y1="0" x2="100%" y2="100%">
+    <span class="next">&lt;stop stop-color="hsl(160, 100%, 80%)" offset="10%"/>
+    &lt;stop stop-color="hsl(250, 100%, 30%)" offset="90%"/></span>
+&lt;/linearGradient></code></pre>
+
+    <svg viewBox="0 0 1024 280" class="demo demo--text next demo--small-height">
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                fill="url(#gr-blue)">текст</text>
+        </svg>
+</div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text">
+            <defs>
+                <linearGradient id="gr-css-anim"
+                        x1="0" y1="0" x2="100%" y2="100%"
+                        gradientUnits="objectBoundingBox">
+                    <stop class="stop-css-anim stop-css-anim--1" offset="10%"/>
+                    <stop class="stop-css-anim stop-css-anim--2" offset="90%"/>
+                </linearGradient>
+            </defs>
+
+            <text x="50%" y="50%" dy=".2em" text-anchor="middle"
+                class="text--fill text--fill-gradient"
+                fill="url(#gr-css-anim)">текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text">
+            <defs>
+                <radialGradient id="gr-smil-anim"
+                  cx="50%" cy="50%" r="70%">
+                  <animate attributeName="r"
+                           values="0%;150%;130%;0%"
+                           dur="5s" repeatCount="indefinite" />
+                  <stop stop-color="#FFF" offset="0">
+                  <animate attributeName="stop-color"
+                           values="rgba(55,55,55,.5);#FFF;#FFF;rgba(55,55,55,.5)"
+                           dur="5s" repeatCount="indefinite" />
+                  </stop>
+                  <stop stop-color="rgba(55,55,55,0)" offset="100%"/>
+              </radialGradient>
+            </defs>
+
+            <text x="50%" y="50%" dy=".2em" text-anchor="middle"
+                class="text--fill text--fill-smil-anim-grad"
+                >текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Паттерны</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+<pre><code>&lt;pattern id="pt-circle" width="50" height="50"
+    viewBox="0 0 50 50" patternUnits="userSpaceOnUse">
+    <span class="next">&lt;<mark>circle</mark> r="18" cx="25" cy="25"
+      fill="yellowgreen" stroke="green" stroke-width="7"/></span>
+&lt;/pattern></code></pre>
+
+    <svg class="demo--show-pattern next">
+        <pattern id="pt-circle" width="50" height="50"
+        viewBox="0 0 50 50" patternUnits="userSpaceOnUse">
+            <circle r="18" cx="25" cy="25"
+                fill="yellowgreen" stroke="green" stroke-width="7"/>
+        </pattern>
+        <rect width="100%" height="100%" fill="url(#pt-circle)"/>
+    </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+
+<pre><code>&lt;pattern id="pt-wood" width="300" height="300"
+    patternUnits="userSpaceOnUse">
+    <span class="next">&lt;<mark>image</mark> xlink:href="wood.jpg"
+        width="300" height="300"/></span>
+&lt;/pattern></code></pre>
+
+    <svg class="demo--show-pattern next">
+        <rect width="100%" height="100%" fill="url(#pt-wood)"/>
+    </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text demo--text-masks">
+
+          <text x="50%" y="50%" dy=".35em" text-anchor="middle"
+                fill="url(#pt-wood)" class="text--fill--wood"
+                >АБВ</text>
+        </svg>
+
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text demo--text-masks">
+
+          <pattern id="pt-spots" width="728" height="500"
+             patternUnits="userSpaceOnUse">
+            <image xlink:href="./assets/img/parts/spots.png" width="728" height="500"/>
+          </pattern>
+
+          <text x="50%" y="50%" dy=".35em" text-anchor="middle"
+                fill="url(#pt-spots)" class="text--fill--spots"
+                >АБВ</text>
+        </svg>
+
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text demo--text-masks">
+
+          <pattern id="pt-text" patternunits="userSpaceOnUse" width="480" height="112" y="5">
+            <text x="0" y="0" class="text--pattern">
+              <tspan x="0" y="1em">Nam tristique vestibulum nulla nec accumsan. Nullam commodo eget dolor et ultricies.
+              </tspan>
+              <tspan x="0" y="2.1em">Nulla ligula elit, placerat a sapien vel, eleifend tincidunt nibh. Suspendisse porta fermentum dictum. Cras eget
+              </tspan>
+              <tspan x="0" y="3.2em">Maecenas tempus elit quis sapien tempus, sit amet viverra neque mattis. Quisque a tincidunt mi.
+              </tspan>
+              <tspan x="0" y="4.3em">Proin at justo eu ipsum posuere dignissim vel quis eros. Etiam at libero commodo, varius justo quis, interdum erat.
+              </tspan>
+              <tspan x="0" y="5.4em">Fusce viverra mollis est, nec euismod ante mattis ut. Aenean eu mauris viverra enim vulputate bibendum.
+              </tspan>
+              <tspan x="0" y="6.5em">Integer velit metus, cursus et commodo sit amet, gravida vitae purus. Sed scelerisque at odio non condimentum.
+              </tspan>
+              <tspan x="0" y="7.6em">Sed neque lacus, rhoncus vitae sem ut, pharetra vestibulum elit.
+              </tspan>
+              <tspan x="0" y="8.7em">Cras ultricies aliquam dolor quis ultrices. Cras eget mauris tincidunt, aliquam erat quis, faucibus augue.
+              </tspan>
+            </text>
+          </pattern>
+
+          <text x="50%" y="50%" dy=".35em" text-anchor="middle"
+                fill="url(#pt-text)" class="text--fill--text"
+                >АБВ</text>
+          <!-- <rect width="100%" height="100%" fill="url(#pt-text)"></rect> -->
+        </svg>
+
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Анимация заливки</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text">
+            <defs>
+                <pattern
+                   id="p-anim-cells"
+                   width="101" height="61"
+                   viewBox="0 0 100 60"
+                   patternUnits="userSpaceOnUse">
+
+                    <g class="g-anim-cells">
+                        <rect width="20" height="20"/>
+                        <rect width="20" height="20"
+                              x="20"/>
+                        <rect width="20" height="20"
+                              x="40"/>
+                        <rect width="20" height="20"
+                              x="60"/>
+                        <rect width="20" height="20"
+                              x="80"/>
+
+                        <rect width="20" height="20"
+                              y="20"/>
+                        <rect width="20" height="20"
+                              x="20" y="20"/>
+                        <rect width="20" height="20"
+                              x="40" y="20"/>
+                        <rect width="20" height="20"
+                              x="60" y="20"/>
+                        <rect width="20" height="20"
+                              x="80" y="20"/>
+
+                        <rect width="20" height="20"
+                              y="40"/>
+                        <rect width="20" height="20"
+                              x="20" y="40"/>
+                        <rect width="20" height="20"
+                              x="40" y="40"/>
+                        <rect width="20" height="20"
+                              x="60" y="40"/>
+                        <rect width="20" height="20"
+                              x="80" y="40"/>
+                    </g>
+
+                  </pattern>
+            </defs>
+
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="text--fill"
+                fill="url(#p-anim-cells)"
+                >текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text">
+            <defs>
+                <pattern
+                   id="p-anim-spots"
+                   width="120" height="120"
+                   viewBox="0 0 120 120"
+                   patternUnits="userSpaceOnUse">
+
+                   <rect width="100%" height="100%"/>
+
+                    <g class="g-anim-spots">
+                        <circle r="5"
+                                cx="15" cy="15"/>
+                        <circle r="5"
+                                cx="45" cy="15"/>
+                        <circle r="5"
+                                cx="75" cy="15"/>
+                        <circle r="5"
+                                cx="105" cy="15"/>
+
+                        <circle r="5"
+                                cx="15" cy="45"/>
+                        <circle r="5"
+                                cx="45" cy="45"/>
+                        <circle r="5"
+                                cx="75" cy="45"/>
+                        <circle r="5"
+                                cx="105" cy="45"/>
+
+                        <circle r="5"
+                                cx="15" cy="75"/>
+                        <circle r="5"
+                                cx="45" cy="75"/>
+                        <circle r="5"
+                                cx="75" cy="75"/>
+                        <circle r="5"
+                                cx="105" cy="75"/>
+
+                        <circle r="5"
+                                cx="15" cy="105"/>
+                        <circle r="5"
+                                cx="45" cy="105"/>
+                        <circle r="5"
+                                cx="75" cy="105"/>
+                        <circle r="5"
+                                cx="105" cy="105"/>
+                    </g>
+
+                  </pattern>
+            </defs>
+
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="text--fill text--fill-anim-spots"
+                fill="url(#p-anim-spots)"
+                >текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--text">
+            <defs>
+                <pattern id="pt-water" viewBox="0 0 256 256" width="256" height="256" patternUnits="userSpaceOnUse">
+                    <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="./assets/img/parts/water.gif" width="256" height="256"></image>
+                </pattern>
+                <pattern id="pt-fire" viewBox="30 100 186 200" width="216" height="200" patternUnits="userSpaceOnUse" x="-30" y="-10">
+                    <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="./assets/img/parts/fire.gif" width="256" height="300"></image>
+                </pattern>
+            </defs>
+            <text x="50%" y="27%" dy=".25em" class="t--water t--anim" fill="url(#pt-water)" text-anchor="middle">Вода</text>
+            <text x="50%" y="80%" dy=".25em" class="t--fire t--anim" fill="url(#pt-fire)" text-anchor="middle">Огонь</text>
+      </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">SVG mask</h2>
+    </div></section>
+
+   <!-- Slide -->
+    <section class="slide"><div>
+<pre><code>&lt;mask id="mask-text"
+    maskunits="userSpaceOnUse"
+    maskcontentunits="userSpaceOnUse">
+        <span class="next">&lt;text x="50%" y="50%" dy=".2em" text-anchor="middle"
+            fill="#FFF">
+            текст
+        &lt;/text></span>
+&lt;/mask></code></pre>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull bg--ps-cells"><div>
+        <div class="slide__content">
+            <svg viewBox="0 0 1024 640" class="demo demo--text demo--text-showmask demo--offset">
+                <symbol id="s-text">
+                    <text x="50%" y="50%" dy=".2em"
+                        text-anchor="middle">текст</text>
+                </symbol>
+
+                <rect fill="#000" width="100%" height="100%"/>
+                <use xlink:href="#s-text" fill="#FFF"/>
+            </svg>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+<pre><code>&lt;g>
+    &lt;rect fill="url(<mark>#pt-wood</mark>)" width="100%" height="100%"/>
+&lt;/g></code></pre>
+
+    <svg viewBox="0 0 1024 320" class="demo demo--text">
+        <pattern id="pt-wood" width="300" height="300"
+             patternUnits="userSpaceOnUse">
+            <image xlink:href="./assets/img/parts/wood.jpg" width="300" height="300"/>
+        </pattern>
+
+        <g>
+            <rect fill="url(#pt-wood)" width="100%" height="100%"/>
+        </g>
+    </svg>
+
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+<pre><code>&lt;g mask="url(<mark>#mask-text</mark>)">
+    &lt;rect fill="url(#pt-wood)" width="100%" height="100%"/>
+&lt;/g></code></pre>
+
+    <svg viewBox="0 0 1024 280" class="demo demo--text demo--small-height">
+        <mask id="mask-text"
+            maskunits="userSpaceOnUse"
+            maskcontentunits="userSpaceOnUse">
+            <use xlink:href="#s-text" fill="#FFF"/>
+        </mask>
+
+
+        <g mask="url(#mask-text)">
+            <rect fill="url(#pt-wood)" width="100%" height="100%"/>
+        </g>
+    </svg>
+
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Анимация заливки</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--dottes">
+          <symbol id="s-text-dottes">
+            <text text-anchor="middle"
+                  x="64%" y="35%"
+                  class="text--line"
+                  >
+              Dizzy
+            </text>
+            <text text-anchor="middle"
+                  x="50%" y="86.7%"
+                  class="text--line2"
+                  >
+              Dots
+            </text>
+
+          </symbol>
+
+          <mask id="mask-text-dottes"
+            maskunits="userSpaceOnUse"
+            maskcontentunits="userSpaceOnUse">
+                <use xlink:href="#s-text-dottes" fill="#FFF"/>
+          </mask>
+
+          <pattern
+                   id="p-dottes"
+                   width="50" height="50"
+                   viewBox="0 0 100 100"
+                   patternUnits="userSpaceOnUse"
+                   >
+            <rect
+                  width="100%" height="100%"
+                  fill="hsl(10,100%,55%)"></rect>
+            <g fill="#FFF">
+              <circle r="15" cx="20" cy="20"></circle>
+              <circle r="22" cx="70" cy="70"></circle>
+            </g>
+
+          </pattern>
+
+
+          <use xlink:href="#s-text-dottes"
+              class="text-copy--shadow"></use>
+
+          <use xlink:href="#s-text-dottes"
+              class="text-copy"></use>
+
+          <g mask="url(#mask-text-dottes)">
+            <circle r="540"
+                cx="512"
+                cy="320"
+              class="r-fill--color"
+            ></circle>
+            <circle r="520"
+                cx="512"
+                cy="320"
+                fill="url(#p-dottes)"
+              class="r-fill"
+            ></circle>
+          </g>
+        </svg>
+
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark slide--imgfull"><div>
+        <svg viewBox="0 0 1024 640" class="demo demo--text demo--text-psycho">
+          <symbol id="s-circle">
+            <g fill="none" stroke-width="100"
+               stroke-dasharray="5.5 30" class="g-circles">
+              <circle r="50" cx="100" cy="100"
+              ></circle>
+              <circle r="50" cx="100" cy="100"
+              ></circle>
+              <circle r="50" cx="100" cy="100"
+              ></circle>
+              <circle r="50" cx="100" cy="100"
+              ></circle>
+              <circle r="50" cx="100" cy="100"
+              ></circle>
+              <circle r="50" cx="100" cy="100"
+              ></circle>
+              <circle r="50" cx="100" cy="100"
+              ></circle>
+            </g>
+          </symbol>
+
+          <symbol id="s-text-psycho">
+            <text text-anchor="middle"
+                  x="50%"
+                  y="52%"
+                  class="text-psycho--line"
+                  >
+              Good
+            </text>
+            <text text-anchor="middle"
+                  x="64%"
+                  y="80%"
+                  class="text-psycho--line2"
+                  >
+               trip
+            </text>
+          </symbol>
+
+          <mask id="mask-text-psycho"
+            maskunits="userSpaceOnUse"
+            maskcontentunits="userSpaceOnUse">
+                <use xlink:href="#s-text-psycho" fill="#FFF"/>
+          </mask>
+
+          <use xlink:href="#s-text-psycho" class="text-shadow"></use>
+
+          <g
+            mask="url(#mask-text-psycho)"
+            class="animated-circles">
+            <g transform="translate(137, 0)" class="animated-circles-inner">
+                <g transform="translate(-105, 105) scale(2.5)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(-10, 10) scale(1.5)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(80, 20) scale(1)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(220, 160) scale(1.2)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(470, 50) scale(1.9)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(470, 340) scale(1.5)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(255, -10) scale(1.2)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(400, 200) scale(.75)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(410, 140) scale(.8)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(275, 395) scale(1.15)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(415, 320) scale(.7)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(530, 320) scale(.3)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(320, 325) scale(.5)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(155, 90) scale(.4)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(315, 165) scale(.4)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(493, 170) scale(.35)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g></g>
+                <g transform="translate(630, 195) scale(.4)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+                <g transform="translate(485, 510) scale(.6)">
+                  <use xlink:href="#s-circle" class="u-circle"></use>
+                </g>
+            </g>
+          </g>
+
+          <use xlink:href="#s-text-psycho" class="text-stroke"></use>
+          <use xlink:href="#s-text-psycho" class="text-stroke text-stroke-2"></use>
+          <use xlink:href="#s-text-psycho" class="text-stroke text-stroke-3"></use>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Копируемый текст</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+<pre><code>.text {
+    fill: <mark>none</mark>;
+    }</code></pre>
+<h4>&nbsp;</h4>
+<pre class="next"><code>.text {
+    fill: <mark>transparent</mark>;
+    }</code></pre>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+<pre class="comment"><code>.text {
+    fill: none;
+    }</code></pre>
+<h4>Прозрачный текст, который можно выделить:</h4>
+<pre><code>.text {
+    fill: <mark>transparent</mark>;
+    }</code></pre>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Проблемы текста в SVG</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull"><div>
+        <svg viewBox="0 0 1024 640" class="demo demo--longtext">
+            <text x="4%" y="50%" dy=".2em"
+            >текст, уехавший за край</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--longtext demo--longtext-multylines">
+            <defs>
+                <path d="M
+                0,100 1024,100
+                M0,250 1024,250
+                M0,400 1024,400
+                M0,550 1024,550" id="tp-multylines"/>
+            </defs>
+            <use xlink:href="#tp-multylines" stroke="orangered" stroke-width="10"/>
+            <text x="0" y="0%">
+                <textPath xlink:href="#tp-multylines">
+                    Однажды в студеную зимнюю пору я из лесу вышел, по-моему, зря.
+                </textPath>
+            </text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+        <div class="slide__content">
+            <div class="browsers--biglist">
+                <img src="./assets/img/browsers/chrome.png" alt="Chrome"/>
+                <img src="./assets/img/browsers/safari.png" alt="Safari"/>
+                <img src="./assets/img/browsers/opera.png" alt="Opera"/>
+                <img src="./assets/img/browsers/firefox.png" alt="Firefox"/>
+                <img src="./assets/img/browsers/ie.png" alt="IE"/>
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <h2 class="free-fly">3. Режимы наложения</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm bg--stripes"><div>
+        <div class="slide__content">
+            <img src="./assets/img/parts/bird-invert.gif" alt="Bird"/>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull bg--stripes"><div>
+        <div class="slide__content">
+            <div class="demo--bbmode-list">
+                    <div class="item-bbmode"></div><!--
+                 --><div class="item-bbmode next"></div><!--
+                 --><div class="item-bbmode next"></div><!--
+                 --><div class="item-bbmode next"></div><!--
+                 --><div class="item-bbmode next"></div><!--
+                 --><div class="item-bbmode next"></div>
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull bg--stripes"><div>
+        <div class="slide__content">
+            <div class="demo--bbmode-pair">
+                <div class="item-bbmode item-bbmode--darken">
+                </div><!--
+                 --><div class="item-bbmode item-bbmode--lighten">
+                </div>
+                <div class="item-bbmode-title">darken</div>
+                <div class="item-bbmode-title">lighten</div>
+            </div>
+        </div>
+    </div></section>
+
+
+    <!-- Slide -->
+    <section class="slide bg--flowers"><div>
+        <div class="slide__content">
+            <div class="demo demo--text demo--offset demo--bbmode-text  demo--bbmode-text-step0">
+                <div class="text">текст</div>
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+<pre><code>.text {
+    mix-blend-mode: <mark>lighten</mark>;
+    }</code></pre>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--flowers"><div>
+        <div class="slide__content">
+            <div class="demo
+                        demo--text
+                        demo--offset
+                        demo--bbmode-text
+                        demo--bbmode-text-step1">
+                <div class="text">текст</div>
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Анимация заливки</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <div class="demo--dancing-shadows">
+          <h1 class="demo--dancing-shadows__title">
+            <span class="text-wrapper">
+              <span class="text-items">
+                <span class="text-item text-item--1">Aurora</span>
+                <span class="text-item text-item--2">Borealis</span>
+                <span class="text-item text-item--3">Text</span>
+              </span>
+             </span>
+          </h1>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+        <div class="slide__content">
+            <div class="browsers--biglist">
+                <span data-bubble="41+"><img src="./assets/img/browsers/chrome.png" alt="Chrome"/></span>
+                <img src="./assets/img/browsers/safari.png" alt="Safari"/>
+                <span data-bubble="29+"><img src="./assets/img/browsers/opera.png" alt="Opera"/></span>
+                <img src="./assets/img/browsers/firefox.png" alt="Firefox"/>
+                <img src="./assets/img/browsers/ie.png" class="no-support" alt="IE"/>
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <h2 class="free-fly">4. SVG + HTML</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">SVG mask</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull bg--ps-cells"><div>
+        <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--inverted-mask demo--offset demo--text">
+            <rect width="100%" height="100%" fill="#FFF"/>
+            <text x="50%" y="50%" dy=".25em"
+                text-anchor="middle">текст</text>
+        </svg>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull bg--ps-cells"><div>
+        <div class="">
+            <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--offset demo--text">
+                <symbol id="s-text--invmask">
+                    <text x="50%" y="50%" dy=".25em"
+                        text-anchor="middle">текст</text>
+                </symbol>
+
+                <mask id="mask-text-revert"
+                maskunits="userSpaceOnUse"
+                maskcontentunits="userSpaceOnUse">
+                    <rect width="100%" height="100%" fill="#FFF"/>
+                    <use xlink:href="#s-text--invmask"/>
+                </mask>
+
+                <rect mask="url(#mask-text-revert)"
+                    width="100%" height="100%"
+                    fill="#000"/>
+                <use xlink:href="#s-text--invmask" class="u-text--transp"/>
+
+            </svg>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull bg--flowers"><div>
+        <div class="">
+            <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--offset demo--text">
+                <rect mask="url(#mask-text-revert)"
+                    width="100%" height="100%"
+                    fill="#000"/>
+                <use xlink:href="#s-text--invmask" class="u-text--transp"/>
+
+            </svg>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <h2 class="free-fly">Анимация заливки</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull"><div>
+        <div class="demo-border">
+            <div class="demo--round-shadows"></div>
+                <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--text">
+
+                    <rect mask="url(#mask-text-revert)"
+                        width="100%" height="100%"
+                        fill="#000"/>
+
+                </svg>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull"><div>
+        <div class="demo-border">
+            <div class="text-fill-video">
+                <video class="video" autoplay loop
+                       preload="none"
+                       src="./assets/video/leaves.mp4?12">
+                </video>
+              </div>
+            <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--text">
+                <symbol id="s-text--invmask-multytext">
+                    <text x="50%" y="50%" dy=".4em"
+                        text-anchor="middle"
+                        class="text--invmask-multytext">АБВ</text>
+                </symbol>
+
+                <mask id="mask-text-revert-2"
+                maskunits="userSpaceOnUse"
+                maskcontentunits="userSpaceOnUse">
+                    <rect width="100%" height="100%" fill="#FFF"/>
+                    <use xlink:href="#s-text--invmask-multytext"/>
+                </mask>
+
+                <use xlink:href="#s-text--invmask-multytext" class="u-text--stroke"/>
+                <rect mask="url(#mask-text-revert-2)"
+                    width="100%" height="100%"
+                    fill="#000"/>
+
+                <use xlink:href="#s-text--invmask-multytext" class="u-text--transp"/>
+
+            </svg>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull bg--ps-cells"><div>
+        <div class="demo-border">
+            <div class="text-fill-video">
+                <video class="video" autoplay loop
+                       preload="none"
+                       src="./assets/video/leaves.mp4?123">
+                </video>
+              </div>
+            <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--text">
+                <use xlink:href="#s-text--invmask-multytext" class="u-text--stroke"/>
+                <rect mask="url(#mask-text-revert-2)"
+                    width="100%" height="100%"
+                    fill="url(#pt-wood)"/>
+
+                <use xlink:href="#s-text--invmask-multytext" class="u-text--transp"/>
+
+            </svg>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--imgfull bg--ps-cells"><div>
+        <div class="demo-border">
+            <div class="text-fill-video">
+                <video class="video" autoplay loop
+                       preload="none"
+                       src="./assets/video/leaves.mp4?1234">
+                </video>
+              </div>
+            <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--text">
+
+                <radialGradient id="gr-light"
+                    gradientUnits="objectBoundingBox"
+                    cx="50%" cy="50%" r="60%">
+                    <stop stop-color="hsl(30, 100%, 50%)" offset="40%"/>
+                    <stop stop-color="transparent" offset="100%"/>
+                </radialGradient>
+
+                  <pattern
+                      id="p-light-circles"
+                      viewBox="0 0 50 100"
+                      patternUnits="userSpaceOnUse"
+                      width="100" height="200">
+
+                    <rect width="100%" height="100%"/>
+
+                    <g
+                       fill="url(#gr-light)"
+                       stroke="hsla(30, 100%, 50%, .2)"
+                       stroke-width="2"
+                       >
+                      <g>
+                        <circle r="7"
+                            cx="10" cy="9"
+                            class="light-circle"/>
+                      <circle r="5"
+                            cx="10" cy="33"
+                            class="light-circle"/>
+                      <circle r="3"
+                              cx="10" cy="55"
+                              class="light-circle"/>
+                      <circle r="1.5"
+                              cx="10" cy="73"
+                              class="light-circle"/>
+                      <circle r="1.3"
+                              cx="10" cy="90"
+                              class="light-circle"/>
+                      </g>
+
+                      <g class="group-2"
+                         transform="translate(25,50)">
+                        <circle r="7"
+                            cx="10" cy="9"
+                            class="light-circle"/>
+                      <circle r="5"
+                            cx="10" cy="33"
+                            class="light-circle"/>
+                      <circle r="3"
+                              cx="10" cy="55"
+                              class="light-circle"/>
+                      <circle r="1.5"
+                              cx="10" cy="73"
+                              class="light-circle"/>
+                      <circle r="1.3"
+                              cx="10" cy="90"
+                              class="light-circle"/>
+                      </g>
+                      <g class="group-3"
+                         transform="translate(25,-50)">
+                        <circle r="7"
+                            cx="10" cy="9"
+                            class="light-circle"/>
+                      <circle r="5"
+                            cx="10" cy="33"
+                            class="light-circle"/>
+                      <circle r="3"
+                              cx="10" cy="55"
+                              class="light-circle"/>
+                      <circle r="1.5"
+                              cx="10" cy="73"
+                              class="light-circle"/>
+                      <circle r="1.3"
+                              cx="10" cy="90"
+                              class="light-circle"/>
+                      </g>
+                    </g>
+                  </pattern>
+
+                <use xlink:href="#s-text--invmask-multytext" class="u-text--stroke"/>
+                <rect mask="url(#mask-text-revert-2)"
+                    width="100%" height="100%"
+                    fill="url(#p-light-circles)"/>
+
+                <use xlink:href="#s-text--invmask-multytext" class="u-text--transp"/>
+
+            </svg>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide slide--vlm"><div>
+        <div class="slide__content">
+            <div class="browsers--biglist">
+                <img src="./assets/img/browsers/chrome.png" alt="Chrome"/>
+                <img src="./assets/img/browsers/safari.png" alt="Safari"/>
+                <img src="./assets/img/browsers/opera.png" alt="Opera"/>
+                <img src="./assets/img/browsers/firefox.png" alt="Firefox"/>
+                <img src="./assets/img/browsers/ie.png"/>
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <h2 class="free-fly">А смысл?</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--blue-grad"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--logo">
+
+            <linearGradient id="gr-mask-opacity"
+                    x1="-100%" y1="0" x2="100%" y2="25%"
+                    gradientUnits="objectBoundingBox">
+                  <animate attributeName="x1"
+                           values="-100%;100%;"
+                           dur="7s" repeatCount="indefinite" />
+                  <animate attributeName="x2"
+                           values="0%;200%;"
+                           dur="7s" repeatCount="indefinite" />
+
+                  <stop stop-color="rgb(0,0,0)" offset="0%"/>
+                  <stop stop-color="rgb(255,255,255)" offset="30%"/>
+                  <stop stop-color="rgb(255,255,255)" offset="70%"/>
+                  <stop stop-color="rgb(0,0,0)" offset="100%"/>
+            </linearGradient>
+
+            <mask id="mask-text-appear"
+                    maskunits="userSpaceOnUse"
+                    maskcontentunits="userSpaceOnUse">
+                        <rect width="100%" height="100%"
+                        class="mask-rect-gr-opacity"/>
+            </mask>
+
+            <g mask="url(#mask-text-appear)">
+                <use xlink:href="#s-text"/>
+            </g>
+        </svg>
+
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--blue-grad"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--logo">
+
+            <mask id="mask-logo-appear-up"
+                    maskunits="userSpaceOnUse"
+                    maskcontentunits="userSpaceOnUse">
+                    <rect width="100%" height=".1"
+                    y="70%" fill="green" class="mask-logo-appear-rect"/>
+            </mask>
+
+            <g mask="url(#mask-logo-appear-up)">
+                <use xlink:href="#s-text"/>
+            </g>
+            <use xlink:href="#s-text" class="stroke-appear-anim"/>
+        </svg>
+
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--dark"><div>
+        <svg viewBox="0 0 1024 620" class="demo demo--logo">
+
+            <mask id="mask-logo-bw"
+                    maskunits="userSpaceOnUse"
+                    maskcontentunits="userSpaceOnUse">
+                    <use xlink:href="#s-text" fill="white"/>
+            </mask>
+
+            <radialGradient id="gr-aurora-1" class="gr-aurora-1"
+                  gradientUnits = "objectBoundingBox"
+                  cx="50%" cy="50%" r="50%">
+                  <stop offset="0" class="aurora-stop-color-1"/>
+                  <stop offset="90%" class="aurora-stop-color-2"/>
+              </radialGradient>
+
+            <radialGradient id="gr-aurora-2" class="gr-aurora-2"
+                  gradientUnits = "objectBoundingBox"
+                  cx="50%" cy="50%" r="50%">
+                  <stop offset="0" class="aurora-stop-color-1"/>
+                  <stop offset="90%" class="aurora-stop-color-2"/>
+            </radialGradient>
+
+            <radialGradient id="gr-aurora-3" class="gr-aurora-3"
+                  gradientUnits = "objectBoundingBox"
+                  cx="50%" cy="50%" r="50%">
+                  <stop offset="0" class="aurora-stop-color-1"/>
+                  <stop offset="90%" class="aurora-stop-color-2"/>
+            </radialGradient>
+
+            <radialGradient id="gr-aurora-4" class="gr-aurora-4"
+                  gradientUnits = "objectBoundingBox"
+                  cx="50%" cy="50%" r="50%">
+                  <stop offset="0" class="aurora-stop-color-1"/>
+                  <stop offset="90%" class="aurora-stop-color-2"/>
+            </radialGradient>
+
+            <radialGradient id="gr-aurora-5" class="gr-aurora-5"
+                  gradientUnits = "objectBoundingBox"
+                  cx="50%" cy="50%" r="50%">
+                  <stop offset="0" class="aurora-stop-color-1"/>
+                  <stop offset="90%" class="aurora-stop-color-2"/>
+            </radialGradient>
+
+            <g mask="url(#mask-logo-bw)">
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-1)"
+                    x="-100" y="50"/>
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-2)"
+                    x="-100" y="50"/>
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-3)"
+                    x="-200" y="100"/>
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-4)"
+                    x="80" y="50"/>
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-5)"
+                    x="300" y="50"/>
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-4)"
+                    x="500" y="50"/>
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-3)"
+                    x="600" y="50"/>
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-2)"
+                    x="720" y="50"/>
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-1)"
+                    x="550" y="100"/>
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-2)"
+                    x="400" y="100"/>
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-3)"
+                    x="300" y="100"/>
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-4)"
+                    x="250" y="100"/>
+
+                <rect width="500" height="500"
+                    fill="url(#gr-aurora-5)"
+                    x="100" y="100"/>
+            </g>
+
+        </svg>
+
+    </div></section>
+
+    <section class="slide bg--dark"><div>
+        <h2 class="free-fly">Послесловие</h2>
+    </div></section>
+
+    <section class="slide"><div>
+        <h4>Полезные ссылки</h4>
+            <ul>
+                <li><a href="http://www.w3.org/TR/SVG/">Scalable Vector Graphics</a> (спецификация)</li>
+                <li><a href="https://docs.webplatform.org/wiki/svg/tutorials">SVG tutorials</a></li>
+                <li><a href="http://yoksel.github.io/about-svg/">Позвольте представить: SVG</a> (презентация)</li>
+                <li><a href="http://www.sitepoint.com/getting-started-svg-gradients/">Getting Started with SVG Gradients</a></li>
+                <li><a href="http://css-tricks.com/guide-svg-animations-smil/">A Guide to SVG Animations (SMIL)</a></li>
+                <li><a href="https://dev.opera.com/articles/getting-to-know-css-blend-modes/">Getting to Know CSS Blend Modes</a></li>
+                <li><a href="http://css.yoksel.ru/background-blend-mode/">Background-blend-mode</a> (рус.)</li>
+                <li><a href="http://yoksel.github.io/blend-modes-06dec2014/">Режимы наложения в CSS</a> (презентация)</li>
+                <li><a href="http://tympanus.net/codrops/2013/12/02/techniques-for-creating-textured-text/">Techniques for creating textured text</a></li>
+                <li><a href="https://css-tricks.com/fun-line-height/">Fun with line-height!</a></li>
+
+            </ul>
+    </div></section>
+
+    <section class="slide slide--about"><div>
+            <img src="./assets/img/me.jpeg" class="photo"/>
+            <h3>Бухвалова Юлия<span>Livejournal</span></h3>
+            <ul>
+                <li><a href="http://css.yoksel.ru/">css.yoksel.ru</a></li>
+                <li><a href="https://twitter.com/yoksel">@yoksel</a></li>
+                <li><a href="http://codepen.io/yoksel">codepen.io/yoksel</a></li>
+            </ul>
+    </div></section>
+
+    <p class="badge">
+        <a href="https://github.com/shower/shower">Powered by Shower</a>
+    </p>
+
+    <div class="progress"><div></div></div>
+    <script src="node_modules/shower-core/shower.min.js"></script>
+    <script src="//localhost:35731/livereload.js"></script>
+    <!-- Copyright © 2014 yoksel. -->
+</body>
+</html>

@@ -1,0 +1,144 @@
+.text-fill-video {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: url(./assets/img/parts/leaves.jpg) 50% 50%/cover;
+    }
+    .video {
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      }
+    :target .video {
+      display: block;
+      }
+
+svg.demo--inverted-mask {
+    position: relative;
+    z-index: 1;
+    }
+.text--invmask-multytext {
+    font-size: 1.8em;
+    font-family: Impact;
+    }
+
+.u-text--transp {
+    fill: transparent;
+    }
+.u-text--stroke {
+    fill: transparent;
+    stroke: rgba(0,0,0,.5);
+    stroke-width: 20;
+
+    .demo--intro & {
+        stroke: rgba(255,255,255,.5);
+        stroke-width: 6;
+        }
+    }
+
+$round-shadow-size: 1.5vmax;
+
+$round-shadow-colors: purple, crimson, red, orangered, tomato, gold, yellow, yellowgreen, turquoise, royalblue, mediumslateblue, mediumorchid, darkviolet;
+
+$colors-max: length($round-shadow-colors);
+
+$matrix-max: 45;
+
+$round-shadows-steps: 4;
+$colors-in-step: round($colors-max/$round-shadows-steps);
+
+$dur: 4s;
+
+/* Function for getting colors from list
+if we need quantity of colors more than colors in array  */
+@function get_color($position){
+  $color: nth($round-shadow-colors, 1);
+
+  @if ($position < $colors-max) {
+    $color: nth($round-shadow-colors, $position);
+  }
+  @else {
+    $fixed-position: $position % $colors-max + 1;
+    $color: nth($round-shadow-colors, $fixed-position);
+  }
+
+  @return $color;
+}
+
+/* Function for creating multiple box-shadow */
+@function shadow-outlines ($color-offset: 0){
+  $out: null;
+  $cell-counter: 1;
+
+    @for $item from 1 through $matrix-max {
+      $color: get_color($cell-counter + $color-offset);
+      $current-size: $round-shadow-size * $item;
+
+      $out: append($out, 0 0 0 $current-size $color, comma);
+
+      $cell-counter: $cell-counter + 1;
+
+  }
+
+  @return $out;
+
+}
+
+/* Element with animated shadows */
+.demo--round-shadows {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: $round-shadow-size/2;
+  height: $round-shadow-size/2;
+  background: gold;
+  border-radius: 50%;
+  box-shadow: shadow-outlines();
+
+  :target & {
+      animation: shadows-move $dur linear infinite;
+    }
+  }
+
+
+@keyframes shadows-move {
+  25% {
+    box-shadow: shadow-outlines($colors-in-step*3);
+  }
+  45% {
+    box-shadow: shadow-outlines($colors-in-step*2);
+  }
+  75% {
+    box-shadow: shadow-outlines($colors-in-step);
+  }
+}
+
+
+
+$light-max: 5;
+$light-time: 3s;
+$light-step: $light-time / $light-max;
+
+.light-circle {
+    opacity: 0;
+
+    :target & {
+        animation: light-opacity $light-time infinite linear;
+        }
+
+    @for $item from 1 through $light-max{
+        &:nth-child(#{$light-max}n + #{$item}) {
+            animation-delay: - $light-step*($light-max - $item);
+            }
+        }
+    }
+
+@keyframes light-opacity {
+  50% {
+    opacity: 1;
+  }
+}

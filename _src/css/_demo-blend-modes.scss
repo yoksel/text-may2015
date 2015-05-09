@@ -1,0 +1,103 @@
+.demo--bbmode-list {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    border: 0px solid red;
+
+    .item-bbmode {
+        float: left;
+        width: 33.331%;
+        height: 320px;
+        line-height: 0;
+        background: #000 url(./assets/img/parts/bird-invert.gif) no-repeat 50% 50%;
+        background-size: cover;
+
+        &:nth-child(1) {
+            mix-blend-mode: multiply;
+            }
+        &:nth-child(2) {
+            mix-blend-mode: screen;
+            }
+        &:nth-child(3) {
+            mix-blend-mode: luminosity;
+            box-shadow: 5px 0 0px #000;
+            }
+        &:nth-child(4) {
+            mix-blend-mode: difference;
+            }
+        &:nth-child(5) {
+            mix-blend-mode: color-burn;
+            }
+        &:nth-child(6) {
+            mix-blend-mode: overlay;
+            box-shadow: 5px 0 0px #000;
+            }
+        }
+    }
+
+.demo--bbmode-pair {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    /*background:
+        linear-gradient(to bottom,
+        crimson, orangered,gold,
+        yellowgreen, steelblue, navy
+        );*/
+    .item-bbmode {
+        position: relative;
+        display: inline-block;
+        width: 50%;
+        height: 640px;
+        background: #000 url(./assets/img/parts/bird-invert.gif) no-repeat 50% 50%;
+
+        &--darken {
+            mix-blend-mode: darken;
+            }
+        &--lighten {
+            mix-blend-mode: lighten;
+            }
+        }
+    }
+    .item-bbmode-title {
+        position: absolute;
+        width: 50%;
+        top: 0%;
+        font-size: 2em;
+        color: #FFF;
+
+        &:nth-child(even) {
+            right: 0;
+            color: #000;
+            }
+        }
+
+.demo--bbmode-text {
+    /*background: url(./assets/img/parts/violet-hyacinths.jpeg) 50% 50%/cover;*/
+    .text {
+        height: 500px;
+        line-height: 500px;
+        background: #FFF;
+        text-align: center;
+        font-size: .85em;
+        }
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border: 3px solid #FFF;
+        }
+    }
+    .demo--bbmode-text-step1 {
+        mix-blend-mode: lighten;
+        }

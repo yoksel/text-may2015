@@ -1,0 +1,45 @@
+.js-togglemode {}
+    .js-togglemode .text-off {
+        display: none;
+        }
+    .js-blendmode--off {
+        background-blend-mode: normal !important;
+        mix-blend-mode: normal !important;
+        -webkit-filter: none !important;
+
+        *,
+        *:before,
+        *:after {
+            background-blend-mode: normal !important;
+            mix-blend-mode: normal !important;
+            -webkit-filter: none !important;
+            }
+        .text-on {
+            display: none;
+            }
+        .text-off {
+            display: block;
+            }
+        }
+    .js-blendmode-control {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        width: 70px;
+        padding: 1rem;
+        background: #222;
+        border: 0;
+        border-radius: 1rem;
+        box-shadow: 0 0 0 10px transparentize(greenyellow,.5);
+        outline: none;
+        cursor: pointer;
+        text-align: left;
+        font-size: .9em;
+        color: greenyellow;
+        .js-blendmode--off & {
+            box-shadow: 0 0 0 10px transparentize(#333,.5);
+            }
+        }
+        .text-off {
+            color: #999;
+            }

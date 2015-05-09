@@ -1,0 +1,134 @@
+$shadow-size: 14.5vh;
+$shadow-offset: $shadow-size * 1.2;
+$shadow-colors: purple, teal, orangered, yellow, crimson, yellowgreen, orange, darkturquoise, deeppink, steelblue,  darkturquoise, tomato, darkviolet, gold, darkslateblue;
+$colors-max: length($shadow-colors);
+
+$shadows-steps: 4;
+$colors-in-step: round($colors-max/$shadows-steps);
+
+$title-text-color: white;
+$title-bg-color: black;
+
+
+$matrix-v: 4;
+$matrix-h: 5;
+
+@function get_color($position){
+  $color: nth($shadow-colors, 1);
+
+
+  @if ($position < $colors-max) {
+    $color: nth($shadow-colors, $position);
+  }
+  @else {
+    $fixed-position: $position % $colors-max + 1;
+    $color: nth($shadow-colors, $fixed-position);
+  }
+
+  @return $color;
+}
+
+@function shadow-matrix ($color-offset: 0){
+  $out: null;
+  $cell-counter: 1;
+
+  @for $cell_column from 1 through $matrix-v {
+    $step-v: ($cell_column - 1) * $shadow-offset;
+
+    @for $cell_row from 1 through $matrix-h {
+      $color: get_color($cell-counter + $color-offset);
+
+      $step-h: ($cell_row - 1) * $shadow-offset;
+      $out: append($out, $step-h $step-v $shadow-size $shadow-size $color, comma);
+
+      $cell-counter: $cell-counter + 1;
+
+    }
+
+  }
+
+  @return $out;
+
+}
+
+.demo--dancing-shadows__title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  overflow: hidden;
+
+  .text-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    font-size: 175px; /*23vmin*/
+    line-height: 1.05;
+    font-style: italic;
+    font-family: Lobster;
+    background: $title-bg-color;
+    text-shadow:
+      0 .1rem $title-bg-color,
+      0 .2rem $title-bg-color,
+      0 .3rem $title-bg-color,
+      0 .4rem $title-bg-color,
+      0 .6rem $title-bg-color,
+      0 .7rem $title-text-color,
+      0 .8rem $title-text-color;
+    color: $title-text-color;
+    mix-blend-mode: darken;
+    }
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 20%;
+    left: 24%;
+    border-radius: 50%;
+    box-shadow: shadow-matrix();
+    }
+  :target &:before {
+    animation: shadows-cells 4s linear infinite;
+    }
+  }
+
+.text-items {
+  display: block;
+  position: absolute;
+  top: 45%;
+  right: 0;
+  left: 0;
+  width: 3.3em;
+  margin: 0 auto;
+  transform: translateY(-50%) rotate(-10deg);
+  text-align: center;
+  }
+.text-item {
+  display: block;
+  position: relative;
+
+  &--2 {
+    margin-left: -.4em;
+    }
+  &--3 {
+    margin-left: -.7em;
+    }
+  }
+
+@keyframes shadows-cells {
+  25% {
+    box-shadow: shadow-matrix($colors-in-step*2);
+  }
+  45% {
+    box-shadow: shadow-matrix($colors-in-step);
+  }
+  75% {
+    box-shadow: shadow-matrix($colors-in-step*3);
+  }
+}

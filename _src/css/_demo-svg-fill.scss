@@ -1,0 +1,189 @@
+.demo--show-pattern {
+    width: 100%;
+    height: 200px;
+    border: 2px solid #000;
+    }
+
+.text--fill-solid {
+    fill: orangered;
+    }
+
+$stop-css-anim-time: 5s;
+
+:target .stop-css-anim {
+    animation: stop-css-anim $stop-css-anim-time linear infinite;
+    }
+    :target .stop-css-anim--2 {
+        animation-delay: -$stop-css-anim-time/2;
+        }
+
+.stop-css-anim--1 {
+    stop-color: hsl(200, 100%, 50%);
+    }
+
+.stop-css-anim--2 {
+    stop-color: hsl(300, 100%, 50%);
+    }
+
+@keyframes stop-css-anim {
+
+    20% {
+        stop-color: hsl(20, 100%, 50%);
+        }
+    55% {
+        stop-color: hsl(250, 100%, 50%);
+        }
+    80% {
+        stop-color: hsl(150, 100%, 50%);
+        }
+}
+
+:target .text--fill-smil-anim-grad {
+    fill: url(#gr-smil-anim);
+    }
+
+$anim-cells-colors:
+    yellowgreen,
+    deeppink,
+    royalblue,
+    gold,
+    orangered,
+    yellow,
+    lightseagreen,
+    orange,
+    darkviolet,
+    skyblue,
+    magenta,
+    mediumslateblue,
+    lightgreen,
+    tomato,
+    chartreuse
+    ;
+$anim-cells-max: length($anim-cells-colors);
+$anim-cells-time: 20s;
+$anim-cells-step: $anim-cells-time/$anim-cells-max;
+
+.g-anim-cells rect {
+
+    fill: yellowgreen;
+    animation: anim-cells $anim-cells-time infinite linear;
+    animation-play-state: paused;
+    :target & {
+        animation-play-state: running;
+        }
+
+    @for $item from 1 through $anim-cells-max {
+        $fill-color: nth($anim-cells-colors, $item);
+
+        &:nth-child(#{$item}) {
+          animation-delay: -$anim-cells-step*$item;
+          }
+    }
+}
+
+@keyframes anim-cells {
+
+    @for $item from 1 through $anim-cells-max {
+        $perc: percentage(100/$anim-cells-max*$item/100);
+        $fill-color: nth($anim-cells-colors, $item);
+
+        #{$perc} {
+            fill: $fill-color;
+        }
+    }
+}
+
+.text--fill-anim-spots {
+    stroke: royalblue;
+    stroke-width: 2;
+    stroke-dasharray: 25 10;
+    }
+
+$anim-spots-colors:
+    yellowgreen,
+    deeppink,
+    royalblue,
+    gold,
+    orangered,
+    yellow,
+    lightseagreen,
+    orange,
+    darkviolet,
+    skyblue,
+    magenta,
+    mediumslateblue,
+    lightgreen,
+    tomato,
+    chartreuse,
+    teal
+    ;
+$anim-spots-max: length($anim-spots-colors);
+$anim-spots-time: 20s;
+$anim-spots-step: $anim-spots-time/$anim-spots-max;
+
+.g-anim-spots circle {
+
+    fill: chartreuse;
+    stroke: chartreuse;
+    stroke-width: 1;
+    stroke-dasharray: 1000;
+    animation: anim-spots $anim-spots-time infinite linear;
+    animation-name: anim-spots, anim-spots-stroke;
+    animation-duration: $anim-spots-time, $anim-spots-time/10;
+    animation-play-state: paused;
+
+    :target & {
+        animation-play-state: running;
+        }
+
+    @for $item from 1 through $anim-spots-max {
+        $fill-color: nth($anim-spots-colors, $item);
+
+        &:nth-child(#{$item}) {
+          fill: $fill-color;
+          stroke: $fill-color;
+          animation-delay: -$anim-spots-step*$item;
+          }
+    }
+}
+
+@keyframes anim-spots {
+
+    @for $item from 1 through $anim-spots-max {
+        $perc: percentage(100/$anim-spots-max*$item/100);
+        $fill-color: nth($anim-spots-colors, $item);
+
+        #{$perc} {
+            fill: $fill-color;
+            stroke: $fill-color;
+        }
+    }
+}
+
+@keyframes anim-spots-stroke {
+  50% {
+    stroke-width: 18;
+  }
+}
+
+.text--fill--wood {
+    font-size: 1.5em;
+    }
+
+.text--fill--spots {
+    stroke: #000;
+    stroke-width: 3;
+    stroke-dasharray: 35 30;
+    font-size: 1.5em;
+    }
+
+.text--pattern {
+    font-family: Russo One;
+    font-size: 1.57rem;
+    letter-spacing: 0;
+    }
+.text--fill--text {
+    stroke: #000;
+    stroke-width: 5;
+    font-size: 1.5em;
+    }

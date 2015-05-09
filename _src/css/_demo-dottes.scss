@@ -1,0 +1,45 @@
+.demo--dottes {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: hsl(200,70,70);
+  background-image:
+    linear-gradient( 90deg,
+      rgba(255,255,255,0) 50%,
+      rgba(255,255,255,.4) 50%);
+  background-size: .12em 100%;
+  font: 19em/1 Lobster, Arial;
+}
+
+.text--line {
+  font-size: .5em;
+  }
+
+.text-copy {
+  fill: none;
+  stroke: white;
+  stroke-width: 20px;
+  }
+.text-copy--shadow {
+  fill: rgba(0,0,0,.25);
+  transform: translate(0, .065em);
+  }
+.r-fill {
+  transform-origin: 512px 320px;
+  :target & {
+    animation: rotate 10s linear infinite;
+    }
+  }
+
+/* Fix for firefox */
+.r-fill--color {
+  fill: hsl(10,100%,55%);
+  }
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}

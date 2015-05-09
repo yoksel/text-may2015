@@ -1,0 +1,233 @@
+$koeff: 5;
+$svg-height: 32px * $koeff;
+$svg-width: 174px * $koeff;
+$logo-time: 3s;
+
+.demo--logo {
+  font: 14em/1 'Russo One', Impact;
+  letter-spacing: .05em;
+  fill: #FFF;
+  }
+
+.demo--logo-disappear {
+  position: absolute;
+  width: $svg-width;
+  height: $svg-height;
+  overflow: hidden;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+  :target & {
+    animation: svg-sizes $logo-time infinite linear alternate;
+    }
+
+  .demo--logo {
+    position: absolute;
+    width: $svg-width;
+    height: $svg-height;
+
+    :target & {
+      animation: logo-move $logo-time infinite linear alternate;
+      }
+    }
+  }
+
+@keyframes svg-sizes {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  10% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  35% {
+    opacity: .2;
+    width: $svg-width;
+    height: 1%;
+  }
+  50% {
+    opacity: 1;
+    width: $svg-width;
+    height: $svg-height;
+  }
+}
+
+@keyframes logo-move {
+  0% {
+    top: -$svg-height/2;
+    left: -$svg-width/2;
+  }
+  10% {
+    top: -$svg-height/2;
+    left: -$svg-width/2;
+  }
+  35% {
+    top: -$svg-height/2;
+    left: 0;
+    }
+  50% {
+    top: 0;
+    left: 0;
+  }
+}
+
+:target .mask-rect-gr-opacity {
+  fill: url(#gr-mask-opacity);
+  }
+
+$mask-logo-appear-time: 4s;
+
+.stroke-appear-anim {
+  fill: none;
+  stroke: #FFF;
+  stroke-width: 5;
+  stroke-dasharray: 0 500;
+
+  :target & {
+    animation: stroke-logo-appear $mask-logo-appear-time infinite linear alternate;
+  }
+}
+
+@keyframes stroke-logo-appear {
+
+  20% {
+    stroke-dasharray: 0 500;
+    stroke-width: 5;
+  }
+  80% {
+    stroke-dasharray: 500 500;
+    stroke-width: 0;
+  }
+  100% {
+    stroke-dasharray: 500 500;
+    stroke-width: 0;
+  }
+}
+
+
+.mask-logo-appear-rect {
+  stroke: white;
+  stroke-width: 0;
+  stroke-opacity: 0;
+
+  :target & {
+    animation: mask-logo-appear $mask-logo-appear-time infinite linear alternate;
+  }
+}
+
+@keyframes mask-logo-appear {
+
+  20% {
+    stroke-width: 0;
+    stroke-opacity: 0;
+  }
+  80% {
+    stroke-width: 500;
+    stroke-opacity: 1;
+  }
+  100% {
+    stroke-width: 500;
+    stroke-opacity: 1;
+  }
+}
+
+$aurora-stop-time: 7s;
+
+$aurora-step: $aurora-stop-time / 5;
+
+$aurora-stop-colors:
+  hsl(180,100,30),
+  hsl(165,100,40),
+  hsl(155,100,50),
+  hsl(70,60,60),
+  hsl(80,70,80),
+  hsl(40,100,60),
+  hsl(20,100,60),
+  hsl(350,100,50),
+  hsl(300,80,40),
+  hsl(270,80,40),
+  hsl(220,80,40),
+  hsl(200,90,40),
+  hsl(180,100,30),
+  green
+  ;
+
+$aurora-stop-colors-max: length($aurora-stop-colors);
+
+.aurora-stop-color-1 {
+  stop-color: hsl(180,100,30);
+
+  :target & {
+    animation: aurora-stop-colors $aurora-stop-time linear infinite alternate;
+  }
+}
+
+.gr-aurora-1 .aurora-stop-color-1 {
+  animation-delay: -$aurora-step;
+  /*stop-color: red;*/
+  }
+.gr-aurora-2 .aurora-stop-color-1 {
+  animation-delay: -$aurora-step * 2;
+  /*stop-color: orange;*/
+  }
+.gr-aurora-3 .aurora-stop-color-1 {
+  animation-delay: -$aurora-step * 3;
+  /*stop-color: gold;*/
+  }
+.gr-aurora-4 .aurora-stop-color-1 {
+  animation-delay: -$aurora-step * 4;
+  /*stop-color: green;*/
+  }
+.gr-aurora-5 .aurora-stop-color-1 {
+  animation-delay: -$aurora-step * 5;
+  /*stop-color: blue;*/
+  }
+
+.aurora-stop-color-2 {
+  stop-color: black;
+  stop-opacity: 0;
+  }
+
+@keyframes aurora-stop-colors {
+  @for $item from 1 through $aurora-stop-colors-max {
+        $perc: percentage(100/$aurora-stop-colors-max*$item/100);
+        $stop-color: nth($aurora-stop-colors, $item);
+
+        #{$perc} {
+            stop-color: $stop-color;
+        }
+    }
+}
+
+svg {
+  overflow: visible;
+}
+$stroke-width-step: 3;
+.anim-multystrokes__item {
+  /*fill: red;*/
+}
+.anim-multystrokes__item:nth-child(6) {
+  stroke-width: $stroke-width-step;
+  stroke: yellow;
+  }
+.anim-multystrokes__item:nth-child(5) {
+  stroke-width: $stroke-width-step*2;
+  stroke: orange;
+  }
+.anim-multystrokes__item:nth-child(4) {
+  stroke-width: $stroke-width-step*3;
+  stroke: red;
+  }
+.anim-multystrokes__item:nth-child(3) {
+  stroke-width: $stroke-width-step*5;
+  stroke: darkred;
+  }
+.anim-multystrokes__item:nth-child(2) {
+  stroke-width: $stroke-width-step*7;
+  stroke: purple;
+  }

@@ -1,0 +1,53 @@
+.demo--shadowstroke {
+    text-shadow: shadows(7, green);
+    color: #FFF;
+    }
+
+//Not used
+.demo--doubleshadow {
+  text-shadow: shadows(4, white),shadows(7, orangered);
+  color: steelblue;
+  }
+
+$chasing-shadows-color: teal;
+
+.demo--chasing-shadows {
+  text-shadow: 0 0 40px transparent;
+  color: $chasing-shadows-color;
+  }
+
+   :target .demo--chasing-shadows {
+        color: transparent;
+        animation: chasing-shadow 3.5s infinite ease-in;
+        }
+
+@keyframes chasing-shadow {
+  10% {
+    text-shadow: 0 0 0 $chasing-shadows-color;
+  }
+  80% {
+    text-shadow: 0 30px 150px darken($chasing-shadows-color, 50%);
+  }
+}
+
+.demo--multiple-shadows {
+  text-shadow:
+             .01em .01em 0 hsl(10,100%,40%),
+             .02em .02em 0 hsl(10,100%,50%),
+
+             .03em .03em 0 hsl(20,100%,50%),
+             .04em .04em 0 hsl(30,100%,50%),
+
+             .05em .05em 0 hsl(40,100%,50%),
+             .06em .06em 0 hsl(50,100%,50%),
+
+             .07em .07em 0 hsl(60,100%,60%),
+             .08em .08em 0 hsl(70,100%,70%);
+  color: hsl(355,100%,35%);
+}
+
+
+.demo--text-stroke {
+  -webkit-text-stroke: .05em orangered;
+  color: #FFF;
+  }

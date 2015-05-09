@@ -1,0 +1,101 @@
+.demo--background-clip {
+  background: url(./assets/img/parts/tulips.jpeg) 50% 50%;
+  /*color: #FFF;*/
+  }
+  .demo--background-clip-step0 {
+    background-image: none;
+    }
+  .demo--background-clip-step2 {
+    -webkit-background-clip: text;
+    }
+  .demo--background-clip-step3 {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    }
+  .demo--background-clip-no-support {
+      background: url(./assets/img/parts/tulips.jpeg) 50% 50%;
+      /*color: #FFF;*/
+      }
+
+.demo--background-clip-fade {
+  width: 800px;
+  background: -webkit-linear-gradient(
+    transparent,
+    royalblue,
+    yellow,
+    red,
+    darkviolet,
+    transparent
+    ) no-repeat;
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+  font-size: 5.5em;
+  letter-spacing: 0;
+  line-height: .85;
+  text-align: center;
+  color: #FFF;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  }
+
+$bg-size: .2em;
+$stripe-color: transparentize(steelblue, .3);
+
+.demo--background-clip-animation {
+  color: $stripe-color;
+  background: linear-gradient(
+    $transp 60%,
+    currentColor 60%
+    ),
+  linear-gradient(90deg,
+    $transp 60%,
+    currentColor 60%
+    );
+  background-color: white;
+  background-position: 50% 0;
+  background-size: $bg-size $bg-size;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+
+  :target & {
+    animation: move-bg 2s infinite linear;
+    }
+  }
+
+.demo--background-clip-animation-color {
+  background-image: radial-gradient(circle at center,
+    $transp 20%,
+    currentColor 20%, currentColor 30%,
+    $transp 30%, $transp 40%,
+    currentColor 40%, currentColor 50%,
+    $transp 50%, $transp 60%,
+    currentColor 60%, currentColor 70%,
+    $transp 70%
+    );
+  background-color: transparent;
+  -webkit-text-stroke: 5px currentColor;
+  color: teal;
+
+  :target & {
+    animation-name: bg-currentColor;
+    animation-duration: 5s;
+    }
+  }
+
+@keyframes move-bg {
+  100% {
+    background-position: 50% -#{$bg-size};
+  }
+}
+
+@keyframes bg-currentColor {
+  25% {
+    color: hsla(150, 100, 50, 1);
+  }
+  50% {
+    color: hsla(30, 100, 50, 1);
+  }
+  75% {
+    color: hsla(300, 100, 50, 1);
+  }
+}

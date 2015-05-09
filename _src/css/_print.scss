@@ -1,0 +1,25 @@
+
+/*@page {
+    margin: 0;
+    size: 900px 1200px;
+    }*/
+
+/*@media print {*/
+
+    .list {
+        position: absolute;
+        clip: rect(0, auto, auto, 0);
+        padding: 50px 0 50px 50px;
+        }
+
+        .slide {
+            display: inline-block;
+            border: 1px solid silver;
+            left: 0 !important;
+            top: 540px !important;
+            margin: -540px -850px 0 0 !important;
+            transform-origin: 0 0 !important;
+            transform: scale(.165) !important;
+            }
+
+   /*}*/

@@ -1,0 +1,90 @@
+$bshad-size: 594px;
+$rays: 6;
+
+$bg-size: 5.5em;
+
+@function box-shadow($color-offset: 0) {
+    $shadow: null;
+    $steps: 50;
+    $r: $bshad-size/$rays*2;
+    $color_step: 360/$steps;
+
+    $half: $bshad-size/2;
+    $x: $bshad-size/2 * .6;
+
+    $circles: null;
+
+    @for $item from $steps through 1 {
+        $koef: 1 - $item/$steps;
+
+        $new_r: $r * $koef;
+        $new_x: $x * $koef;
+        $new_y: $half * $koef;
+        $random: random(360);
+
+        $hue: random(360);
+        $lgt: random(50%) + 40%;
+
+        $color: hsl($random, 100%, $lgt);
+
+        $circles: -$new_x #{$new_y} 0 $new_r $color,
+                        $new_x #{$new_y} 0 $new_r $color,
+                     -$new_x -#{$new_y} 0 $new_r $color,
+                     $new_x -#{$new_y} 0 $new_r $color,
+                     -$new_x*2 0 0 $new_r $color,
+                     $new_x*2 0 0 $new_r $color;
+
+        $shadow: append($shadow, $circles, comma);
+
+    }
+    @return $shadow;
+}
+
+.demo-shadows {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: $bshad-size;
+    height: $bshad-size;
+    overflow: hidden;
+    margin: auto;
+    }
+
+.demo-shadows__shadows {
+     position: absolute;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     width: 5px;
+     height: 5px;
+     margin: auto;
+     background: gold;
+     border-radius: 50%;
+     box-shadow: box-shadow();
+     }
+
+     :target .demo-shadows__shadows {
+        animation: box-shadow 1s infinite;
+        }
+
+@keyframes box-shadow {
+    33% {
+        box-shadow: box-shadow(120);
+    }
+    66% {
+        box-shadow: box-shadow(240);
+    }
+}
+
+.demo-shadows__cells {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    background: url(../img/demos/cells-bw-L.png) 49.60% 49.6%;
+    mix-blend-mode: difference;
+    }

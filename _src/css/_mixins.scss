@@ -1,0 +1,69 @@
+$base-size: 24px;
+$trans-dur: .3s;
+
+$transp: rgba(255,255,255,0);
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  }
+
+@mixin clear {
+    content: "";
+    display: table;
+    width: 100%;
+    }
+
+@mixin posabs {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    }
+
+@mixin will-be-animate {
+    backface-visibility: hidden;
+    perspective: 1000;
+    transform: translateZ(0);
+    }
+
+@function shadows($max: 5, $color: white){
+    $out: null;
+
+    @for $i from 0 through $max {
+
+        @if ($i > 0) {
+          $pos: #{$i}px;
+          $pos-n: -$pos;
+
+            $shadow-t-l: $pos-n $pos-n $color;
+            $out: append( $out, $shadow-t-l, comma );
+            $shadow-t-r: $pos $pos-n $color;
+            $out: append( $out, $shadow-t-r, comma );
+            $shadow-b-r: $pos $pos $color;
+            $out: append( $out, $shadow-b-r, comma );
+            $shadow-b-l: $pos-n $pos $color;
+            $out: append( $out, $shadow-b-l, comma );
+        }
+
+    }
+
+    @return $out;
+}
+
+@function shadows-multilayers($max: 15, $color: white, $backshadow: rgba(0,0,0,.8)){
+    $out: null;
+    $layers: $max*5;
+    @for $i from 0 through $layers {
+        $pos: #{$i}px;
+        $pos: 0;
+        $shadow-t-l: 0 0 #{$max}px $color;
+        $out: append( $out, $shadow-t-l, comma );
+        }
+    //$shadow-back: 0 5px 10px $backshadow;
+    //$out: append( $out, $shadow-back, comma );
+    @return $out;
+    }

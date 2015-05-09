@@ -1,0 +1,236 @@
+.list--support LI {
+  margin-bottom: 2.5em;
+}
+
+.browsers {
+  display: inline-block;
+  text-indent: 0;
+
+  DT {
+    display: inline-block;
+    width: 360px;
+    margin-right: 40px;
+  }
+}
+
+.browsers--biglist {
+  position: relative;
+  width: 850px;
+  text-align: center;
+
+  IMG {
+    width: 200px;
+    height: 200px;
+    margin: 0 1em;
+    }
+  SPAN {
+    display: inline-block;
+    position: relative;
+    &:after {
+      content: attr(data-bubble);
+      position: absolute;
+      top: -5px;
+      left: 190px;
+      line-height: 1;
+      font-size: 1.2em;
+      white-space: nowrap;
+      }
+    }
+  SUP {
+    border: 1px solid gold;
+    position: absolute;
+    top: 10px;
+    /*right: 0;
+    margin-left: -60px;*/
+    font-size: 1.2em;
+    white-space: nowrap;
+    }
+  }
+
+$browser-size: 64px;
+
+.browser {
+  display: inline-block;
+  position: relative;
+  width: $browser-size !important;
+  height: $browser-size !important;
+  margin-right: 20px;
+  background: url(./assets/img/parts/sprite-browsers-64.png) 0 0 no-repeat;
+  vertical-align: middle;
+  text-indent: 0;
+
+  &:after {
+    display: inline-block;
+    margin: -.5em 0 0;
+    padding: 0 5px 0 3.3em;
+    vertical-align: top;
+    font-size: .75em;
+    line-height: 1.4;
+    font-weight: bold;
+    white-space: nowrap;
+    }
+    .list--glasses & {
+      margin-right: 0;
+      }
+  }
+  .list--support-stacks .browser {
+    margin-right: 11px;
+    }
+  .no-support {
+    opacity: .5;
+    filter: grayscale(100%);
+    }
+
+.browser-partial {
+  overflow: hidden;
+  }
+.browser-flag:before{
+  content: "";
+  position: absolute;
+  z-index: 2;
+  right: -13px;
+  bottom: 5px;
+  width: 0;
+  height: 0;
+  border: 10px solid crimson;
+  border-width: 8px 12px;
+  border-right-color: transparent;
+  }
+.browser-partial:after,
+.browser-flag:after {
+    content: "";
+    position: absolute;
+    right: -20px;
+    top:  5px;
+    width: 70px;
+    height: 40px;
+    background: rgba(255,255,255,.7);
+    transform: rotate(-45deg);
+    transform-origin: right bottom;
+    }
+.chrome {
+  background-position: 0 0;
+  }
+.canary {
+  background: url(./assets/img/browsers/canary-64.png);
+  }
+.firefox {
+  background-position: 0 -#{$browser-size};
+  }
+.ie {
+  background-position: 0 -#{$browser-size*3};
+  }
+
+.ie-8 {
+  background-position: 0 -#{$browser-size*2};
+  &:after {
+    content: "8";
+    padding-left: 3.7em;
+
+    }
+  }
+.ie-9 {
+  background-position: 0 -#{$browser-size*3};
+  &:after {
+    content: "9+";
+    padding-left: 3.7em;
+    }
+  }
+
+.opera {
+  background-position: 0 -#{$browser-size*5};
+  }
+.opera-old {
+  background-position: 0 -#{$browser-size*4};
+  }
+.opera-12-mb-min {
+  &:after {
+    content: "12, Mobile, Mini";
+    }
+}
+
+.opera-beta {
+  background: url(./assets/img/browsers/opera-beta-64.png);
+  }
+
+.browser {
+  &:after {
+    content: attr(data-bubble);
+  }
+}
+
+.opera-12 {
+  &:after {
+    content: "12";
+    }
+  }
+.opera-min {
+  &:after {
+    content: "Mini";
+    }
+  }
+.opera-mob {
+  margin-right: 50px;
+  &:after {
+    content: "Mobile";
+    }
+  }
+.opera-15 {
+  background-position: 0 -#{$browser-size*5};
+  &:after {
+    content: "15+";
+    }
+  }
+.safari {
+  background-position: 0 -#{$browser-size*6};
+  }
+.safari-8 {
+  background-position: 0 -#{$browser-size*6};
+  &:after {
+    content: "8+";
+    }
+  }
+
+.list--glasses {
+  margin: 0 0 1rem 0 !important;
+  }
+  .list--glasses-best {
+    margin: 0 0 2.5rem 0 !important;
+    }
+
+.tooltip--glasses {
+  display: inline-block;
+  width: 800px;
+  margin: 0 0 2rem 0 !important;
+  font-size: .7em;
+  line-height: 1;
+  font-style: italic;
+  color: #999;
+  }
+
+.list--glasses LI {
+  text-indent: 0 !important;
+
+  &:before {
+    content: none !important;
+    }
+  }
+
+.list--glasses LI + LI {
+  margin-top: 1.2em;
+  }
+
+.list--glasses__sign {
+  position: relative;
+  padding: 0 .2em;
+  }
+/*.ie8:before {
+  background-position: -90px 0;
+  }*/
+/*
+.opera-mob:before {
+  background-position: -150px 0;
+  }
+.opera-mini:before {
+  background-position: -150px 0;
+  }*/

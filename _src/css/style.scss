@@ -1,0 +1,425 @@
+@import '_mixins';
+@import '_fonts';
+
+.pos-abs {
+    @include posabs;
+    margin: auto;
+    }
+
+.hidden {
+    display: none;
+    }
+
+.modes-wrapper {
+    counter-reset: modes-list;
+
+    LI:before {
+        counter-increment: modes-list !important;
+        content: counter(modes-list)".\00A0\2009"  !important;
+        }
+    }
+
+.slide PRE MARK {
+    background: gold;
+    box-shadow: -3px 0 0 gold,
+                3px 0 0 gold;
+    color: #000;
+}
+
+/* SVG
+------------------------- */
+
+svg {
+    /*vertical-align: top;*/
+    overflow: visible;
+    }
+    .svg--ovh {
+        overflow: hidden;
+        }
+.demo--offset {
+    position: absolute !important;
+    width: 800px !important;
+    height: 500px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    box-shadow: 40px 40px 20px rgba(0,0,0,.5);
+    }
+
+.hidden-svg-defs {
+    position: absolute;
+    overflow: hidden;
+    }
+    .svg-defs {
+        @include posabs;
+        svg {
+            @include posabs;
+            }
+        }
+
+.qr-code {
+    display: block;
+    width: 480px;
+    height: 480px;
+    margin: 0 auto;
+    }
+
+/* Slides
+------------------------- */
+.slide {
+    &>DIV {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: auto;
+        height: auto;
+        padding: 60px 80px;
+        }
+    &:after {
+        right: 1em;
+        bottom: 1em;
+        mix-blend-mode: difference;
+        }
+        .full &:after {
+            left: auto;
+            }
+     .list--morespaces LI {
+        margin-bottom: 2em;
+        }
+    svg {
+        /*border: 2px solid green;*/
+        width: 100%;
+        }
+    }
+
+.slide--imgcenter {
+    & > DIV {
+    padding: 0;
+    text-align: center;
+    &:before {
+        content: "";
+        display: inline-block;
+        height: 640px;
+        vertical-align: middle;
+        }
+    }
+    IMG {
+        vertical-align: middle;
+    }
+}
+
+.slide--imgfull {
+    & > DIV {
+    padding: 0;
+    text-align: center;
+    }
+    .abs-link {
+        position: absolute;
+        bottom: 2em;
+        right: 3em;
+        left: 3em;
+        background: #FFF;
+        box-shadow: 0 0 7px rgba(0,0,0,.5);
+        text-decoration: underline;
+        color: #000;
+        &:hover {
+            text-decoration: none;
+            }
+        }
+}
+.slide--vlm {
+    .slide__content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        }
+    }
+.slide--vlm-code {
+    .slide__content {
+        position: absolute;
+        top: 50%;
+        /*left: 50%;*/
+        transform: translate(0, -50%);
+        }
+    PRE {
+        margin-bottom: 0;
+        }
+    }
+
+.table-cell {
+    display: table-cell;
+    width: 864px;
+    height: 440px;
+    vertical-align: middle;
+    text-align: center;
+    svg, span {
+        display: inline-block;
+        vertical-align: middle;
+        margin: .5em 0;
+        }
+    }
+
+.slide--horcenter {
+    text-align: center;
+    }
+
+.slide--about H3 SPAN {
+    display: block;
+    margin-top: .3em;
+    font-size: .6em;
+    color: #777;
+    }
+.full .progress {
+    z-index: 2;
+    }
+/* Footer
+------------------------- */
+.slide footer {
+    padding: 20px 50px;
+    line-height: 1.4;
+    }
+    .slide:target footer {
+        bottom: 0;
+        }
+
+/* Pre
+------------------------- */
+
+PRE {
+    position: relative;
+    &:before {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 0 15px;
+        border-radius: 10px;
+    }
+}
+
+$css-code-color: hsl(75, 70%, 70%); /*hsl(50, 80%, 75%)*/
+$svg-code-color: hsl(190, 70%, 75%);
+
+.pre--css {
+    &:before {
+        content: "CSS";
+        background: $css-code-color;
+    }
+}
+.pre--svg {
+    &:before {
+        content: "SVG";
+        background: $svg-code-color;
+    }
+}
+
+.code--smaller {
+    font-size: .75em;
+    }
+.code--condensed {
+    line-height: 1.4 !important;
+    }
+
+/* Cover
+------------------------- */
+
+#Cover {
+    text-align: center;
+    }
+  #Cover h2 {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    margin: 0;
+    background: rgba(0,0,0,.5);
+    text-align: center;
+    font-size: 70px;
+    line-height: 1.9;
+    color: #FFF;
+    transform: none !important;
+    }
+
+
+/* Popup
+------------------------- */
+
+.img-preview {
+    display: inline-block;
+    width: 24px;
+    height: 22px;
+    text-indent: 0;
+    vertical-align: middle;
+    }
+.popup {
+    @include posabs;
+    margin: auto;
+    border: 35px solid #FFF;
+    box-shadow: 0 0 80px rgba(0,0,0,.3),
+                0 0 50px 300px rgba(0,0,0,.3),
+                0 0 50px 300px rgba(255,255,255,.5);
+    text-indent: 0;
+    cursor: pointer;
+
+    &:before {
+            content: "\2573";
+            position: absolute;
+            display: block;
+            right: -2.1em;
+            top: -2.1em;
+            width: 1.5em;
+            height: 1.5em;
+            background: #444;
+            border: .2em solid #FFF;
+            border-radius: 50%;
+            box-shadow: 0 0 .3em rgba(0,0,0,.2);
+            text-align: center;
+            line-height: 1.5;
+            font-size: 1em;
+            color: #FFF;
+            }
+    }
+
+/* Backgrounds
+------------------------- */
+
+.bg--dark {
+    background: #000;
+    transition: background 1s;
+    H2 {
+        color: #FFF;
+        }
+    }
+    .bg--dark-hover:hover {
+        background: orangered;
+        }
+.bg--dark-gray {
+    background: #333;
+    H2 {
+        color: #FFF;
+        }
+    }
+.bg--stripes {
+    background-color: orange;
+    background-image:
+        linear-gradient(90deg,
+            rgba(255,255,255,.5) 50%,
+            rgba(255,255,255,0) 50%);
+    background-size: 2em 100%;
+    }
+
+.bg--ps-cells {
+    background: url(./assets/img/parts/ps-bg.png);
+    }
+.bg--flowers {
+    /*violet-hyacinths*/
+    background: url(./assets/img/parts/red-leaves.jpeg) 50% 50%;
+    }
+.bg--blue-grad {
+    background-color: hsl(250,80,10);
+    background-image: radial-gradient(
+        hsl(200,100,40),
+        hsl(250,80,10)
+        );
+    }
+
+/* Columns
+------------------------- */
+
+.column {
+    width: 49%;
+    &--left {
+        float: left;
+        }
+    &--right {
+        float: right;
+        }
+    }
+
+.modes-wrapper {
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
+    UL {
+        margin: 0 !important;
+        }
+    LI {
+        text-indent: 0;
+        }
+    .column {
+        width: 30%;
+        }
+    }
+
+.photo {
+    float: left;
+    width: 300px;
+    height: 300px;
+    margin-right: 2.5em;
+    }
+
+/* Demo
+------------------------- */
+
+.demo--text {
+    font: 12em/1 'Russo One', Impact;
+    letter-spacing: .05em;
+    }
+    svg.demo--text {
+        font-size: 14em;
+        }
+    /* Solve problem with height in IE9 */
+    svg.demo--small-height {
+        height: 236px;
+        }
+
+.demo-border {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: 10;
+        top: -1px;
+        right: -1px;
+        bottom: -1px;
+        left: -1px;
+        border: 5px solid #000;
+        pointer-events: none;
+        }
+    }
+svg.demo--inverted-mask {
+    font-size: 12em;
+    }
+svg.demo--intro {
+    font: 7em/1 'Russo One', Impact;
+    }
+
+@import '_demo-textshadows';
+@import '_demo-google-font-effects';
+@import '_demo-background-clip';
+
+@import '_demo-svg-stroke';
+@import '_demo-svg-fill';
+@import '_demo-dottes';
+@import '_demo-psycho';
+@import '_demo-blend-modes';
+@import '_demo-dancing-shadows';
+@import '_demo-inverted-mask';
+@import '_demo-svgmask';
+@import '_demo-logos';
+
+
+
+@import '_browsers';
+@import '_js-blendmode';
+
+@import '_mixins-gradients';
+
+/*@import '_print';*/

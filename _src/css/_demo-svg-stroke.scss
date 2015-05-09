@@ -1,0 +1,178 @@
+
+.text--stroke {
+    fill: none;
+    }
+
+.text--stroke-thick {
+    stroke: crimson;
+    stroke-width: 3;
+    }
+
+.text--stroke-thin {
+    stroke: royalblue;
+    stroke-width: 15;
+    }
+
+.text--stroke-dasharray {
+  stroke: orangered;
+  stroke-width: 4;
+  stroke-dasharray: 50 30 20 10;
+  }
+
+.text--stroke-pulse {
+    stroke: yellowgreen;
+    stroke-width: 2;
+
+    :target & {
+        animation: stroke-pulse 2s infinite;
+        animation-name: stroke-pulse, stroke-pulse-color;
+        animation-duration: 2s, 5s;
+        }
+    }
+
+@keyframes stroke-pulse {
+    50% {
+        stroke-width: 15;
+    }
+}
+
+@keyframes stroke-pulse-color {
+  25% {
+    stroke: royalblue;
+  }
+  50% {
+    stroke: gold;
+  }
+  70% {
+    stroke: crimson;
+  }
+  90% {
+    stroke: teal;
+  }
+}
+
+.text--stroke-anim-pattern {
+    stroke-width: 14;
+    }
+
+$pattern-stroke-colors:
+  gold,
+  yellow,
+  darkorange,
+  orangered,
+  crimson,
+  darkslateblue,
+  teal,
+  steelblue,
+  cornflowerblue,
+  yellowgreen
+;
+
+$pattern-stroke-max: 10;
+$pattern-stroke-time: 5s;
+
+.p-line {
+  stroke: gold;
+  stroke-width: 10;
+
+  :target & {
+      stroke-width: 4;
+      animation: pattern-stroke $pattern-stroke-time linear infinite;
+    }
+
+  @for $item from 1 through $pattern-stroke-max {
+    &:nth-child(#{$item}n + #{$item}) {
+      stroke: nth($pattern-stroke-colors, $item);
+      }
+    }
+  &:nth-child(3n + 1) {
+    animation-delay: -$pattern-stroke-time/3;
+    }
+  &:nth-child(3n) {
+    animation-delay: -$pattern-stroke-time/3*2;
+    }
+  }
+
+@keyframes pattern-stroke {
+  50% {
+    stroke-width: 100;
+  }
+}
+
+$stroke-appear-time: 7s;
+
+.text--stroke-appear {
+    stroke: #000;
+    stroke-width: 3;
+    :target & {
+        stroke-dasharray: 0 1500;
+        animation: stroke-appear $stroke-appear-time linear infinite;
+        }
+    }
+
+
+@keyframes stroke-appear {
+  7% {
+    stroke-dasharray: 0 1500;
+    }
+  50% {
+    stroke-dasharray: 1500 0;
+    }
+  93% {
+    stroke-dasharray: 0 1500;
+    }
+}
+
+$stroke-run-time: 1s;
+$dash: 10;
+
+.text--stroke-run {
+    stroke: #FFF;
+    stroke-width: 4;
+
+    :target & {
+        stroke-dasharray: $dash;
+        animation: stroke-run $stroke-run-time linear infinite;
+        }
+    }
+
+@keyframes stroke-run {
+  100% {
+    stroke-dashoffset: -$dash*2;
+    }
+}
+
+$aunt-walk-colors: #2E0927, #D90000, #FF2D00, #FF8C00, #04756F;
+
+$aunt-walk-max: 5;
+$aunt-walk-stroke-step: 6%;
+$aunt-walk-stroke-space: 1%;
+$aunt-walk-stroke-time: 5s;
+$aunt-walk-stroke-time-step: $aunt-walk-stroke-time / $aunt-walk-max;
+
+.text--stroke-aunt-walk {
+  fill: none;
+  stroke: white;
+  stroke-dasharray: $aunt-walk-stroke-step ($aunt-walk-stroke-step * ($aunt-walk-max - 1) + $aunt-walk-stroke-space * $aunt-walk-max );
+  stroke-width: 7;
+  stroke-dashoffset: 0%;
+
+  :target & {
+    animation: aunt-walk-stroke-offset $aunt-walk-stroke-time infinite linear;
+    }
+
+  @for $item from 1 through $aunt-walk-max {
+    $stroke-color: nth($aunt-walk-colors, $item);
+
+    &:nth-child(#{$item}) {
+      stroke: $stroke-color;
+      animation-delay: -$aunt-walk-stroke-time-step*$item;
+      }
+    }
+  }
+
+@keyframes aunt-walk-stroke-offset {
+  100% {
+    stroke-dashoffset: -($aunt-walk-stroke-step + $aunt-walk-stroke-space) * ($aunt-walk-max);
+  }
+}
