@@ -211,6 +211,14 @@ svg {
   width: 100%;
 }
 
+.intro {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
 .slide--imgcenter > DIV {
   padding: 0;
   text-align: center;
@@ -2655,46 +2663,26 @@ svg {
     </style>
 </head>
 <body class="list" spellcheck="false">
+    <svg class="svg-defs">
+        <linearGradient id="gr-blue"
+                x1="0" y1="0" x2="100%" y2="100%"
+                gradientUnits="objectBoundingBox">
+                <animate attributeName="r"
+                   values="0%;150%;100%;0%"
+                   dur="5s" repeatCount="indefinite" />
+            <stop stop-color="hsl(160, 100%, 80%)" offset="10%"/>
+            <stop stop-color="hsl(250, 100%, 30%)" offset="90%"/>
+        </linearGradient>
+    </svg>
+
     <header class="caption">
         <h1>Оживляем текст</h1>
         <p>Бухвалова Юлия, Livejournal</p>
     </header>
 
     <!-- Slide -->
-    <section class="slide slide--imgfull"><div>
-        <div class="demo-border">
-            <div class="text-fill-video">
-                <video class="video" autoplay loop
-                       preload="none"
-                       src="./assets/video/leaves.mp4?1">
-                </video>
-              </div>
-            <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--intro">
-                <symbol id="s-text--invmask-intro">
-                    <text x="50%" y="40%" dy=".4em"
-                        text-anchor="middle"
-                        class="text--invmask-intro">Оживляем</text>
-                    <text x="50%" y="62%" dy=".4em"
-                        text-anchor="middle"
-                        class="text--invmask-intro">текст</text>
-                </symbol>
-
-                <mask id="mask-text-revert-intro"
-                maskunits="userSpaceOnUse"
-                maskcontentunits="userSpaceOnUse">
-                    <rect width="100%" height="100%" fill="#FFF"/>
-                    <use xlink:href="#s-text--invmask-intro"/>
-                </mask>
-
-                <use xlink:href="#s-text--invmask-intro" class="u-text--stroke"/>
-                <rect mask="url(#mask-text-revert-intro)"
-                    width="100%" height="100%"
-                    fill="#000"/>
-
-                <use xlink:href="#s-text--invmask-intro" class="u-text--transp"/>
-
-            </svg>
-        </div>
+    <section class="slide slide--imgfull slide--intro"><div>
+        <div class="intro"></div>
     </div></section>
 
     <!-- Slide -->
@@ -2967,7 +2955,7 @@ svg {
     <section class="slide"><div>
 <pre><code>.text {
   background: url(tulips.jpg) 50% 50%;
-  -webkit-background-clip: text;
+  <mark>-webkit-background-clip: text;</mark>
 
   }</span></code></pre>
     </div></section>
@@ -2986,7 +2974,7 @@ svg {
 <pre><code>.text {
   background: url(tulips.jpg) 50% 50%;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  <mark>-webkit-text-fill-color: transparent;</mark>
   }</code></pre>
     </div></section>
 
@@ -3061,7 +3049,7 @@ svg {
 
     <!-- Slide -->
     <section class="slide"><div>
-        <h2 class="free-fly">SVG text</h2>
+        <h2 class="free-fly">SVG-текст</h2>
     </div></section>
 
     <!-- Slide -->
@@ -3207,21 +3195,10 @@ svg {
     <!-- Slide -->
     <section class="slide"><div>
         <svg viewBox="0 0 1024 620" class="demo demo--text">
-            <defs>
-                <linearGradient id="gr-blue"
-                        x1="0" y1="0" x2="100%" y2="100%"
-                        gradientUnits="objectBoundingBox">
-                        <animate attributeName="r"
-                           values="0%;150%;100%;0%"
-                           dur="5s" repeatCount="indefinite" />
-                    <stop stop-color="hsl(160, 100%, 80%)" offset="10%"/>
-                    <stop stop-color="hsl(250, 100%, 30%)" offset="90%"/>
-                </linearGradient>
-                <pattern id="pt-grass" width="300" height="300"
-                             patternUnits="userSpaceOnUse">
-                    <image xlink:href="./assets/img/parts/grass.jpg" width="300" height="300"/>
-                  </pattern>
-            </defs>
+            <pattern id="pt-grass" width="300" height="300"
+                         patternUnits="userSpaceOnUse">
+                <image xlink:href="./assets/img/parts/grass.jpg" width="300" height="300"/>
+              </pattern>
 
             <text x="50%" y="16%" dy=".25em" text-anchor="middle"
                 class="text--fill text--fill-solid">текст</text>
@@ -3244,14 +3221,19 @@ svg {
 
 <pre><code>&lt;linearGradient id="gr-blue"
         x1="0" y1="0" x2="100%" y2="100%">
-    <span class="next">&lt;stop stop-color="hsl(160, 100%, 80%)" offset="10%"/>
-    &lt;stop stop-color="hsl(250, 100%, 30%)" offset="90%"/></span>
+    <span class="next">&lt;stop stop-color="#9FD" offset="10%"/>
+    &lt;stop stop-color="#190099" offset="90%"/></span>
 &lt;/linearGradient></code></pre>
 
-    <svg viewBox="0 0 1024 280" class="demo demo--text next demo--small-height">
-            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
-                fill="url(#gr-blue)">текст</text>
-        </svg>
+    <svg viewBox="0 0 1024 280" class="next demo demo--text demo--small-height">
+        <text
+            x="50%" y="50%"
+            dy=".25em"
+            text-anchor="middle"
+            fill="url(#gr-blue)"
+            stroke="transparent"
+            >текст</text>
+    </svg>
 </div></section>
 
     <!-- Slide -->
@@ -3530,7 +3512,7 @@ svg {
 
     <!-- Slide -->
     <section class="slide"><div>
-        <h2 class="free-fly">SVG mask</h2>
+        <h2 class="free-fly">SVG-маски</h2>
     </div></section>
 
    <!-- Slide -->
@@ -4403,6 +4385,9 @@ svg {
 
     <div class="progress"><div></div></div>
     <script src="node_modules/shower-core/shower.min.js"></script>
+    <script src="assets/js/snap.svg-min.js"></script>
+    <script src="assets/js/intro.js"></script>
+
     <script src="//localhost:35731/livereload.js"></script>
     <!-- Copyright © 2014 yoksel. -->
 </body>

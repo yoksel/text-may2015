@@ -95,6 +95,16 @@ svg {
         }
     }
 
+.slide--intro {
+    }
+    .intro {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        }
+
 .slide--imgcenter {
     & > DIV {
     padding: 0;
