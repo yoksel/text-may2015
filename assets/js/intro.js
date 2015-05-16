@@ -280,6 +280,7 @@ function reRun() {
 
     gLines = s.g();
     gText = s.g();
+    mask = s.mask();
 
     createText();
 }
