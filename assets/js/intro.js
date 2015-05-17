@@ -1,23 +1,24 @@
 console.clear();
 
 var s = Snap();
-var sMaxX = 1024;
-var sMaxY = 640;
-var viewBoxList = [0, 0, sMaxX, sMaxY];
+var viewBoxList = [0,0,1024,640];
 s.attr({
     viewBox: viewBoxList
-});
+})
 
 var gLines = s.g();
 var gText = s.g();
-var mask = s.mask();
 var patt;
+var maskObj;
+var text;
+var maskElem = s.mask();
 
-var pSize = 1000;
+var pSize = 700;
 var maxLines = 16;
 var maxLinesDouble = maxLines * 2;
 var lineStep = pSize / maxLines;
-var pathDur = 1500;
+var lines = [];
+var pathDur = 1000;
 var delay = 250;
 
 var colorSteps = maxLines / 2;
@@ -34,24 +35,26 @@ var colors = ['purple',
 
 var lineLength = Math.sqrt( Math.pow( pSize, 2 ) * 2);
 
-//------------------------------------------------
 
 var lineObj = function () {
     var d = 'M' + [pSize, 0, 0, pSize];
     var path = s.path(d);
     var pos = 0;
     var addMask = false;
+    var pathDelay = 0;
+    var dashArray = 0;
+    var strokeW = 0;
 
     this.init = function ( params ) {
         pos = params.pos;
-        var strokeW = params.strokeW;
+        strokeW = params.strokeW;
         var strokeColor = params.color || 'hotpink'
         var offsetX = params.offsetX || 0;
         var x = pSize - lineStep * (pos + .5) + offsetX;
         var translateParams = [x, 0];
 
-        var pathDelay = params.delay || delay;
-        var dashArray = lineLength;
+        pathDelay = params.delay || delay;
+        dashArray = lineLength;
         addMask = params.addMask || false;
 
         path.attr({
@@ -63,24 +66,37 @@ var lineObj = function () {
             'stroke-dasharray': dashArray
         });
 
-
         gLines.add(path);
-
-        //console.log('Line Created');
-
-        setTimeout(pathAnim, (maxLinesDouble - pos) * pathDelay);
 
     }// Init
 
+    this.reset = function () {
+        path.attr({
+            'stroke-dashoffset': lineLength,
+            'stroke-dasharray': dashArray
+        });
+    }
+
+    this.animdDelay = function() {
+        setTimeout(pathAnim,
+                   (maxLinesDouble - pos) * pathDelay
+                  );
+    }
+
+    var countNextAnim = 0;
+
     function runNextAnim() {
-        if ( addMask ) {
+        if ( addMask == true ) {
             // Why 0?
             if ( pos == 0) {
-                createMask();
+                countNextAnim++;
+
+                maskObj.maskAnim();
             }
         }
     }
-    function pathAnim() {
+
+    function pathAnim () {
 
         path.animate({
             'stroke-dashoffset': '0'
@@ -92,7 +108,7 @@ var lineObj = function () {
 
 }// lineObj
 
-//------------------------------------------------
+// ------------------------------------
 
 function createLines( params ) {
 
@@ -107,27 +123,30 @@ function createLines( params ) {
             strokeW: params.strokeW,
             offsetX: params.offsetX,
             delay: params.delay,
-            addMask: params.addMask,
+            addMask: params.addMask || false,
             color: color,
         });
+
+        lines.push(line);
     }
 }
 
-//------------------------------------------------
+// ------------------------------------
 
 function createPattern() {
 
+//     console.log('* - createPattern');
+
     var rect = s.rect(0,0, pSize, pSize);
     rect.attr({
-        /*stroke: 'yellowgreen',
-        'stroke-width': 2,*/
         fill: 'white',
     });
 
     gLines.add(rect);
 
     createLines({
-        strokeW: lineStep / 1.4
+        strokeW: lineStep / 1.4,
+        addMask: false
         });
 
     createLines({
@@ -142,15 +161,25 @@ function createPattern() {
 
 }
 
-//------------------------------------------------
+function animatePattern() {
+
+    for ( var i = 0; i < lines.length; i++ ) {
+        var line = lines[i];
+
+        line.reset();
+        line.animdDelay();
+    }
+}
+
+// ------------------------------------
 
 var textObj = function () {
 
-    var textDur = 2000;
-    var dashoffset = 1300;
+    var textDur = 1500;
+    var dashoffset = 1200;
     var textGInit = s.g();
-        var text1 = s.text('50%','34%','Оживляем');
-        var text2 = s.text('50%','61%','текст');
+    var text1 = s.text('50%','34%','Оживляем');
+    var text2 = s.text('50%','61%','текст');
 
     text1.attr({
        dy: '.3em',
@@ -165,7 +194,6 @@ var textObj = function () {
     textGInit.attr({
         'text-anchor': 'middle',
         'font': '51vmin/1 Russo One, Impact',
-        'letter-spacing': '.02em',
         fill: 'white',
         stroke: '#000',
         'stroke-width': 3,
@@ -181,8 +209,7 @@ var textObj = function () {
 
     gText.add(textGInit, textGFill);
 
-    this.init = function () {
-
+    this.textAnim = function () {
         textGFill.animate({
             'stroke-dashoffset': 0
             },
@@ -201,41 +228,47 @@ var textObj = function () {
     }
 
     function setTextFill () {
-        createPattern();
+
+        animatePattern();
+
         textGFill.attr({
             fill: patt
         });
     }
+
+    this.reset = function () {
+
+        var initState = {
+            fill: 'white',
+            'stroke-dasharray': dashoffset,
+            'stroke-dashoffset': dashoffset
+        };
+
+        textGInit.attr( initState );
+        textGFill.attr( initState );
+
+        this.textAnim();
+    }
 }
 
-//------------------------------------------------
+// ------------------------------------
 
 function createText() {
-    var text = new textObj;
-    text.init();
+//     console.log('* - createText');
+    text = new textObj;
+    text.textAnim();
 }
 
-createText();
+// ------------------------------------
 
-//------------------------------------------------
+var maskObjInit = function () {
+    var maskShape;
 
-var maskObj = function () {
-
-    var maskShape = s.ellipse('50%', '50%', sMaxX / 2, sMaxY / 2);
-    maskShape.attr({
-        fill: '#FFF'
-    });
-
-    mask.add(maskShape);
-
-    gText.attr({
-        mask: mask
-    });
+    var currentStep = 0;
 
     var minR = sMaxY * .1;
     var midR = sMaxY * .4;
 
-    var currentStep = 0;
     var steps = [
         {rx: minR, ry: minR},
         {rx: midR, ry: midR},
@@ -244,10 +277,21 @@ var maskObj = function () {
     var maskDur = 300;
 
     this.init = function () {
-       maskAnim();
+        maskShape = s.ellipse('50%', '50%', sMaxX / 2, sMaxY / 2);
+
+        maskShape.attr({
+            fill: "white"
+        });
+
+        maskElem.add(maskShape);
+
+        gText.attr({
+            mask: maskElem
+        });
     }
 
-    function maskAnim () {
+    this.maskAnim = function () {
+//         console.log('- * - anim mask');
 
         if ( currentStep == steps.length ) {
             setTimeout(reRun, 1000);
@@ -257,32 +301,38 @@ var maskObj = function () {
         maskShape.animate(
             steps[currentStep],
             maskDur,
-            maskAnim);
+            maskObj.maskAnim);
         currentStep++;
+    }
+
+    this.reset = function () {
+        currentStep = 0;
+
+        var initState = {
+            rx: '100%',
+            ry: "100%"
+        };
+
+        maskShape.attr(initState);
     }
 }
 
-//------------------------------------------------
-
 function createMask() {
-    var mask = new maskObj;
-    mask.init();
+//     console.log('* - createMask');
+    maskObj = new maskObjInit;
+    maskObj.init();
 }
 
-//------------------------------------------------
+// ------------------------------------
+
+createPattern();
+createText();
+createMask();
 
 function reRun() {
 
-    gLines.remove();
-    gText.remove();
-    mask.remove();
-    patt.remove();
-
-    gLines = s.g();
-    gText = s.g();
-    mask = s.mask();
-
-    createText();
+    maskObj.reset();
+    text.reset();
 }
 
 //------------------------------------------------
