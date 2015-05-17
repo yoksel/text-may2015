@@ -146,7 +146,7 @@ svg {
 
 .demo--offset {
   position: absolute !important;
-  width: 800px !important;
+  width: 860px !important;
   height: 500px;
   top: 0;
   right: 0;
@@ -155,6 +155,10 @@ svg {
   margin: auto;
   -webkit-box-shadow: 40px 40px 20px rgba(0, 0, 0, 0.5);
   box-shadow: 40px 40px 20px rgba(0, 0, 0, 0.5);
+}
+
+.demo--offset-small {
+  height: 350px;
 }
 
 .hidden-svg-defs {
@@ -454,6 +458,12 @@ PRE:before {
   background-image: radial-gradient(#0088cc, #0c052e);
 }
 
+.bg--red-grad {
+  background-color: crimson;
+  background-image: -webkit-radial-gradient(orangered, crimson);
+  background-image: radial-gradient(orangered, crimson);
+}
+
 /* Columns
 ------------------------- */
 .column {
@@ -490,7 +500,8 @@ PRE:before {
 
 /* Demo
 ------------------------- */
-.demo--text {
+.demo--text,
+.live-editor--text .live-editor__view {
   font: 12em/1 'Russo One', Impact;
   letter-spacing: .05em;
 }
@@ -499,9 +510,14 @@ svg.demo--text {
   font-size: 14em;
 }
 
+.live-editor--text svg {
+  font-size: 1.2em;
+}
+
 /* Solve problem with height in IE9 */
-svg.demo--small-height {
-  height: 236px;
+svg.demo--small-height,
+.live-editor--small-height svg {
+  height: 250px;
 }
 
 .demo-border {
@@ -529,6 +545,117 @@ svg.demo--inverted-mask {
 
 svg.demo--intro {
   font: 7em/1 'Russo One', Impact;
+}
+
+.live-editor__code {
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 5px;
+  background: transparent;
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+/* Demo Edit Properties
+------------------------- */
+.live-editor__code {
+  width: 100%;
+  height: 2em;
+  margin: 0 0 20px;
+  background: #FFF;
+  border: 0;
+  outline: none;
+  line-height: 1.7;
+  font-family: 'Anka Coder',monospace;
+  font-size: 100%;
+  -webkit-transition: .5s;
+  transition: .5s;
+  -webkit-background-size: 30px 30px;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 99% center;
+}
+.live-editor__code:focus {
+  background-color: palegoldenrod;
+}
+.live-editor__code--smalltext {
+  font-size: 80%;
+}
+.live-editor__code--2-lines {
+  height: 3.6em;
+}
+.live-editor__code--3-lines {
+  height: 5.4em;
+}
+.live-editor__code--4-lines {
+  height: 7.2em;
+}
+.live-editor__code--5-lines {
+  height: 9em;
+}
+.live-editor__code--6-lines {
+  height: 10.8em;
+}
+.live-editor__code--7-lines {
+  height: 12.6em;
+}
+.live-editor__code--8-lines {
+  height: 14.4em;
+}
+.live-editor__code--9-lines {
+  height: 16.2em;
+}
+.live-editor__code--10-lines {
+  height: 18em;
+}
+
+/* Demo Live
+------------------------- */
+.demo--live {
+  margin-bottom: 24px;
+}
+.demo--live:after {
+  content: "";
+  display: table;
+  width: 100%;
+}
+.demo--live .live-editor__content {
+  margin-top: 2em;
+}
+.demo--live .live-editor__view svg {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  max-height: 100%;
+}
+.demo--live .live-editor__textfield {
+  width: 100%;
+  border: 0 solid #555;
+  outline: none;
+  font-family: 'Anka Coder', monospace;
+  font-size: 21.6px;
+  line-height: 1.4;
+  color: #000;
+}
+.demo--live .live-editor__code {
+  height: 164.6568px;
+  -webkit-background-size: 30px 30px;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 99.5% top;
+}
+.demo--live pre {
+  float: right;
+  width: 65%;
+  margin-top: 1em;
+}
+.demo--live B {
+  display: inline-block;
+  font: bold .8em/1 Arial !important;
 }
 
 .demo--shadowstroke {
@@ -575,7 +702,8 @@ svg.demo--intro {
 }
 
 .demo--text-stroke {
-  -webkit-text-stroke: .05em orangered;
+  text-align: center;
+  -webkit-text-stroke: 15px orangered;
   color: #FFF;
 }
 
@@ -756,19 +884,14 @@ svg.demo--intro {
   fill: none;
 }
 
-.text--stroke-thick {
+.text--stroke--base {
   stroke: crimson;
-  stroke-width: 3;
-}
-
-.text--stroke-thin {
-  stroke: royalblue;
-  stroke-width: 15;
+  stroke-width: 7;
 }
 
 .text--stroke-dasharray {
   stroke: orangered;
-  stroke-width: 4;
+  stroke-width: 5;
   stroke-dasharray: 50 30 20 10;
 }
 
@@ -1731,8 +1854,8 @@ svg.demo--text-psycho .g-circles circle:nth-child(7) {
   /*background: url(./assets/img/parts/violet-hyacinths.jpeg) 50% 50%/cover;*/
 }
 .demo--bbmode-text .text {
-  height: 500px;
-  line-height: 500px;
+  height: 350px;
+  line-height: 330px;
   background: #FFF;
   text-align: center;
   font-size: .85em;
@@ -2125,7 +2248,7 @@ svg.demo--text-showmask {
 @-webkit-keyframes stroke-logo-appear {
   20% {
     stroke-dasharray: 0 500;
-    stroke-width: 5;
+    stroke-width: 3;
   }
   80% {
     stroke-dasharray: 500 500;
@@ -2140,7 +2263,7 @@ svg.demo--text-showmask {
 @keyframes stroke-logo-appear {
   20% {
     stroke-dasharray: 0 500;
-    stroke-width: 5;
+    stroke-width: 3;
   }
   80% {
     stroke-dasharray: 500 500;
@@ -2154,7 +2277,7 @@ svg.demo--text-showmask {
 .mask-logo-appear-rect {
   stroke: white;
   stroke-width: 0;
-  stroke-opacity: 0;
+  /*stroke-opacity: 0;*/
 }
 :target .mask-logo-appear-rect {
   -webkit-animation: mask-logo-appear 4s infinite linear alternate;
@@ -2164,30 +2287,30 @@ svg.demo--text-showmask {
 @-webkit-keyframes mask-logo-appear {
   20% {
     stroke-width: 0;
-    stroke-opacity: 0;
+    /*stroke-opacity: 0;*/
   }
   80% {
     stroke-width: 500;
-    stroke-opacity: 1;
+    /*stroke-opacity: 1;*/
   }
   100% {
     stroke-width: 500;
-    stroke-opacity: 1;
+    /*stroke-opacity: 1;*/
   }
 }
 
 @keyframes mask-logo-appear {
   20% {
     stroke-width: 0;
-    stroke-opacity: 0;
+    /*stroke-opacity: 0;*/
   }
   80% {
     stroke-width: 500;
-    stroke-opacity: 1;
+    /*stroke-opacity: 1;*/
   }
   100% {
     stroke-width: 500;
-    stroke-opacity: 1;
+    /*stroke-opacity: 1;*/
   }
 }
 .aurora-stop-color-1 {
@@ -2667,12 +2790,30 @@ svg {
         <linearGradient id="gr-blue"
                 x1="0" y1="0" x2="100%" y2="100%"
                 gradientUnits="objectBoundingBox">
-                <animate attributeName="r"
-                   values="0%;150%;100%;0%"
-                   dur="5s" repeatCount="indefinite" />
             <stop stop-color="hsl(160, 100%, 80%)" offset="10%"/>
             <stop stop-color="hsl(250, 100%, 30%)" offset="90%"/>
         </linearGradient>
+
+        <linearGradient id="gr-red"
+                x1="0" y1="0" x2="100%" y2="100%"
+                gradientUnits="objectBoundingBox">
+            <stop
+                stop-color="purple"
+                offset="10%"/>
+            <stop
+                stop-color="orangered"
+                offset="90%"/>
+        </linearGradient>
+
+        <pattern id="pt-wood" width="300" height="300"
+             patternUnits="userSpaceOnUse">
+            <image xlink:href="./assets/img/parts/wood.jpg" width="300" height="300"/>
+        </pattern>
+
+        <pattern id="pt-tulips" width="800" height="532"
+             patternUnits="userSpaceOnUse">
+            <image xlink:href="./assets/img/parts/tulips.jpeg" width="800" height="532"/>
+        </pattern>
     </svg>
 
     <header class="caption">
@@ -2743,8 +2884,13 @@ svg {
     <!-- Slide -->
     <section class="slide slide--vlm"><div>
         <div class="slide__content">
-            <div class="demo demo--text demo--shadowstroke">
+            <div
+                class="
+                    demo
+                    demo--text
+                    demo--shadowstroke">
                 текст
+                </div>
             </div>
         </div>
     </div></section>
@@ -2802,7 +2948,11 @@ svg {
     <!-- Slide -->
     <section class="slide bg--dark slide--vlm"><div>
         <div class="slide__content">
-            <div class="demo demo--text demo--chasing-shadows">
+            <div
+                class="
+                    demo
+                    demo--text
+                    demo--chasing-shadows">
                 текст
             </div>
         </div>
@@ -2811,7 +2961,11 @@ svg {
     <!-- Slide -->
     <section class="slide bg--dark slide--vlm"><div>
         <div class="slide__content">
-            <div class="demo demo--text demo--multiple-shadows">
+            <div
+                class="
+                    demo
+                    demo--text
+                    demo--multiple-shadows">
                 текст
             </div>
         </div>
@@ -2830,10 +2984,21 @@ svg {
     <!-- Slide -->
     <section class="slide slide--vlm"><div>
         <div class="slide__content">
-            <div class="demo demo--text font-effect font-effect-outline">
+            <div
+                class="
+                    demo
+                    demo--text
+                    font-effect
+                    font-effect-outline">
                 текст
             </div>
-            <div class="next demo demo--text font-effect font-effect-anaglyph">
+            <div
+                class="
+                    next
+                    demo
+                    demo--text
+                    font-effect
+                    font-effect-anaglyph">
                 текст
             </div>
         </div>
@@ -2842,11 +3007,22 @@ svg {
     <!-- Slide -->
     <section class="slide slide--vlm"><div>
         <div class="slide__content">
-            <div class="demo demo--text font-effect font-effect-3d">
+            <div
+                class="
+                    demo
+                    demo--text
+                    font-effect
+                    font-effect-3d">
                 текст
             </div>
 
-            <div class="next demo demo--text font-effect font-effect-shadow-multiple">
+            <div
+                class="
+                    next
+                    demo
+                    demo--text
+                    font-effect
+                    font-effect-shadow-multiple">
                 текст
             </div>
         </div>
@@ -2855,7 +3031,12 @@ svg {
     <!-- Slide -->
     <section class="slide slide--vlm bg--dark"><div>
         <div class="slide__content">
-            <div class="demo demo--text font-effect font-effect-fire-animation">
+            <div
+                class="
+                    demo
+                    demo--text
+                    font-effect
+                    font-effect-fire-animation">
                 текст
             </div>
         </div>
@@ -2886,19 +3067,28 @@ svg {
     </div></section>
 
     <!-- Slide -->
-    <section class="slide slide--vlm"><div>
-        <div class="slide__content">
-            <div class="demo demo--text demo--text-stroke">
-                текст
-            </div>
-        </div>
-    </div></section>
+    <section class="slide"><div>
+        <div
+            class="
+                slide__content
+                live-editor
+                live-editor--attr">
 
-    <!-- Slide -->
-    <section class="slide slide--vlm"><div>
-<pre><code>.text {
-    -webkit-text-stroke: .05em orangered;
-    }</code></pre>
+            <div class="live-editor__content">
+                <textarea class="live-editor__code">-webkit-text-stroke: 15px orangered</textarea>
+            </div>
+
+            <div class="
+                demo
+                demo--text
+                demo--text-stroke
+                live-editor__view
+                live-editor__dest"
+                data-attr="style">
+                text
+              </div>
+
+        </div>
     </div></section>
 
     <!-- Slide -->
@@ -2926,62 +3116,25 @@ svg {
 
     <!-- Slide -->
     <section class="slide bg--ps-cells slide--vlm"><div>
-        <div class="slide__content">
-            <div class="demo demo--text demo--background-clip demo--background-clip-step0">
-                текст
+        <div class="
+            slide__content
+            live-editor
+            live-editor--attr">
+            <div class="live-editor__content">
+                <textarea
+                    class="
+                    live-editor__code
+                    live-editor__code--3-lines">background: url(/assets/img/parts/tulips.jpeg) 50% 50%;
+                </textarea>
             </div>
-        </div>
-    </div></section>
-
-    <!-- Slide -->
-    <section class="slide"><div>
-<pre><code>.text {
-  background: url(tulips.jpg) 50% 50%;
-
-
-  }</span></code></pre>
-    </div></section>
-
-    <!-- Slide -->
-    <section class="slide bg--ps-cells slide--vlm"><div>
-        <div class="slide__content">
-            <div class="demo demo--text demo--background-clip demo--background-clip-step1">
-                текст
-            </div>
-        </div>
-    </div></section>
-
-    <!-- Slide -->
-    <section class="slide"><div>
-<pre><code>.text {
-  background: url(tulips.jpg) 50% 50%;
-  <mark>-webkit-background-clip: text;</mark>
-
-  }</span></code></pre>
-    </div></section>
-
-    <!-- Slide -->
-    <section class="slide bg--ps-cells slide--vlm"><div>
-        <div class="slide__content">
-            <div class="demo demo--text demo--background-clip demo--background-clip-step2">
-                текст
-            </div>
-        </div>
-    </div></section>
-
-    <!-- Slide -->
-    <section class="slide"><div>
-<pre><code>.text {
-  background: url(tulips.jpg) 50% 50%;
-  -webkit-background-clip: text;
-  <mark>-webkit-text-fill-color: transparent;</mark>
-  }</code></pre>
-    </div></section>
-
-    <!-- Slide -->
-    <section class="slide bg--ps-cells slide--vlm"><div>
-        <div class="slide__content">
-            <div class="demo demo--text demo--background-clip demo--background-clip-step3">
+            <div
+                class="
+                    demo
+                    demo--text
+                    demo--background-clip demo--background-clip-step1
+                    live-editor__view
+                    live-editor__dest"
+                    data-attr="style">
                 текст
             </div>
         </div>
@@ -2989,8 +3142,55 @@ svg {
 
     <!-- Slide -->
     <section class="slide bg--ps-cells slide--vlm"><div>
-        <div class="slide__content">
-            <div class="demo demo--text demo--background-clip-no-support">
+        <div class="
+            slide__content
+            live-editor
+            live-editor--attr">
+            <div class="live-editor__content">
+                <textarea
+                    class="
+                    live-editor__code
+                    live-editor__code--3-lines">background: url(/assets/img/parts/tulips.jpeg) 50% 50%;
+-webkit-background-clip: text;
+                </textarea>
+            </div>
+            <div
+                class="
+                    demo
+                    demo--text
+                    demo--background-clip demo--background-clip-step2
+                    live-editor__view
+                    live-editor__dest"
+                    data-attr="style">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--ps-cells slide--vlm"><div>
+        <div class="
+            slide__content
+            live-editor
+            live-editor--attr
+            ">
+            <div class="live-editor__content">
+                <textarea
+                    class="
+                    live-editor__code
+                    live-editor__code--3-lines">background: url(/assets/img/parts/tulips.jpeg) 50% 50%;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+                </textarea>
+            </div>
+            <div
+                class="
+                    demo
+                    demo--text
+                    demo--background-clip demo--background-clip-step3
+                    live-editor__view
+                    live-editor__dest"
+                    data-attr="style">
                 текст
             </div>
         </div>
@@ -2999,7 +3199,24 @@ svg {
     <!-- Slide -->
     <section class="slide bg--ps-cells slide--vlm"><div>
         <div class="slide__content">
-            <div class="demo demo--text demo--background-clip-fade">
+            <div
+                class="
+                    demo
+                    demo--text
+                    demo--background-clip-no-support">
+                текст
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide bg--ps-cells slide--vlm"><div>
+        <div class="slide__content">
+            <div
+                class="
+                    demo
+                    demo--text
+                    demo--background-clip-fade">
                 текст текст текст текст текст
                 текст текст текст текст текст
             </div>
@@ -3014,7 +3231,11 @@ svg {
     <!-- Slide -->
     <section class="slide bg--dark slide--vlm"><div>
         <div class="slide__content">
-            <div class="demo demo--text demo--background-clip-animation">
+            <div
+                class="
+                    demo
+                    demo--text
+                    demo--background-clip-animation">
                 текст
             </div>
         </div>
@@ -3023,7 +3244,12 @@ svg {
     <!-- Slide -->
     <section class="slide bg--dark slide--vlm"><div>
         <div class="slide__content">
-            <div class="demo demo--text demo--background-clip-animation demo--background-clip-animation-color">
+            <div
+                class="
+                    demo
+                    demo--text
+                    demo--background-clip-animation
+                    demo--background-clip-animation-color">
                 текст
             </div>
         </div>
@@ -3054,15 +3280,24 @@ svg {
 
     <!-- Slide -->
     <section class="slide"><div>
-<pre><code>&lt;svg viewBox="0 0 1024 620">
-    <span class="next">&lt;text x="50%" y="50%" dy=".2em" text-anchor="middle">
-        <mark class="next">текст</mark>
-    &lt;/text></span>
-&lt;/svg></code></pre>
-
-        <svg viewBox="0 0 1024 280" class="next demo demo--text demo--small-height">
-            <text x="50%" y="50%" dy=".25em" text-anchor="middle">текст</text>
-        </svg>
+        <div
+            class="
+                live-editor
+                live-editor--elem
+                live-editor--text
+                live-editor--small-height">
+          <div class="live-editor__content">
+            <textarea
+                class="
+                    live-editor__textfield
+                    live-editor__code
+                    live-editor__code--5-lines"
+                    ><svg viewBox="0 0 800 300">
+    <text x="50%" y="50%" dy=".25em" text-anchor="middle">
+        текст
+    </text>
+</svg></textarea>
+        </div></div>
     </div></section>
 
     <!-- Slide -->
@@ -3085,12 +3320,37 @@ svg {
 
     <!-- Slide -->
     <section class="slide"><div>
-        <svg viewBox="0 0 1024 620" class="demo demo--text">
-            <text x="50%" y="28%" dy=".2em" text-anchor="middle"
-                class="text--stroke text--stroke-thick">текст</text>
-            <text x="50%" y="72%" dy=".2em" text-anchor="middle"
-                class="text--stroke text--stroke-thin">текст</text>
-        </svg>
+        <div class="
+            slide__content
+            live-editor
+            live-editor--attr
+            live-editor--text
+            live-editor--small-height
+            text--stroke
+            text--stroke--base">
+            <div class="live-editor__content">
+                <textarea
+                    class="
+                    live-editor__code
+                    live-editor__code--2-lines">stroke: crimson;
+stroke-width: 7;</textarea>
+            </div>
+            <svg
+                viewBox="0 0 800 300"
+                >
+                <text
+                    x="50%" y="50%"
+                    dy=".25em"
+                    text-anchor="middle"
+                    class="
+                    live-editor__view
+                    live-editor__dest
+                    "
+                    data-attr="style">
+                    текст
+                </text>
+            </svg>
+        </div>
     </div></section>
 
     <!-- Slide -->
@@ -3132,16 +3392,38 @@ svg {
 
     <!-- Slide -->
     <section class="slide"><div>
-<pre><code>.text {
-    stroke: orangered;
-    stroke-width: 4;
-    <span class="next"><mark>stroke-dasharray</mark>: 50 30 20 10;
-    }</span></code></pre>
-
-        <svg viewBox="0 0 1024 280" class="demo demo--text next demo--small-height">
-            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
-                class="text--stroke text--stroke-dasharray">текст</text>
-        </svg>
+        <div class="
+            slide__content
+            live-editor
+            live-editor--attr
+            live-editor--text
+            live-editor--small-height
+            text--stroke
+            text--stroke-dasharray">
+            <div class="live-editor__content">
+                <textarea
+                    class="
+                    live-editor__code
+                    live-editor__code--3-lines">stroke: orangered;
+stroke-width: 5;
+stroke-dasharray: 50 30 20 10;</textarea>
+            </div>
+            <svg
+                viewBox="0 0 800 300"
+                >
+                <text
+                    x="50%" y="50%"
+                    dy=".25em"
+                    text-anchor="middle"
+                    class="
+                    live-editor__view
+                    live-editor__dest
+                    "
+                    data-attr="style">
+                    текст
+                </text>
+            </svg>
+        </div>
     </div></section>
 
     <!-- Slide -->
@@ -3285,34 +3567,52 @@ svg {
 
     <!-- Slide -->
     <section class="slide"><div>
-<pre><code>&lt;pattern id="pt-circle" width="50" height="50"
+        <div
+            class="
+                live-editor
+                live-editor--elem
+                live-editor--small-height">
+          <div class="live-editor__content">
+            <textarea
+                class="
+                    live-editor__textfield
+                    live-editor__code
+                    live-editor__code--smalltext
+                    live-editor__code--8-lines"
+                    ><svg viewBox="0 0 800 200">
+  <pattern id="pt-circles" width="50" height="50"
     viewBox="0 0 50 50" patternUnits="userSpaceOnUse">
-    <span class="next">&lt;<mark>circle</mark> r="18" cx="25" cy="25"
-      fill="yellowgreen" stroke="green" stroke-width="7"/></span>
-&lt;/pattern></code></pre>
-
-    <svg class="demo--show-pattern next">
-        <pattern id="pt-circle" width="50" height="50"
-        viewBox="0 0 50 50" patternUnits="userSpaceOnUse">
-            <circle r="18" cx="25" cy="25"
-                fill="yellowgreen" stroke="green" stroke-width="7"/>
-        </pattern>
-        <rect width="100%" height="100%" fill="url(#pt-circle)"/>
-    </svg>
+      <circle r="18" cx="25" cy="25"
+        fill="yellowgreen" stroke="green" stroke-width="7"/>
+  </pattern>
+  <rect width="100%" height="100%" fill="url(#pt-circles)"/>
+</svg></textarea>
+        </div></div>
     </div></section>
 
     <!-- Slide -->
     <section class="slide"><div>
-
-<pre><code>&lt;pattern id="pt-wood" width="300" height="300"
+        <div
+            class="
+                live-editor
+                live-editor--elem
+                live-editor--small-height">
+          <div class="live-editor__content">
+            <textarea
+                class="
+                    live-editor__textfield
+                    live-editor__code
+                    live-editor__code--smalltext
+                    live-editor__code--8-lines"
+                    ><svg viewBox="0 0 800 200">
+  <pattern id="pt-wooden" width="300" height="300"
     patternUnits="userSpaceOnUse">
-    <span class="next">&lt;<mark>image</mark> xlink:href="wood.jpg"
-        width="300" height="300"/></span>
-&lt;/pattern></code></pre>
-
-    <svg class="demo--show-pattern next">
-        <rect width="100%" height="100%" fill="url(#pt-wood)"/>
-    </svg>
+    <image xlink:href="./assets/img/parts/wood.jpg"
+        width="300" height="300"/>
+  </pattern>
+  <rect width="100%" height="100%" fill="url(#pt-wooden)"/>
+</svg></textarea>
+        </div></div>
     </div></section>
 
     <!-- Slide -->
@@ -3549,11 +3849,6 @@ svg {
 &lt;/g></code></pre>
 
     <svg viewBox="0 0 1024 320" class="demo demo--text">
-        <pattern id="pt-wood" width="300" height="300"
-             patternUnits="userSpaceOnUse">
-            <image xlink:href="./assets/img/parts/wood.jpg" width="300" height="300"/>
-        </pattern>
-
         <g>
             <rect fill="url(#pt-wood)" width="100%" height="100%"/>
         </g>
@@ -3884,27 +4179,35 @@ svg {
     <!-- Slide -->
     <section class="slide bg--flowers"><div>
         <div class="slide__content">
-            <div class="demo demo--text demo--offset demo--bbmode-text  demo--bbmode-text-step0">
+            <div
+                class="
+                    demo
+                    demo--text
+                    demo--offset
+                    demo--offset-small
+                    demo--bbmode-text
+                    demo--bbmode-text-step0">
                 <div class="text">текст</div>
             </div>
         </div>
     </div></section>
 
     <!-- Slide -->
-    <section class="slide slide--vlm"><div>
-<pre><code>.text {
-    mix-blend-mode: <mark>lighten</mark>;
-    }</code></pre>
-    </div></section>
-
-    <!-- Slide -->
     <section class="slide bg--flowers"><div>
-        <div class="slide__content">
+        <div
+            class="slide__content live-editor live-editor--attr">
+            <div class="live-editor__content">
+                <textarea class="live-editor__code">mix-blend-mode: lighten</textarea>
+            </div>
             <div class="demo
                         demo--text
                         demo--offset
+                        demo--offset-small
                         demo--bbmode-text
-                        demo--bbmode-text-step1">
+                        demo--bbmode-text-step1
+                        live-editor__view
+                        live-editor__dest"
+                 data-attr="style">
                 <div class="text">текст</div>
             </div>
         </div>
@@ -3980,7 +4283,7 @@ svg {
 
                 <rect mask="url(#mask-text-revert)"
                     width="100%" height="100%"
-                    fill="#000"/>
+                    fill="url(#gr-red)"/>
                 <use xlink:href="#s-text--invmask" class="u-text--transp"/>
 
             </svg>
@@ -4009,13 +4312,13 @@ svg {
     <section class="slide slide--imgfull"><div>
         <div class="demo-border">
             <div class="demo--round-shadows"></div>
-                <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--text">
+            <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--text">
 
-                    <rect mask="url(#mask-text-revert)"
-                        width="100%" height="100%"
-                        fill="#000"/>
+                <rect mask="url(#mask-text-revert)"
+                    width="100%" height="100%"
+                    fill="#000"/>
 
-                </svg>
+            </svg>
         </div>
     </div></section>
 
@@ -4192,41 +4495,18 @@ svg {
     </div></section>
 
     <!-- Slide -->
-    <section class="slide bg--blue-grad"><div>
+    <section class="slide"><div>
         <svg viewBox="0 0 1024 620" class="demo demo--logo">
-
-            <linearGradient id="gr-mask-opacity"
-                    x1="-100%" y1="0" x2="100%" y2="25%"
-                    gradientUnits="objectBoundingBox">
-                  <animate attributeName="x1"
-                           values="-100%;100%;"
-                           dur="7s" repeatCount="indefinite" />
-                  <animate attributeName="x2"
-                           values="0%;200%;"
-                           dur="7s" repeatCount="indefinite" />
-
-                  <stop stop-color="rgb(0,0,0)" offset="0%"/>
-                  <stop stop-color="rgb(255,255,255)" offset="30%"/>
-                  <stop stop-color="rgb(255,255,255)" offset="70%"/>
-                  <stop stop-color="rgb(0,0,0)" offset="100%"/>
-            </linearGradient>
-
-            <mask id="mask-text-appear"
-                    maskunits="userSpaceOnUse"
-                    maskcontentunits="userSpaceOnUse">
-                        <rect width="100%" height="100%"
-                        class="mask-rect-gr-opacity"/>
-            </mask>
-
-            <g mask="url(#mask-text-appear)">
-                <use xlink:href="#s-text"/>
-            </g>
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="text--fill text--fill-pattern"
+                fill="url(#pt-tulips)">
+                Лето!
+            </text>
         </svg>
-
     </div></section>
 
     <!-- Slide -->
-    <section class="slide bg--blue-grad"><div>
+    <section class="slide bg--red-grad"><div>
         <svg viewBox="0 0 1024 620" class="demo demo--logo">
 
             <mask id="mask-logo-appear-up"
@@ -4385,6 +4665,8 @@ svg {
 
     <div class="progress"><div></div></div>
     <script src="shower/shower.min.js"></script>
+    <script src="./assets/js/jquery-2.1.0.min.js"></script>
+    <script src="./assets/js/live-edit.js"></script>
     <script src="assets/js/snap.svg-min.js"></script>
     <script src="assets/js/intro.js"></script>
 
