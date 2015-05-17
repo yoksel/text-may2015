@@ -137,7 +137,7 @@ svg {
 
 .demo--offset {
   position: absolute !important;
-  width: 800px !important;
+  width: 860px !important;
   height: 500px;
   top: 0;
   right: 0;
@@ -146,6 +146,10 @@ svg {
   margin: auto;
   -webkit-box-shadow: 40px 40px 20px rgba(0, 0, 0, 0.5);
   box-shadow: 40px 40px 20px rgba(0, 0, 0, 0.5);
+}
+
+.demo--offset-small {
+  height: 350px;
 }
 
 .hidden-svg-defs {
@@ -445,6 +449,12 @@ PRE:before {
   background-image: radial-gradient(#0088cc, #0c052e);
 }
 
+.bg--red-grad {
+  background-color: crimson;
+  background-image: -webkit-radial-gradient(orangered, crimson);
+  background-image: radial-gradient(orangered, crimson);
+}
+
 /* Columns
 ------------------------- */
 .column {
@@ -481,7 +491,8 @@ PRE:before {
 
 /* Demo
 ------------------------- */
-.demo--text {
+.demo--text,
+.live-editor--text .live-editor__view {
   font: 12em/1 'Russo One', Impact;
   letter-spacing: .05em;
 }
@@ -490,9 +501,14 @@ svg.demo--text {
   font-size: 14em;
 }
 
+.live-editor--text svg {
+  font-size: 1.2em;
+}
+
 /* Solve problem with height in IE9 */
-svg.demo--small-height {
-  height: 236px;
+svg.demo--small-height,
+.live-editor--small-height svg {
+  height: 250px;
 }
 
 .demo-border {
@@ -520,6 +536,117 @@ svg.demo--inverted-mask {
 
 svg.demo--intro {
   font: 7em/1 'Russo One', Impact;
+}
+
+.live-editor__code {
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 5px;
+  background: transparent;
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+/* Demo Edit Properties
+------------------------- */
+.live-editor__code {
+  width: 100%;
+  height: 2em;
+  margin: 0 0 20px;
+  background: #FFF;
+  border: 0;
+  outline: none;
+  line-height: 1.7;
+  font-family: 'Anka Coder',monospace;
+  font-size: 100%;
+  -webkit-transition: .5s;
+  transition: .5s;
+  -webkit-background-size: 30px 30px;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 99% center;
+}
+.live-editor__code:focus {
+  background-color: palegoldenrod;
+}
+.live-editor__code--smalltext {
+  font-size: 80%;
+}
+.live-editor__code--2-lines {
+  height: 3.6em;
+}
+.live-editor__code--3-lines {
+  height: 5.4em;
+}
+.live-editor__code--4-lines {
+  height: 7.2em;
+}
+.live-editor__code--5-lines {
+  height: 9em;
+}
+.live-editor__code--6-lines {
+  height: 10.8em;
+}
+.live-editor__code--7-lines {
+  height: 12.6em;
+}
+.live-editor__code--8-lines {
+  height: 14.4em;
+}
+.live-editor__code--9-lines {
+  height: 16.2em;
+}
+.live-editor__code--10-lines {
+  height: 18em;
+}
+
+/* Demo Live
+------------------------- */
+.demo--live {
+  margin-bottom: 24px;
+}
+.demo--live:after {
+  content: "";
+  display: table;
+  width: 100%;
+}
+.demo--live .live-editor__content {
+  margin-top: 2em;
+}
+.demo--live .live-editor__view svg {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  max-height: 100%;
+}
+.demo--live .live-editor__textfield {
+  width: 100%;
+  border: 0 solid #555;
+  outline: none;
+  font-family: 'Anka Coder', monospace;
+  font-size: 21.6px;
+  line-height: 1.4;
+  color: #000;
+}
+.demo--live .live-editor__code {
+  height: 164.6568px;
+  -webkit-background-size: 30px 30px;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 99.5% top;
+}
+.demo--live pre {
+  float: right;
+  width: 65%;
+  margin-top: 1em;
+}
+.demo--live B {
+  display: inline-block;
+  font: bold .8em/1 Arial !important;
 }
 
 .demo--shadowstroke {
@@ -566,7 +693,8 @@ svg.demo--intro {
 }
 
 .demo--text-stroke {
-  -webkit-text-stroke: .05em orangered;
+  text-align: center;
+  -webkit-text-stroke: 15px orangered;
   color: #FFF;
 }
 
@@ -747,19 +875,14 @@ svg.demo--intro {
   fill: none;
 }
 
-.text--stroke-thick {
+.text--stroke--base {
   stroke: crimson;
-  stroke-width: 3;
-}
-
-.text--stroke-thin {
-  stroke: royalblue;
-  stroke-width: 15;
+  stroke-width: 7;
 }
 
 .text--stroke-dasharray {
   stroke: orangered;
-  stroke-width: 4;
+  stroke-width: 5;
   stroke-dasharray: 50 30 20 10;
 }
 
@@ -1722,8 +1845,8 @@ svg.demo--text-psycho .g-circles circle:nth-child(7) {
   /*background: url(./assets/img/parts/violet-hyacinths.jpeg) 50% 50%/cover;*/
 }
 .demo--bbmode-text .text {
-  height: 500px;
-  line-height: 500px;
+  height: 350px;
+  line-height: 330px;
   background: #FFF;
   text-align: center;
   font-size: .85em;
@@ -2116,7 +2239,7 @@ svg.demo--text-showmask {
 @-webkit-keyframes stroke-logo-appear {
   20% {
     stroke-dasharray: 0 500;
-    stroke-width: 5;
+    stroke-width: 3;
   }
   80% {
     stroke-dasharray: 500 500;
@@ -2131,7 +2254,7 @@ svg.demo--text-showmask {
 @keyframes stroke-logo-appear {
   20% {
     stroke-dasharray: 0 500;
-    stroke-width: 5;
+    stroke-width: 3;
   }
   80% {
     stroke-dasharray: 500 500;
@@ -2145,7 +2268,7 @@ svg.demo--text-showmask {
 .mask-logo-appear-rect {
   stroke: white;
   stroke-width: 0;
-  stroke-opacity: 0;
+  /*stroke-opacity: 0;*/
 }
 :target .mask-logo-appear-rect {
   -webkit-animation: mask-logo-appear 4s infinite linear alternate;
@@ -2155,30 +2278,30 @@ svg.demo--text-showmask {
 @-webkit-keyframes mask-logo-appear {
   20% {
     stroke-width: 0;
-    stroke-opacity: 0;
+    /*stroke-opacity: 0;*/
   }
   80% {
     stroke-width: 500;
-    stroke-opacity: 1;
+    /*stroke-opacity: 1;*/
   }
   100% {
     stroke-width: 500;
-    stroke-opacity: 1;
+    /*stroke-opacity: 1;*/
   }
 }
 
 @keyframes mask-logo-appear {
   20% {
     stroke-width: 0;
-    stroke-opacity: 0;
+    /*stroke-opacity: 0;*/
   }
   80% {
     stroke-width: 500;
-    stroke-opacity: 1;
+    /*stroke-opacity: 1;*/
   }
   100% {
     stroke-width: 500;
-    stroke-opacity: 1;
+    /*stroke-opacity: 1;*/
   }
 }
 .aurora-stop-color-1 {

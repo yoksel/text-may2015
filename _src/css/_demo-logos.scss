@@ -97,7 +97,7 @@ $mask-logo-appear-time: 4s;
 
   20% {
     stroke-dasharray: 0 500;
-    stroke-width: 5;
+    stroke-width: 3;
   }
   80% {
     stroke-dasharray: 500 500;
@@ -113,7 +113,7 @@ $mask-logo-appear-time: 4s;
 .mask-logo-appear-rect {
   stroke: white;
   stroke-width: 0;
-  stroke-opacity: 0;
+  /*stroke-opacity: 0;*/
 
   :target & {
     animation: mask-logo-appear $mask-logo-appear-time infinite linear alternate;
@@ -124,15 +124,15 @@ $mask-logo-appear-time: 4s;
 
   20% {
     stroke-width: 0;
-    stroke-opacity: 0;
+    /*stroke-opacity: 0;*/
   }
   80% {
     stroke-width: 500;
-    stroke-opacity: 1;
+    /*stroke-opacity: 1;*/
   }
   100% {
     stroke-width: 500;
-    stroke-opacity: 1;
+    /*stroke-opacity: 1;*/
   }
 }
 

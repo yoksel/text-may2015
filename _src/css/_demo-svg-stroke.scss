@@ -3,19 +3,14 @@
     fill: none;
     }
 
-.text--stroke-thick {
+.text--stroke--base {
     stroke: crimson;
-    stroke-width: 3;
-    }
-
-.text--stroke-thin {
-    stroke: royalblue;
-    stroke-width: 15;
+    stroke-width: 7;
     }
 
 .text--stroke-dasharray {
   stroke: orangered;
-  stroke-width: 4;
+  stroke-width: 5;
   stroke-dasharray: 50 30 20 10;
   }
 

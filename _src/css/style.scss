@@ -38,7 +38,7 @@ svg {
         }
 .demo--offset {
     position: absolute !important;
-    width: 800px !important;
+    width: 860px !important;
     height: 500px;
     top: 0;
     right: 0;
@@ -47,6 +47,9 @@ svg {
     margin: auto;
     box-shadow: 40px 40px 20px rgba(0,0,0,.5);
     }
+    .demo--offset-small {
+        height: 350px;
+        }
 
 .hidden-svg-defs {
     position: absolute;
@@ -335,6 +338,14 @@ $svg-code-color: hsl(190, 70%, 75%);
         );
     }
 
+.bg--red-grad {
+    background-color: crimson;
+    background-image: radial-gradient(
+        orangered,
+        crimson
+        );
+    }
+
 /* Columns
 ------------------------- */
 
@@ -373,16 +384,21 @@ $svg-code-color: hsl(190, 70%, 75%);
 /* Demo
 ------------------------- */
 
-.demo--text {
+.demo--text,
+.live-editor--text .live-editor__view {
     font: 12em/1 'Russo One', Impact;
     letter-spacing: .05em;
     }
     svg.demo--text {
         font-size: 14em;
         }
+    .live-editor--text svg {
+        font-size: 1.2em;
+        }
     /* Solve problem with height in IE9 */
-    svg.demo--small-height {
-        height: 236px;
+    svg.demo--small-height,
+    .live-editor--small-height svg {
+        height: 250px;
         }
 
 .demo-border {
@@ -410,6 +426,8 @@ svg.demo--inverted-mask {
 svg.demo--intro {
     font: 7em/1 'Russo One', Impact;
     }
+
+@import '_demo-live-edit';
 
 @import '_demo-textshadows';
 @import '_demo-google-font-effects';
