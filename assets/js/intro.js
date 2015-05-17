@@ -1,10 +1,12 @@
 console.clear();
 
 var s = Snap();
-var viewBoxList = [0,0,1024,640];
+var sMaxX = 1024;
+var sMaxY = 640;
+var viewBoxList = [0, 0, sMaxX, sMaxY];
 s.attr({
     viewBox: viewBoxList
-})
+});
 
 var gLines = s.g();
 var gText = s.g();
@@ -13,12 +15,12 @@ var maskObj;
 var text;
 var maskElem = s.mask();
 
-var pSize = 700;
+var pSize = 1000;
 var maxLines = 16;
 var maxLinesDouble = maxLines * 2;
 var lineStep = pSize / maxLines;
 var lines = [];
-var pathDur = 1000;
+var pathDur = 1500;
 var delay = 250;
 
 var colorSteps = maxLines / 2;
@@ -35,6 +37,7 @@ var colors = ['purple',
 
 var lineLength = Math.sqrt( Math.pow( pSize, 2 ) * 2);
 
+// ------------------------------------
 
 var lineObj = function () {
     var d = 'M' + [pSize, 0, 0, pSize];
@@ -183,7 +186,7 @@ var textObj = function () {
 
     text1.attr({
        dy: '.3em',
-       'font-size': '26vmin'
+       'font-size': '26.5vmin'
     });
     text2.attr({
        dy: '.3em'
@@ -277,7 +280,7 @@ var maskObjInit = function () {
     var maskDur = 300;
 
     this.init = function () {
-        maskShape = s.ellipse('50%', '50%', sMaxX / 2, sMaxY / 2);
+        maskShape = s.ellipse('50%', '50%', sMaxX / 1.5, sMaxY / 1.5);
 
         maskShape.attr({
             fill: "white"
@@ -309,8 +312,8 @@ var maskObjInit = function () {
         currentStep = 0;
 
         var initState = {
-            rx: '100%',
-            ry: "100%"
+            rx: sMaxX / 1.5,
+            ry: sMaxY / 1.5
         };
 
         maskShape.attr(initState);
@@ -318,13 +321,12 @@ var maskObjInit = function () {
 }
 
 function createMask() {
-//     console.log('* - createMask');
+//   console.log('* - createMask');
     maskObj = new maskObjInit;
     maskObj.init();
 }
 
 // ------------------------------------
-
 createPattern();
 createText();
 createMask();
