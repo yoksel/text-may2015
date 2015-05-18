@@ -1,6 +1,15 @@
-.demo--background-clip {
+.demo--background-clip,
+.demo--background-clip-no-support {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
   background: url(./assets/img/parts/tulips.jpeg) 50% 50%;
-  /*color: #FFF;*/
+
+  line-height: 750px;
   }
   .demo--background-clip-step0 {
     background-image: none;
@@ -13,8 +22,8 @@
     -webkit-text-fill-color: transparent;
     }
   .demo--background-clip-no-support {
-      background: url(./assets/img/parts/tulips.jpeg) 50% 50%;
-      /*color: #FFF;*/
+      /*background: url(./assets/img/parts/tulips.jpeg) 50% 50%;*/
+      line-height: 620px;
       }
 
 .demo--background-clip-fade {

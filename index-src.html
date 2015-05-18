@@ -37,7 +37,7 @@
 
         <pattern id="pt-tulips" width="800" height="532"
              patternUnits="userSpaceOnUse">
-            <image xlink:href="./assets/img/parts/tulips.jpeg" width="800" height="532"/>
+            <image xlink:href="./assets/img/parts/tulips-800.jpeg" width="800" height="532"/>
         </pattern>
     </svg>
 
@@ -117,6 +117,20 @@
                 текст
                 </div>
             </div>
+        </div>
+    </div></section>
+
+    <section class="slide slide--vlm"><div>
+        <div class="slide__content">
+            <div
+                class="
+                    demo
+                    demo--text
+                    demo--shadowstroke">
+                текст
+                </div>
+            </div>
+            <div class="demo--shadowstroke-zoom"></div>
         </div>
     </div></section>
 
@@ -340,7 +354,7 @@
     </div></section>
 
     <!-- Slide -->
-    <section class="slide bg--ps-cells slide--vlm"><div>
+    <section class="slide bg--ps-cells slide--imgfull"><div>
         <div class="
             slide__content
             live-editor
@@ -366,7 +380,7 @@
     </div></section>
 
     <!-- Slide -->
-    <section class="slide bg--ps-cells slide--vlm"><div>
+    <section class="slide bg--ps-cells slide--imgfull"><div>
         <div class="
             slide__content
             live-editor
@@ -383,7 +397,8 @@
                 class="
                     demo
                     demo--text
-                    demo--background-clip demo--background-clip-step2
+                    demo--background-clip
+                    demo--background-clip-step2
                     live-editor__view
                     live-editor__dest"
                     data-attr="style">
@@ -393,7 +408,7 @@
     </div></section>
 
     <!-- Slide -->
-    <section class="slide bg--ps-cells slide--vlm"><div>
+    <section class="slide bg--ps-cells slide--imgfull"><div>
         <div class="
             slide__content
             live-editor
@@ -412,24 +427,27 @@
                 class="
                     demo
                     demo--text
-                    demo--background-clip demo--background-clip-step3
+                    demo--background-clip
+                    demo--background-clip-step3
                     live-editor__view
                     live-editor__dest"
                     data-attr="style">
-                текст
+                    текст
             </div>
         </div>
     </div></section>
 
     <!-- Slide -->
-    <section class="slide bg--ps-cells slide--vlm"><div>
+    <section class="slide bg--ps-cells slide--imgfull"><div>
         <div class="slide__content">
             <div
                 class="
                     demo
                     demo--text
                     demo--background-clip-no-support">
-                текст
+                <span class="demo__text">
+                    текст
+                </span>
             </div>
         </div>
     </div></section>
@@ -1055,7 +1073,7 @@ stroke-dasharray: 50 30 20 10;</textarea>
     <!-- Slide -->
     <section class="slide slide--imgfull bg--ps-cells"><div>
         <div class="slide__content">
-            <svg viewBox="0 0 1024 640" class="demo demo--text demo--text-showmask demo--offset">
+            <svg viewBox="0 0 1015 590" class="demo demo--text demo--text-showmask demo--offset">
                 <symbol id="s-text">
                     <text x="50%" y="50%" dy=".2em"
                         text-anchor="middle">текст</text>
@@ -1355,7 +1373,7 @@ stroke-dasharray: 50 30 20 10;</textarea>
                 <img src="./assets/img/browsers/safari.png" alt="Safari"/>
                 <img src="./assets/img/browsers/opera.png" alt="Opera"/>
                 <img src="./assets/img/browsers/firefox.png" alt="Firefox"/>
-                <img src="./assets/img/browsers/ie.png" alt="IE"/>
+                <span data-bubble="9+"><img src="./assets/img/browsers/ie.png" alt="IE"/></span>
             </div>
         </div>
     </div></section>
@@ -1478,12 +1496,12 @@ stroke-dasharray: 50 30 20 10;</textarea>
 
     <!-- Slide -->
     <section class="slide"><div>
-        <h2 class="free-fly">SVG mask</h2>
+        <h2 class="free-fly">SVG-маска</h2>
     </div></section>
 
     <!-- Slide -->
     <section class="slide slide--imgfull bg--ps-cells"><div>
-        <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--inverted-mask demo--offset demo--text">
+        <svg viewBox="0 0 1015 590" class="demo demo--inverted-mask demo--inverted-mask demo--offset demo--text">
             <rect width="100%" height="100%" fill="#FFF"/>
             <text x="50%" y="50%" dy=".25em"
                 text-anchor="middle">текст</text>
@@ -1493,7 +1511,7 @@ stroke-dasharray: 50 30 20 10;</textarea>
     <!-- Slide -->
     <section class="slide slide--imgfull bg--ps-cells"><div>
         <div class="">
-            <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--offset demo--text">
+            <svg viewBox="0 0 1015 590" class="demo demo--inverted-mask demo--offset demo--text">
                 <symbol id="s-text--invmask">
                     <text x="50%" y="50%" dy=".25em"
                         text-anchor="middle">текст</text>
@@ -1518,10 +1536,13 @@ stroke-dasharray: 50 30 20 10;</textarea>
     <!-- Slide -->
     <section class="slide slide--imgfull bg--flowers"><div>
         <div class="">
-            <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--offset demo--text">
+            <svg
+                viewBox="0 0 1015 590"
+                class="demo demo--inverted-mask demo--offset demo--text">
                 <rect mask="url(#mask-text-revert)"
-                    width="100%" height="100%"
-                    fill="#000"/>
+                    width="100%"
+                    height="100%"
+                    fill="#FFF"/>
                 <use xlink:href="#s-text--invmask" class="u-text--transp"/>
 
             </svg>
@@ -1538,8 +1559,19 @@ stroke-dasharray: 50 30 20 10;</textarea>
         <div class="demo-border">
             <div class="demo--round-shadows"></div>
             <svg viewBox="0 0 1024 640" class="demo demo--inverted-mask demo--text">
+                <symbol id="s-text--invmask2">
+                    <text x="50%" y="50%" dy=".25em"
+                        text-anchor="middle">текст</text>
+                </symbol>
 
-                <rect mask="url(#mask-text-revert)"
+                <mask id="mask-text-revert2"
+                maskunits="userSpaceOnUse"
+                maskcontentunits="userSpaceOnUse">
+                    <rect width="100%" height="100%" fill="#FFF"/>
+                    <use xlink:href="#s-text--invmask2"/>
+                </mask>
+
+                <rect mask="url(#mask-text-revert2)"
                     width="100%" height="100%"
                     fill="#000"/>
 
@@ -1709,7 +1741,7 @@ stroke-dasharray: 50 30 20 10;</textarea>
                 <img src="./assets/img/browsers/safari.png" alt="Safari"/>
                 <img src="./assets/img/browsers/opera.png" alt="Opera"/>
                 <img src="./assets/img/browsers/firefox.png" alt="Firefox"/>
-                <img src="./assets/img/browsers/ie.png"/>
+                <span data-bubble="9+"><img src="./assets/img/browsers/ie.png" alt="IE"/></span>
             </div>
         </div>
     </div></section>
@@ -1871,16 +1903,28 @@ stroke-dasharray: 50 30 20 10;</textarea>
 
     <section class="slide"><div>
         <h4>SVG</h4>
-            <ul>
-                <li><a href="https://docs.webplatform.org/wiki/svg/tutorials">SVG tutorials</a></li>
 
-                <li><a href="http://yoksel.github.io/about-svg/">Позвольте представить: SVG</a> (презентация)</li>
+        <ul>
+            <li><a href="https://docs.webplatform.org/wiki/svg/tutorials">SVG tutorials</a></li>
 
-                <li><a href="http://www.sitepoint.com/getting-started-svg-gradients/">Getting Started with SVG Gradients</a></li>
+            <li><a href="http://yoksel.github.io/about-svg/">Позвольте представить: SVG</a> (презентация)</li>
 
-                <li><a href="http://css-tricks.com/guide-svg-animations-smil/">A Guide to SVG Animations (SMIL)</a></li>
+            <li><a href="http://www.sitepoint.com/getting-started-svg-gradients/">Getting Started with SVG Gradients</a></li>
 
-            </ul>
+            <li><a href="http://css-tricks.com/guide-svg-animations-smil/">A Guide to SVG Animations (SMIL)</a></li>
+
+        </ul>
+
+        <h4>SVG + JS</h4>
+
+        <ul>
+
+            <li><a href="http://snapsvg.io/">Snap.svg</a></li>
+
+        </ul>
+
+
+
     </div></section>
 
     <section class="slide"><div>
@@ -1921,6 +1965,10 @@ stroke-dasharray: 50 30 20 10;</textarea>
                 <li><a href="https://twitter.com/yoksel">@yoksel</a></li>
                 <li><a href="http://codepen.io/yoksel">codepen.io/yoksel</a></li>
             </ul>
+
+            <p>
+                Слайды: <a href="http://yoksel.github.io/text-may2015/">yoksel.github.io/text-may2015</a>
+            </p>
     </div></section>
 
     <p class="badge">

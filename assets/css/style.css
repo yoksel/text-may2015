@@ -140,9 +140,9 @@ svg {
   width: 860px !important;
   height: 500px;
   top: 0;
-  right: 0;
+  right: 80px;
   bottom: 0;
-  left: 0;
+  left: 80px;
   margin: auto;
   -webkit-box-shadow: 40px 40px 20px rgba(0, 0, 0, 0.5);
   box-shadow: 40px 40px 20px rgba(0, 0, 0, 0.5);
@@ -231,6 +231,11 @@ svg {
 .slide--imgfull > DIV {
   padding: 0;
   text-align: center;
+}
+.slide--imgfull > DIV .live-editor__content {
+  position: relative;
+  margin: 60px 80px 0;
+  z-index: 100;
 }
 .slide--imgfull .abs-link {
   position: absolute;
@@ -654,6 +659,23 @@ svg.demo--intro {
   color: #FFF;
 }
 
+.demo--shadowstroke-zoom {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 580px;
+  height: 580px;
+  margin: auto;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  background: url(./assets/img/parts/text-shadow-screen.png) 55% 50% no-repeat;
+  border: 5px solid #CCC;
+}
+
 .demo--doubleshadow {
   text-shadow: -1px -1px white, 1px -1px white, 1px 1px white, -1px 1px white, -2px -2px white, 2px -2px white, 2px 2px white, -2px 2px white, -3px -3px white, 3px -3px white, 3px 3px white, -3px 3px white, -4px -4px white, 4px -4px white, 4px 4px white, -4px 4px white, -1px -1px orangered, 1px -1px orangered, 1px 1px orangered, -1px 1px orangered, -2px -2px orangered, 2px -2px orangered, 2px 2px orangered, -2px 2px orangered, -3px -3px orangered, 3px -3px orangered, 3px 3px orangered, -3px 3px orangered, -4px -4px orangered, 4px -4px orangered, 4px 4px orangered, -4px 4px orangered, -5px -5px orangered, 5px -5px orangered, 5px 5px orangered, -5px 5px orangered, -6px -6px orangered, 6px -6px orangered, 6px 6px orangered, -6px 6px orangered, -7px -7px orangered, 7px -7px orangered, 7px 7px orangered, -7px 7px orangered;
   color: steelblue;
@@ -769,9 +791,15 @@ svg.demo--intro {
   color: #fff;
 }
 
-.demo--background-clip {
+.demo--background-clip,
+.demo--background-clip-no-support {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: url(./assets/img/parts/tulips.jpeg) 50% 50%;
-  /*color: #FFF;*/
+  line-height: 750px;
 }
 
 .demo--background-clip-step0 {
@@ -788,8 +816,8 @@ svg.demo--intro {
 }
 
 .demo--background-clip-no-support {
-  background: url(./assets/img/parts/tulips.jpeg) 50% 50%;
-  /*color: #FFF;*/
+  /*background: url(./assets/img/parts/tulips.jpeg) 50% 50%;*/
+  line-height: 620px;
 }
 
 .demo--background-clip-fade {
