@@ -31,6 +31,8 @@ $textarea-oneline: $textarea-fontsize * $textarea-lineheight * .99;
         }
 
     position: relative;
+    border: 2px solid blue;
+
     &:before {
         background: $gradients;
         background-position: 0 .2em;
@@ -71,6 +73,7 @@ $lh_em: 1.8em;
         font-size: 100%;
         transition: .5s;
         @include editable(99% center);
+
         &:focus {
             background-color: $hl-color;
             }
@@ -129,4 +132,8 @@ $lh_em: 1.8em;
         display: inline-block;
         font: bold .8em/1 Arial !important;
         }
+    }
+
+.live-editor__content {
+    /*@include highlight-lines(2);*/
     }
