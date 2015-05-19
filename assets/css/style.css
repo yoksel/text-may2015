@@ -642,6 +642,7 @@ svg.demo--intro {
   /*border: 1px solid orange;*/
 }
 
+/* Modifications */
 .live-editor--svg-text .live-editor__content:before {
   background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(38.016px, palegoldenrod), color-stop(76.032px, palegoldenrod), to(transparent));
   background: -webkit-linear-gradient(transparent 38.016px, palegoldenrod 38.016px, palegoldenrod 76.032px, transparent 76.032px);
@@ -668,6 +669,20 @@ svg.demo--intro {
 
 .live-editor--pattern .live-editor__view {
   height: 240px;
+}
+
+.live-editor--bgclip-step2 .live-editor__content:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(38.016px, palegoldenrod), color-stop(76.032px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 38.016px, palegoldenrod 38.016px, palegoldenrod 76.032px, transparent 76.032px);
+  background: linear-gradient(transparent 38.016px, palegoldenrod 38.016px, palegoldenrod 76.032px, transparent 76.032px);
+  background-position: 0 .2em;
+}
+
+.live-editor--bgclip-step3 .live-editor__content:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(76.032px, palegoldenrod), color-stop(114.048px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
+  background: linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
+  background-position: 0 .2em;
 }
 
 .demo--shadowstroke {
