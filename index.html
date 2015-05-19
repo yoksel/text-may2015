@@ -136,7 +136,6 @@
 /* SVG
 ------------------------- */
 svg {
-  /*vertical-align: top;*/
   overflow: visible;
 }
 
@@ -552,29 +551,25 @@ svg.demo--intro {
   font: 7em/1 'Russo One', Impact;
 }
 
+/* Demo Edit Properties
+------------------------- */
 .live-editor__code {
   display: block;
   position: relative;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 5px;
-  background: transparent;
-  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
-}
-
-/* Demo Edit Properties
-------------------------- */
-.live-editor__code {
   width: 100%;
   height: 2em;
   margin: 0 0 20px;
-  background: #FFF;
+  padding: 5px;
+  background: transparent;
   border: 0;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
   outline: none;
-  line-height: 1.7;
+  line-height: 1.6;
   font-family: 'Anka Coder',monospace;
   font-size: 100%;
   -webkit-transition: .5s;
@@ -585,7 +580,7 @@ svg.demo--intro {
   background-position: 99% center;
 }
 .live-editor__code:focus {
-  background-color: palegoldenrod;
+  /*background-color: $hl-color;*/
 }
 .live-editor__code--smalltext {
   font-size: 80%;
@@ -618,53 +613,70 @@ svg.demo--intro {
   height: 18em;
 }
 
-/* Demo Live
-------------------------- */
-.demo--live {
-  margin-bottom: 24px;
+.live-editor__content {
+  position: relative;
+  border-radius: 5px;
+  background: #FFF;
 }
-.demo--live:after {
+.live-editor__content:before {
   content: "";
-  display: table;
-  width: 100%;
-}
-.demo--live .live-editor__content {
-  margin-top: 2em;
-}
-.demo--live .live-editor__view svg {
   display: block;
-  width: 100%;
-  margin: 0 auto;
-  max-height: 100%;
-}
-.demo--live .live-editor__textfield {
-  width: 100%;
-  border: 0 solid #555;
-  outline: none;
-  font-family: 'Anka Coder', monospace;
-  font-size: 21.6px;
-  line-height: 1.4;
-  color: #000;
-}
-.demo--live .live-editor__code {
-  height: 164.6568px;
-  -webkit-background-size: 30px 30px;
-  background-size: 30px 30px;
-  background-repeat: no-repeat;
-  background-position: 99.5% top;
-}
-.demo--live pre {
-  float: right;
-  width: 65%;
-  margin-top: 1em;
-}
-.demo--live B {
-  display: inline-block;
-  font: bold .8em/1 Arial !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transition: opacity .8s;
+  transition: opacity .8s;
 }
 
-.live-editor__content {
-  /*@include highlight-lines(2);*/
+.js--edited:before {
+  opacity: 0;
+}
+
+.live-editor__view {
+  position: relative;
+  /*border: 1px solid green;*/
+}
+.live-editor__view svg {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 100%;
+  margin: auto;
+  /*border: 1px solid orange;*/
+}
+
+.live-editor--svg-text .live-editor__content:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(38.016px, palegoldenrod), color-stop(76.032px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 38.016px, palegoldenrod 38.016px, palegoldenrod 76.032px, transparent 76.032px);
+  background: linear-gradient(transparent 38.016px, palegoldenrod 38.016px, palegoldenrod 76.032px, transparent 76.032px);
+  background-position: 0 .2em;
+}
+.live-editor--svg-text .live-editor__view {
+  height: 280px;
+}
+
+.live-editor--stroke-base .live-editor__view {
+  height: 400px;
+}
+
+.live-editor--dasharray .live-editor__content:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(76.032px, palegoldenrod), color-stop(114.048px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
+  background: linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
+  background-position: 0 .2em;
+}
+.live-editor--dasharray .live-editor__view {
+  height: 360px;
+}
+
+.live-editor--pattern .live-editor__view {
+  height: 240px;
 }
 
 .demo--shadowstroke {
@@ -683,10 +695,10 @@ svg.demo--intro {
   height: 580px;
   margin: auto;
   border-radius: 50%;
-  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 0, 0, 0.4) inset;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 0, 0, 0.4) inset;
   background: url(./assets/img/parts/text-shadow-screen.png) 55% 50% no-repeat;
-  border: 5px solid #CCC;
+  border: 2px solid #CCC;
 }
 
 .demo--doubleshadow {
@@ -730,6 +742,7 @@ svg.demo--intro {
 .demo--text-stroke {
   text-align: center;
   -webkit-text-stroke: 15px orangered;
+  line-height: 1.5;
   color: #FFF;
 }
 
@@ -3335,7 +3348,8 @@ svg {
                 live-editor
                 live-editor--elem
                 live-editor--text
-                live-editor--small-height">
+                live-editor--small-height
+                live-editor--svg-text">
           <div class="live-editor__content">
             <textarea
                 class="
@@ -3375,6 +3389,7 @@ svg {
             live-editor
             live-editor--attr
             live-editor--text
+            live-editor--stroke-base
             live-editor--small-height
             text--stroke
             text--stroke--base">
@@ -3385,21 +3400,22 @@ svg {
                     live-editor__code--2-lines">stroke: crimson;
 stroke-width: 7;</textarea>
             </div>
-            <svg
-                viewBox="0 0 800 300"
-                >
-                <text
-                    x="50%" y="50%"
-                    dy=".25em"
-                    text-anchor="middle"
-                    class="
-                    live-editor__view
-                    live-editor__dest
-                    "
-                    data-attr="style">
-                    текст
-                </text>
-            </svg>
+            <div class="live-editor__view">
+                <svg
+                    viewBox="0 0 800 300"
+                    >
+                    <text
+                        x="50%" y="50%"
+                        dy=".25em"
+                        text-anchor="middle"
+                        class="
+                        live-editor__dest
+                        "
+                        data-attr="style">
+                        текст
+                    </text>
+                </svg>
+            </div>
         </div>
     </div></section>
 
@@ -3447,6 +3463,7 @@ stroke-width: 7;</textarea>
             live-editor
             live-editor--attr
             live-editor--text
+            live-editor--dasharray
             live-editor--small-height
             text--stroke
             text--stroke-dasharray">
@@ -3458,21 +3475,18 @@ stroke-width: 7;</textarea>
 stroke-width: 5;
 stroke-dasharray: 50 30 20 10;</textarea>
             </div>
-            <svg
-                viewBox="0 0 800 300"
-                >
-                <text
-                    x="50%" y="50%"
-                    dy=".25em"
-                    text-anchor="middle"
-                    class="
-                    live-editor__view
-                    live-editor__dest
-                    "
-                    data-attr="style">
-                    текст
-                </text>
-            </svg>
+            <div class="live-editor__view">
+                <svg viewBox="0 0 800 300">
+                    <text
+                        x="50%" y="50%"
+                        dy=".25em"
+                        text-anchor="middle"
+                        class="live-editor__dest"
+                        data-attr="style">
+                        текст
+                    </text>
+                </svg>
+            </div>
         </div>
     </div></section>
 
@@ -3621,6 +3635,7 @@ stroke-dasharray: 50 30 20 10;</textarea>
             class="
                 live-editor
                 live-editor--elem
+                live-editor--pattern
                 live-editor--small-height">
           <div class="live-editor__content">
             <textarea
@@ -3629,8 +3644,8 @@ stroke-dasharray: 50 30 20 10;</textarea>
                     live-editor__code
                     live-editor__code--smalltext
                     live-editor__code--8-lines"
-                    ><svg viewBox="0 0 800 200">
-  <pattern id="pt-circles" width="50" height="50"
+                    ><svg viewBox="0 0 720 200">
+  <pattern id="pt-circles" width="40" height="40"
     viewBox="0 0 50 50" patternUnits="userSpaceOnUse">
       <circle r="18" cx="25" cy="25"
         fill="yellowgreen" stroke="green" stroke-width="7"/>
@@ -3646,6 +3661,7 @@ stroke-dasharray: 50 30 20 10;</textarea>
             class="
                 live-editor
                 live-editor--elem
+                live-editor--pattern
                 live-editor--small-height">
           <div class="live-editor__content">
             <textarea
@@ -3654,7 +3670,7 @@ stroke-dasharray: 50 30 20 10;</textarea>
                     live-editor__code
                     live-editor__code--smalltext
                     live-editor__code--8-lines"
-                    ><svg viewBox="0 0 800 200">
+                    ><svg viewBox="0 0 720 200">
   <pattern id="pt-wooden" width="300" height="300"
     patternUnits="userSpaceOnUse">
     <image xlink:href="./assets/img/parts/wood.jpg"
@@ -3882,7 +3898,7 @@ stroke-dasharray: 50 30 20 10;</textarea>
         <div class="slide__content">
             <svg viewBox="0 0 1015 590" class="demo demo--text demo--text-showmask demo--offset">
                 <symbol id="s-text">
-                    <text x="50%" y="50%" dy=".2em"
+                    <text x="50%" y="50%" dy=".25em"
                         text-anchor="middle">текст</text>
                 </symbol>
 
@@ -3912,7 +3928,7 @@ stroke-dasharray: 50 30 20 10;</textarea>
     &lt;rect fill="url(#pt-wood)" width="100%" height="100%"/>
 &lt;/g></code></pre>
 
-    <svg viewBox="0 0 1024 280" class="demo demo--text demo--small-height">
+    <svg viewBox="0 0 1024 320" class="demo demo--text">
         <mask id="mask-text"
             maskunits="userSpaceOnUse"
             maskcontentunits="userSpaceOnUse">

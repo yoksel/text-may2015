@@ -13,9 +13,10 @@
     height: 580px;
     margin: auto;
     border-radius: 50%;
-    box-shadow: 0 0 20px rgba(0,0,0,.7);
+    box-shadow: 0 0 20px rgba(0,0,0,.7),
+                0 0 30px rgba(0,0,0,.4) inset;
     background: url(./assets/img/parts/text-shadow-screen.png) 55% 50% no-repeat;
-    border: 5px solid #CCC;
+    border: 2px solid #CCC;
     }
 
 
@@ -66,5 +67,6 @@ $chasing-shadows-color: teal;
 .demo--text-stroke {
   text-align: center;
   -webkit-text-stroke: 15px orangered;
+  line-height: 1.5;
   color: #FFF;
   }

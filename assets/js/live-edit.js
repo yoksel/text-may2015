@@ -87,7 +87,7 @@ function editProperty(elem, editedCode) {
 
     if ($(editedCode).val().length > maxLine){
         // console.log("too long");
-        $(editedCode).addClass("code--two-lines");
+        $(editedCode).parent().addClass("js--edited");
     }
 
     var destination = ".live-editor__dest";
