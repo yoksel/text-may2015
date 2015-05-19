@@ -186,7 +186,7 @@ var textObj = function () {
 
     text1.attr({
        dy: '.3em',
-       'font-size': '26.5vmin'
+       'font-size': '.52em'
     });
     text2.attr({
        dy: '.3em'
@@ -196,7 +196,7 @@ var textObj = function () {
 
     textGInit.attr({
         'text-anchor': 'middle',
-        'font': '51vmin/1 Russo One, Impact',
+        'font': '14em/1 Russo One, Impact',
         fill: 'white',
         stroke: '#000',
         'stroke-width': 3,
