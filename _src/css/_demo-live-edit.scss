@@ -119,30 +119,42 @@ $lh_em: 1.8em;
             /*border: 1px solid orange;*/
             }
         }
-    .live-editor--svg-text {
-        .live-editor__content {
-            $lines: 2;
-            @include highlight-lines( $lines );
+/* Modifications */
+
+.live-editor--svg-text {
+    .live-editor__content {
+        $lines: 2;
+        @include highlight-lines( $lines );
+    }
+    .live-editor__view {
+        height: 280px;
         }
-        .live-editor__view {
-            height: 280px;
-            }
+    }
+.live-editor--stroke-base {
+    .live-editor__view {
+        height: 400px;
         }
-    .live-editor--stroke-base {
-        .live-editor__view {
-            height: 400px;
-            }
+    }
+.live-editor--dasharray {
+    .live-editor__content {
+        @include highlight-lines( 3 );
         }
-    .live-editor--dasharray {
-        .live-editor__content {
-            @include highlight-lines( 3 );
-            }
-        .live-editor__view {
-            height: 360px;
-            }
+    .live-editor__view {
+        height: 360px;
         }
-    .live-editor--pattern {
-        .live-editor__view {
-            height: 240px;
-            }
+    }
+.live-editor--pattern {
+    .live-editor__view {
+        height: 240px;
+        }
+    }
+.live-editor--bgclip-step2 {
+    .live-editor__content {
+        @include highlight-lines( 2 );
+        }
+    }
+.live-editor--bgclip-step3 {
+    .live-editor__content {
+        @include highlight-lines( 3 );
+        }
     }
