@@ -185,12 +185,18 @@ svg {
     text-align: center;
     }
 
-.slide--about H3 SPAN {
-    display: block;
-    margin-top: .3em;
-    font-size: .6em;
-    color: #777;
+/* About
+------------------------- */
+.about__text {
+    float: left;
     }
+    .about__company {
+        display: block;
+        margin-top: .3em;
+        font-size: .6em;
+        color: #777;
+        }
+
 .full .progress {
     z-index: 2;
     }

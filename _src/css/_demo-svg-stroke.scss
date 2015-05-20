@@ -11,8 +11,10 @@
 .text--stroke-dasharray {
   stroke: orangered;
   stroke-width: 5;
-  stroke-dasharray: 50 30 20 10;
   }
+  .text--stroke-dasharray-step2 {
+    stroke-dasharray: 50 30 20 10;
+    }
 
 .text--stroke-pulse {
     stroke: yellowgreen;

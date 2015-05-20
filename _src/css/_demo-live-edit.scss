@@ -4,6 +4,7 @@ $textarea-lineheight: 1.6;
 $hl-color: palegoldenrod;
 
 $textarea-oneline: $textarea-fontsize * $textarea-lineheight * 1.1;
+$textarea-oneline-small: $textarea-oneline * .8;
 
 @mixin textarea-height ( $lines ){
     height: $textarea-oneline * $lines;
@@ -14,15 +15,15 @@ $textarea-oneline: $textarea-fontsize * $textarea-lineheight * 1.1;
     background-size: 100% $textarea-oneline*2;
     }
 
-@mixin highlight-lines( $lines ) {
+@mixin highlight-lines( $lines, $lineheight: $textarea-oneline ) {
     $gradients: null;
     $hl-begin: null;
     $hl-end: null;
 
     @each $line in $lines {
         $line: $line - 1;
-        $hl-begin: $textarea-oneline * $line;
-        $hl-end: $textarea-oneline * ($line + 1);
+        $hl-begin: $lineheight * $line;
+        $hl-end: $lineheight * ($line + 1);
 
         $gradients: append($gradients, linear-gradient(
                 transparent $hl-begin,
@@ -136,18 +137,40 @@ $lh_em: 1.8em;
         }
     }
 .live-editor--dasharray {
-    .live-editor__content {
-        @include highlight-lines( 3 );
-        }
     .live-editor__view {
         height: 360px;
         }
     }
+    .live-editor--dasharray-step2 {
+        .live-editor__content {
+            @include highlight-lines( 3 );
+            }
+        }
 .live-editor--pattern {
     .live-editor__view {
         height: 240px;
         }
     }
+    .live-editor--pattern-step1 {
+        .live-editor__content {
+            @include highlight-lines( 2, $textarea-oneline-small );
+            }
+        }
+    .live-editor--pattern-step2 {
+        .live-editor__content {
+            @include highlight-lines( 4, $textarea-oneline-small );
+            }
+        }
+    .live-editor--pattern-step3 {
+        .live-editor__content {
+            @include highlight-lines( 7, $textarea-oneline-small );
+            }
+        }
+    .live-editor--pattern-rastr {
+        .live-editor__content {
+            @include highlight-lines( 4, $textarea-oneline-small );
+            }
+        }
 .live-editor--bgclip-step2 {
     .live-editor__content {
         @include highlight-lines( 2 );
