@@ -1,4 +1,4 @@
-console.clear();
+// console.clear();
 
 var curSlideClass = ".slide.active";
 
@@ -20,10 +20,7 @@ jQuery.fn.redraw = function() {
     });
 };
 
-
 function setAttr(propName, propValue, editedElem) {
-
-    console.log('setAttr');
 
     if (propName == "viewbox"
         || propName == "viewBox"
@@ -57,9 +54,18 @@ $(".live-editor--elem").each ( function(){
     var svgCode = $(this).find(".live-editor__code");
     var shape_code = svgCode.val();
 
+    var destSelector = '.live-editor__content';
     var demoContent = $(this).find(".live-editor__content");
     var svgViewCode = "<div class='" + showShapeClass + "'>" + shape_code + "</div>";
-    var svgView = $(svgViewCode).insertAfter($(demoContent));
+    var svgView;
+
+    if ( $(svgCode).data('dest') ) {
+        destSelector = $(svgCode).data('dest');
+        svgView = $(destSelector);
+    }
+    else {
+        svgView = $(svgViewCode).insertAfter($(demoContent));
+    }
 
     $(svgCode).change ( function(){
         $(svgView).html( $(this).val() );
@@ -92,8 +98,8 @@ function editProperty(elem, editedCode) {
 
     var destination = ".live-editor__dest";
 
-    if ( $(editedCode).attr("data-dest") ){
-        destination = "." + $(editedCode).attr("data-dest");
+    if ( $(editedCode).data("dest") ){
+        destination = "." + $(editedCode).data("dest");
         }
 
     var editedElem = $(elem).find(destination);
@@ -106,13 +112,12 @@ function editProperty(elem, editedCode) {
     for (var i = 0; i < propsValues.length; i++) {
         var propNameValue = propsValues[i].split("=");
 
-        console.log(propNameValue);
         if (propNameValue[0]) {
 
             var propName = propNameValue[0];
 
             if( propNameValue.length == 1 ){
-                propName = $(editedElem).attr('data-attr') || 'style';
+                propName = $(editedElem).data('attr') || 'style';
                 propNameValue[1] = propNameValue[0];
             }
 

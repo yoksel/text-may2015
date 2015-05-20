@@ -300,7 +300,13 @@ svg {
   text-align: center;
 }
 
-.slide--about H3 SPAN {
+/* About
+------------------------- */
+.about__text {
+  float: left;
+}
+
+.about__company {
   display: block;
   margin-top: .3em;
   font-size: .6em;
@@ -666,18 +672,58 @@ svg.demo--intro {
   height: 400px;
 }
 
-.live-editor--dasharray .live-editor__content:before {
+.live-editor--dasharray .live-editor__view {
+  height: 360px;
+}
+
+.live-editor--dasharray-step2 .live-editor__content:before {
   background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(76.032px, palegoldenrod), color-stop(114.048px, palegoldenrod), to(transparent));
   background: -webkit-linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
   background: linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
   background-position: 0 .2em;
 }
-.live-editor--dasharray .live-editor__view {
-  height: 360px;
-}
 
 .live-editor--pattern .live-editor__view {
   height: 240px;
+}
+
+.live-editor--pattern-step1 .live-editor__content:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0px, palegoldenrod), color-stop(38.016px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 0px, palegoldenrod 0px, palegoldenrod 38.016px, transparent 38.016px);
+  background: linear-gradient(transparent 0px, palegoldenrod 0px, palegoldenrod 38.016px, transparent 38.016px);
+  background-position: 0 .2em;
+}
+
+.live-editor--pattern-step2 .live-editor__content:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(76.032px, palegoldenrod), color-stop(114.048px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
+  background: linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
+  background-position: 0 .2em;
+}
+
+.live-editor--pattern-rastr .live-editor__content:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(91.2384px, palegoldenrod), color-stop(121.6512px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 91.2384px, palegoldenrod 91.2384px, palegoldenrod 121.6512px, transparent 121.6512px);
+  background: linear-gradient(transparent 91.2384px, palegoldenrod 91.2384px, palegoldenrod 121.6512px, transparent 121.6512px);
+  background-position: 0 .2em;
+}
+
+.live-editor--grad .live-editor__view {
+  height: 240px;
+}
+
+.live-editor--grad-step1 .live-editor__content:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0px, palegoldenrod), color-stop(38.016px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 0px, palegoldenrod 0px, palegoldenrod 38.016px, transparent 38.016px);
+  background: linear-gradient(transparent 0px, palegoldenrod 0px, palegoldenrod 38.016px, transparent 38.016px);
+  background-position: 0 .2em;
+}
+
+.live-editor--grad-step2 .live-editor__content:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(76.032px, palegoldenrod), color-stop(114.048px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
+  background: linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
+  background-position: 0 .2em;
 }
 
 .live-editor--bgclip-step2 .live-editor__content:before {
@@ -952,6 +998,9 @@ svg.demo--intro {
 .text--stroke-dasharray {
   stroke: orangered;
   stroke-width: 5;
+}
+
+.text--stroke-dasharray-step2 {
   stroke-dasharray: 50 30 20 10;
 }
 
@@ -2847,7 +2896,7 @@ svg {
 </head>
 <body class="list" spellcheck="false">
     <svg class="svg-defs">
-        <linearGradient id="gr-blue"
+        <linearGradient id="gr-blue-defs"
                 x1="0" y1="0" x2="100%" y2="100%"
                 gradientUnits="objectBoundingBox">
             <stop stop-color="hsl(160, 100%, 80%)" offset="10%"/>
@@ -3490,6 +3539,41 @@ stroke-width: 7;</textarea>
                     class="
                     live-editor__code
                     live-editor__code--3-lines">stroke: orangered;
+stroke-width: 5;</textarea>
+            </div>
+            <div class="live-editor__view">
+                <svg viewBox="0 0 800 300">
+                    <text
+                        x="50%" y="50%"
+                        dy=".25em"
+                        text-anchor="middle"
+                        class="live-editor__dest"
+                        data-attr="style">
+                        текст
+                    </text>
+                </svg>
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <div class="
+            slide__content
+            live-editor
+            live-editor--attr
+            live-editor--text
+            live-editor--dasharray
+            live-editor--dasharray-step2
+            live-editor--small-height
+            text--stroke
+            text--stroke-dasharray
+            text--stroke-dasharray-step2">
+            <div class="live-editor__content">
+                <textarea
+                    class="
+                    live-editor__code
+                    live-editor__code--3-lines">stroke: orangered;
 stroke-width: 5;
 stroke-dasharray: 50 30 20 10;</textarea>
             </div>
@@ -3568,7 +3652,7 @@ stroke-dasharray: 50 30 20 10;</textarea>
                 class="text--fill text--fill-solid">текст</text>
             <text x="50%" y="50%" dy=".25em" text-anchor="middle"
                 class="next text--fill text--fill-gradient"
-                fill="url(#gr-blue)">текст</text>
+                fill="url(#gr-blue-defs)">текст</text>
             <text x="50%" y="86%" dy=".25em" text-anchor="middle"
                 class="next text--fill text--fill-pattern"
                 fill="url(#pt-grass)">текст</text>
@@ -3582,23 +3666,87 @@ stroke-dasharray: 50 30 20 10;</textarea>
 
     <!-- Slide -->
     <section class="slide"><div>
-
-<pre><code>&lt;linearGradient id="gr-blue"
+        <div
+            class="
+                live-editor
+                live-editor--elem
+                live-editor--grad
+                live-editor--grad-step1">
+          <div class="live-editor__content">
+            <textarea
+                class="
+                    live-editor__textfield
+                    live-editor__code
+                    live-editor__code--5-lines"
+                    data-dest="#grad-dest"
+                    ><linearGradient id="gr-blue"
         x1="0" y1="0" x2="100%" y2="100%">
-    <span class="next">&lt;stop stop-color="#9FD" offset="10%"/>
-    &lt;stop stop-color="#190099" offset="90%"/></span>
-&lt;/linearGradient></code></pre>
 
-    <svg viewBox="0 0 1024 280" class="next demo demo--text demo--small-height">
-        <text
-            x="50%" y="50%"
-            dy=".25em"
-            text-anchor="middle"
-            fill="url(#gr-blue)"
-            stroke="transparent"
-            >текст</text>
-    </svg>
-</div></section>
+
+</linearGradient></textarea>
+        </div>
+        <div class="live-editor__view">
+            <svg viewBox="0 0 1024 280" class="demo demo--text demo--small-height">
+                <g id='grad-dest'>
+                    <linearGradient id="gr-blue"
+        x1="0" y1="0" x2="100%" y2="100%">
+
+
+</linearGradient>
+                </g>
+              <text
+                x="50%" y="50%"
+                dy=".25em"
+                text-anchor="middle"
+                fill="url(#gr-blue)"
+                stroke="transparent"
+                >текст</text>
+            </svg>
+        </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <div
+            class="
+                live-editor
+                live-editor--elem
+                live-editor--grad
+                live-editor--grad-step2">
+          <div class="live-editor__content">
+            <textarea
+                class="
+                    live-editor__textfield
+                    live-editor__code
+                    live-editor__code--5-lines"
+                    data-dest="#grad-dest"
+                    ><linearGradient id="gr-blue"
+        x1="0" y1="0" x2="100%" y2="100%">
+    <stop stop-color="#9FD" offset="10%"/>
+    <stop stop-color="#190099" offset="90%"/>
+</linearGradient></textarea>
+        </div>
+        <div class="live-editor__view">
+            <svg viewBox="0 0 1024 280" class="demo demo--text demo--small-height">
+                <g id='grad-dest'>
+                    <linearGradient id="gr-blue"
+        x1="0" y1="0" x2="100%" y2="100%">
+    <stop stop-color="#9FD" offset="10%"/>
+    <stop stop-color="#190099" offset="90%"/>
+</linearGradient>
+                </g>
+              <text
+                x="50%" y="50%"
+                dy=".25em"
+                text-anchor="middle"
+                fill="url(#gr-blue)"
+                stroke="transparent"
+                >текст</text>
+            </svg>
+        </div>
+        </div>
+    </div></section>
 
     <!-- Slide -->
     <section class="slide"><div>
@@ -3654,23 +3802,33 @@ stroke-dasharray: 50 30 20 10;</textarea>
                 live-editor
                 live-editor--elem
                 live-editor--pattern
-                live-editor--small-height">
+                live-editor--pattern-step1">
           <div class="live-editor__content">
             <textarea
                 class="
                     live-editor__textfield
                     live-editor__code
-                    live-editor__code--smalltext
-                    live-editor__code--8-lines"
-                    ><svg viewBox="0 0 720 200">
-  <pattern id="pt-circles" width="40" height="40"
+                    live-editor__code--5-lines"
+                    data-dest="#pattern-dest"
+                    ><pattern id="pt-circles" width="40" height="40"
     viewBox="0 0 50 50" patternUnits="userSpaceOnUse">
-      <circle r="18" cx="25" cy="25"
-        fill="yellowgreen" stroke="green" stroke-width="7"/>
-  </pattern>
-  <rect width="100%" height="100%" fill="url(#pt-circles)"/>
-</svg></textarea>
-        </div></div>
+
+
+  </pattern></textarea>
+        </div>
+        <div class="live-editor__view">
+            <svg viewBox="0 0 720 200">
+                <g id='pattern-dest'>
+                    <pattern id="pt-circles" width="40" height="40"
+        viewBox="0 0 50 50" patternUnits="userSpaceOnUse">
+
+
+      </pattern>
+                </g>
+              <rect width="100%" height="100%" fill="url(#pt-circles)"/>
+            </svg>
+        </div>
+        </div>
     </div></section>
 
     <!-- Slide -->
@@ -3680,23 +3838,69 @@ stroke-dasharray: 50 30 20 10;</textarea>
                 live-editor
                 live-editor--elem
                 live-editor--pattern
-                live-editor--small-height">
+                live-editor--pattern-step2">
           <div class="live-editor__content">
             <textarea
                 class="
                     live-editor__textfield
                     live-editor__code
-                    live-editor__code--smalltext
-                    live-editor__code--8-lines"
-                    ><svg viewBox="0 0 720 200">
-  <pattern id="pt-wooden" width="300" height="300"
+                    live-editor__code--5-lines"
+                    data-dest="#pattern-dest2"
+                    ><pattern id="pt-circles" width="40" height="40"
+    viewBox="0 0 50 50" patternUnits="userSpaceOnUse">
+      <circle r="18" cx="25" cy="25" fill="yellowgreen"
+        stroke="green" stroke-width="7"/>
+  </pattern></textarea>
+        </div>
+        <div class="live-editor__view">
+            <svg viewBox="0 0 720 200">
+                <g id='pattern-dest2'>
+                    <pattern id="pt-circles" width="40" height="40"
+        viewBox="0 0 50 50" patternUnits="userSpaceOnUse">
+          <circle r="18" cx="25" cy="25"
+            fill="yellowgreen" stroke="green" stroke-width="7"/>
+      </pattern>
+                </g>
+              <rect width="100%" height="100%" fill="url(#pt-circles)"/>
+            </svg>
+        </div>
+        </div>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+        <div
+            class="
+                live-editor
+                live-editor--elem
+                live-editor--pattern
+                live-editor--pattern-step2">
+          <div class="live-editor__content">
+            <textarea
+                class="
+                    live-editor__textfield
+                    live-editor__code
+                    live-editor__code--5-lines"
+                    data-dest="#pattern-wood-dest"
+                    ><pattern id="pt-wooden" width="300" height="300"
+    patternUnits="userSpaceOnUse">
+    <image xlink:href="./assets/img/parts/wood.jpg"
+        width="300" height="300"/>
+  </pattern></textarea>
+        </div>
+        <div class="live-editor__view">
+            <svg viewBox="0 0 720 200">
+                <g id='pattern-wood-dest'>
+                    <pattern id="pt-wooden" width="300" height="300"
     patternUnits="userSpaceOnUse">
     <image xlink:href="./assets/img/parts/wood.jpg"
         width="300" height="300"/>
   </pattern>
-  <rect width="100%" height="100%" fill="url(#pt-wooden)"/>
-</svg></textarea>
-        </div></div>
+                </g>
+              <rect width="100%" height="100%" fill="url(#pt-wooden)"/>
+            </svg>
+        </div>
+        </div>
     </div></section>
 
     <!-- Slide -->
@@ -3963,6 +4167,33 @@ stroke-dasharray: 50 30 20 10;</textarea>
 
     <!-- Slide -->
     <section class="slide"><div>
+        <h2 class="free-fly">Копируемый текст</h2>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+<pre><code>.text {
+    fill: <mark>none</mark>;
+    }</code></pre>
+<h4>&nbsp;</h4>
+<pre class="next"><code>.text {
+    fill: <mark>transparent</mark>;
+    }</code></pre>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
+<pre class="comment"><code>.text {
+    fill: none;
+    }</code></pre>
+<h4>Прозрачный текст, который можно выделить:</h4>
+<pre><code>.text {
+    fill: <mark>transparent</mark>;
+    }</code></pre>
+    </div></section>
+
+    <!-- Slide -->
+    <section class="slide"><div>
         <h2 class="free-fly">Анимация заливки</h2>
     </div></section>
 
@@ -4145,33 +4376,6 @@ stroke-dasharray: 50 30 20 10;</textarea>
           <use xlink:href="#s-text-psycho" class="text-stroke text-stroke-2"></use>
           <use xlink:href="#s-text-psycho" class="text-stroke text-stroke-3"></use>
         </svg>
-    </div></section>
-
-    <!-- Slide -->
-    <section class="slide"><div>
-        <h2 class="free-fly">Копируемый текст</h2>
-    </div></section>
-
-    <!-- Slide -->
-    <section class="slide"><div>
-<pre><code>.text {
-    fill: <mark>none</mark>;
-    }</code></pre>
-<h4>&nbsp;</h4>
-<pre class="next"><code>.text {
-    fill: <mark>transparent</mark>;
-    }</code></pre>
-    </div></section>
-
-    <!-- Slide -->
-    <section class="slide"><div>
-<pre class="comment"><code>.text {
-    fill: none;
-    }</code></pre>
-<h4>Прозрачный текст, который можно выделить:</h4>
-<pre><code>.text {
-    fill: <mark>transparent</mark>;
-    }</code></pre>
     </div></section>
 
     <!-- Slide -->
@@ -4756,16 +4960,6 @@ stroke-dasharray: 50 30 20 10;</textarea>
 
         </ul>
 
-        <h4>SVG + JS</h4>
-
-        <ul>
-
-            <li><a href="http://snapsvg.io/">Snap.svg</a></li>
-
-        </ul>
-
-
-
     </div></section>
 
     <section class="slide"><div>
@@ -4798,18 +4992,24 @@ stroke-dasharray: 50 30 20 10;</textarea>
             </ul>
     </div></section>
 
-    <section class="slide slide--about"><div>
+    <section class="slide slide--about about"><div>
             <img src="./assets/img/me.jpeg" class="photo"/>
-            <h3>Бухвалова Юлия<span>Livejournal</span></h3>
-            <ul>
-                <li><a href="http://css.yoksel.ru/">css.yoksel.ru</a></li>
-                <li><a href="https://twitter.com/yoksel">@yoksel</a></li>
-                <li><a href="http://codepen.io/yoksel">codepen.io/yoksel</a></li>
-            </ul>
+            <div class="about__text">
+                <h3>Бухвалова Юлия<span class="about__company">Livejournal</span></h3>
+                <ul>
+                    <li><a href="http://css.yoksel.ru/">css.yoksel.ru</a></li>
+                    <li><a href="https://twitter.com/yoksel">@yoksel</a></li>
+                    <li><a href="http://codepen.io/yoksel">codepen.io/yoksel</a></li>
+                </ul>
 
-            <p>
-                Слайды: <a href="http://yoksel.github.io/text-may2015/">yoksel.github.io/text-may2015</a>
-            </p>
+                <p>
+                    Слайды: <a href="http://yoksel.github.io/text-may2015/">yoksel.github.io/text-may2015</a>
+                </p>
+
+                <p>
+                    Анимация заставки: <a href="http://snapsvg.io/">Snap.svg</a>
+                </p>
+            </div>
     </div></section>
 
     <p class="badge">

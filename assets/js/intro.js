@@ -1,4 +1,4 @@
-console.clear();
+// console.clear();
 
 var s = Snap();
 var sMaxX = 1024;
