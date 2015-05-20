@@ -1,4 +1,5 @@
 // console.clear();
+var intro = (function(){
 
 var s = Snap();
 var sMaxX = 1024;
@@ -341,3 +342,5 @@ function reRun() {
 
 var introSlide = document.querySelector('.intro');
 introSlide.appendChild(s.node);
+
+})();

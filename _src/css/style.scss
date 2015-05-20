@@ -97,15 +97,19 @@ svg {
         }
     }
 
-.slide--intro {
+.slide--fullscreen-svg {
     }
-    .intro {
+    .fullscreen-svg {
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
         }
+
+.afterword {
+    /*background: #000;*/
+    }
 
 .slide--imgcenter {
     & > DIV {
@@ -402,6 +406,10 @@ $svg-code-color: hsl(190, 70%, 75%);
     }
     svg.demo--text {
         font-size: 14em;
+        }
+    svg.demo--text-afterword {
+        font-size: 16em;
+        letter-spacing: .03em;
         }
     .live-editor--text svg {
         font-size: 1.2em;
