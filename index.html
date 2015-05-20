@@ -214,12 +214,16 @@ svg {
   width: 100%;
 }
 
-.intro {
+.fullscreen-svg {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.afterword {
+  /*background: #000;*/
 }
 
 .slide--imgcenter > DIV {
@@ -518,6 +522,11 @@ PRE:before {
 
 svg.demo--text {
   font-size: 14em;
+}
+
+svg.demo--text-afterword {
+  font-size: 16em;
+  letter-spacing: .03em;
 }
 
 .live-editor--text svg {
@@ -1127,6 +1136,10 @@ svg.demo--intro {
   stroke-dasharray: 0 1500;
   -webkit-animation: stroke-appear 7s linear infinite;
   animation: stroke-appear 7s linear infinite;
+}
+
+:target .text--stroke-appear {
+  /*animation-duration: $stroke-appear-time * 2;*/
 }
 
 @-webkit-keyframes stroke-appear {
@@ -2894,7 +2907,7 @@ svg {
 
     </style>
 </head>
-<body class="list" spellcheck="false">
+<body class="list debug" spellcheck="false">
     <svg class="svg-defs">
         <linearGradient id="gr-blue-defs"
                 x1="0" y1="0" x2="100%" y2="100%"
@@ -2931,8 +2944,8 @@ svg {
     </header>
 
     <!-- Slide -->
-    <section class="slide slide--imgfull slide--intro"><div>
-        <div class="intro"></div>
+    <section class="slide slide--imgfull slide--fullscreen-svg"><div>
+        <div class="fullscreen-svg intro"></div>
     </div></section>
 
     <!-- Slide -->
@@ -3247,8 +3260,7 @@ svg {
                 <textarea
                     class="
                     live-editor__code
-                    live-editor__code--3-lines">background: url(/assets/img/parts/tulips.jpeg) 50% 50%;
-                </textarea>
+                    live-editor__code--3-lines">background: url(/assets/img/parts/tulips.jpeg) 50% 50%;</textarea>
             </div>
             <div
                 class="
@@ -3276,8 +3288,7 @@ svg {
                     class="
                     live-editor__code
                     live-editor__code--3-lines">background: url(/assets/img/parts/tulips.jpeg) 50% 50%;
--webkit-background-clip: text;
-                </textarea>
+-webkit-background-clip: text;</textarea>
             </div>
             <div
                 class="
@@ -3307,8 +3318,7 @@ svg {
                     live-editor__code
                     live-editor__code--3-lines">background: url(/assets/img/parts/tulips.jpeg) 50% 50%;
 -webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-                </textarea>
+-webkit-text-fill-color: transparent;</textarea>
             </div>
             <div
                 class="
@@ -3602,7 +3612,8 @@ stroke-dasharray: 50 30 20 10;</textarea>
 
     <!-- Slide -->
     <section class="slide"><div>
-        <svg viewBox="0 0 1024 620" class="demo demo--text">
+        <svg viewBox="0 0 1024 620"
+             class="demo demo--text">
             <text x="50%" y="50%" dy=".25em" text-anchor="middle"
                 class="text--stroke text--stroke-appear">текст</text>
         </svg>
@@ -3814,7 +3825,7 @@ stroke-dasharray: 50 30 20 10;</textarea>
     viewBox="0 0 50 50" patternUnits="userSpaceOnUse">
 
 
-  </pattern></textarea>
+</pattern></textarea>
         </div>
         <div class="live-editor__view">
             <svg viewBox="0 0 720 200">
@@ -3848,9 +3859,9 @@ stroke-dasharray: 50 30 20 10;</textarea>
                     data-dest="#pattern-dest2"
                     ><pattern id="pt-circles" width="40" height="40"
     viewBox="0 0 50 50" patternUnits="userSpaceOnUse">
-      <circle r="18" cx="25" cy="25" fill="yellowgreen"
-        stroke="green" stroke-width="7"/>
-  </pattern></textarea>
+        <circle r="18" cx="25" cy="25" fill="yellowgreen"
+            stroke="green" stroke-width="7"/>
+</pattern></textarea>
         </div>
         <div class="live-editor__view">
             <svg viewBox="0 0 720 200">
@@ -3884,9 +3895,9 @@ stroke-dasharray: 50 30 20 10;</textarea>
                     data-dest="#pattern-wood-dest"
                     ><pattern id="pt-wooden" width="300" height="300"
     patternUnits="userSpaceOnUse">
-    <image xlink:href="./assets/img/parts/wood.jpg"
-        width="300" height="300"/>
-  </pattern></textarea>
+        <image xlink:href="./assets/img/parts/wood.jpg"
+            width="300" height="300"/>
+</pattern></textarea>
         </div>
         <div class="live-editor__view">
             <svg viewBox="0 0 720 200">
@@ -4930,8 +4941,19 @@ stroke-dasharray: 50 30 20 10;</textarea>
 
     </div></section>
 
-    <section class="slide bg--dark"><div>
-        <h2 class="free-fly">Послесловие</h2>
+    <!-- Slide -->
+    <section class="slide"><div>
+        <svg
+            viewBox="0 0 1024 620"
+            class="
+                demo
+                demo--text
+                demo--text-afterword
+                ">
+            <text x="50%" y="50%" dy=".25em" text-anchor="middle"
+                class="text--stroke text--stroke-appear
+                text--afterword">Fin</text>
+        </svg>
     </div></section>
 
     <section class="slide"><div>
@@ -5022,6 +5044,7 @@ stroke-dasharray: 50 30 20 10;</textarea>
     <script src="./assets/js/live-edit.js"></script>
     <script src="assets/js/snap.svg-min.js"></script>
     <script src="assets/js/intro.js"></script>
+    <script src="assets/js/afterword.js"></script>
     <script src="//localhost:35731/livereload.js"></script>
     <!-- Copyright © 2014 yoksel. -->
 </body>
