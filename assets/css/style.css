@@ -679,23 +679,16 @@ svg.demo--intro {
 }
 
 .live-editor--pattern-step1 .live-editor__content:before {
-  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(30.4128px, palegoldenrod), color-stop(60.8256px, palegoldenrod), to(transparent));
-  background: -webkit-linear-gradient(transparent 30.4128px, palegoldenrod 30.4128px, palegoldenrod 60.8256px, transparent 60.8256px);
-  background: linear-gradient(transparent 30.4128px, palegoldenrod 30.4128px, palegoldenrod 60.8256px, transparent 60.8256px);
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0px, palegoldenrod), color-stop(38.016px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 0px, palegoldenrod 0px, palegoldenrod 38.016px, transparent 38.016px);
+  background: linear-gradient(transparent 0px, palegoldenrod 0px, palegoldenrod 38.016px, transparent 38.016px);
   background-position: 0 .2em;
 }
 
 .live-editor--pattern-step2 .live-editor__content:before {
-  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(91.2384px, palegoldenrod), color-stop(121.6512px, palegoldenrod), to(transparent));
-  background: -webkit-linear-gradient(transparent 91.2384px, palegoldenrod 91.2384px, palegoldenrod 121.6512px, transparent 121.6512px);
-  background: linear-gradient(transparent 91.2384px, palegoldenrod 91.2384px, palegoldenrod 121.6512px, transparent 121.6512px);
-  background-position: 0 .2em;
-}
-
-.live-editor--pattern-step3 .live-editor__content:before {
-  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(182.4768px, palegoldenrod), color-stop(212.8896px, palegoldenrod), to(transparent));
-  background: -webkit-linear-gradient(transparent 182.4768px, palegoldenrod 182.4768px, palegoldenrod 212.8896px, transparent 212.8896px);
-  background: linear-gradient(transparent 182.4768px, palegoldenrod 182.4768px, palegoldenrod 212.8896px, transparent 212.8896px);
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(76.032px, palegoldenrod), color-stop(114.048px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
+  background: linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
   background-position: 0 .2em;
 }
 
@@ -703,6 +696,24 @@ svg.demo--intro {
   background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(91.2384px, palegoldenrod), color-stop(121.6512px, palegoldenrod), to(transparent));
   background: -webkit-linear-gradient(transparent 91.2384px, palegoldenrod 91.2384px, palegoldenrod 121.6512px, transparent 121.6512px);
   background: linear-gradient(transparent 91.2384px, palegoldenrod 91.2384px, palegoldenrod 121.6512px, transparent 121.6512px);
+  background-position: 0 .2em;
+}
+
+.live-editor--grad .live-editor__view {
+  height: 240px;
+}
+
+.live-editor--grad-step1 .live-editor__content:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0px, palegoldenrod), color-stop(38.016px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 0px, palegoldenrod 0px, palegoldenrod 38.016px, transparent 38.016px);
+  background: linear-gradient(transparent 0px, palegoldenrod 0px, palegoldenrod 38.016px, transparent 38.016px);
+  background-position: 0 .2em;
+}
+
+.live-editor--grad-step2 .live-editor__content:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(76.032px, palegoldenrod), color-stop(114.048px, palegoldenrod), to(transparent));
+  background: -webkit-linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
+  background: linear-gradient(transparent 76.032px, palegoldenrod 76.032px, palegoldenrod 114.048px, transparent 114.048px);
   background-position: 0 .2em;
 }
 
