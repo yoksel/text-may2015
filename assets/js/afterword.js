@@ -124,7 +124,7 @@ createPattern();
 
 createDemo();
 
-var afterwordSlide = document.querySelector('.afterword');
-afterwordSlide.appendChild(s.node);
+// var afterwordSlide = document.querySelector('.afterword');
+// afterwordSlide.appendChild(s.node);
 
 })();
