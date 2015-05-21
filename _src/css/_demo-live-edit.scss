@@ -182,6 +182,11 @@ $lh_em: 1.8em;
             @include highlight-lines( 3 );
             }
         }
+.live-editor--mask {
+    .live-editor__view {
+        height: 320px;
+        }
+    }
 .live-editor--bgclip-step2 {
     .live-editor__content {
         @include highlight-lines( 2 );

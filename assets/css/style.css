@@ -716,6 +716,10 @@ svg.demo--intro {
   background-position: 0 .2em;
 }
 
+.live-editor--mask .live-editor__view {
+  height: 320px;
+}
+
 .live-editor--bgclip-step2 .live-editor__content:before {
   background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(38.016px, palegoldenrod), color-stop(76.032px, palegoldenrod), to(transparent));
   background: -webkit-linear-gradient(transparent 38.016px, palegoldenrod 38.016px, palegoldenrod 76.032px, transparent 76.032px);

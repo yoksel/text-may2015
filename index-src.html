@@ -1244,37 +1244,69 @@ stroke-dasharray: 50 30 20 10;</textarea>
 
     <!-- Slide -->
     <section class="slide"><div>
-<pre><code>&lt;g>
-    &lt;rect fill="url(<mark>#pt-wood</mark>)" width="100%" height="100%"/>
-&lt;/g></code></pre>
-
-    <svg viewBox="0 0 1024 320" class="demo demo--text">
-        <g>
-            <rect fill="url(#pt-wood)" width="100%" height="100%"/>
-        </g>
-    </svg>
-
+        <div
+            class="
+                live-editor
+                live-editor--elem
+                live-editor--mask
+                live-editor--mask-step1">
+          <div class="live-editor__content">
+            <textarea
+                class="
+                    live-editor__textfield
+                    live-editor__code
+                    live-editor__code--3-lines"
+                    data-dest="#mask-dest"
+                    ><g>
+    <rect fill="url(#pt-wood)" width="100%" height="100%"/>
+</g></textarea>
+        </div>
+        <div class="live-editor__view">
+            <svg viewBox="0 0 1024 320" class="demo demo--text">
+                <g id='mask-dest'>
+                    <g>
+    <rect fill="url(#pt-wood)" width="100%" height="100%"/>
+</g>
+                </g>
+            </svg>
+        </div>
+        </div>
     </div></section>
 
     <!-- Slide -->
     <section class="slide"><div>
-<pre><code>&lt;g mask="url(<mark>#mask-text</mark>)">
-    &lt;rect fill="url(#pt-wood)" width="100%" height="100%"/>
-&lt;/g></code></pre>
-
-    <svg viewBox="0 0 1024 320" class="demo demo--text">
-        <mask id="mask-text"
-            maskunits="userSpaceOnUse"
-            maskcontentunits="userSpaceOnUse">
-            <use xlink:href="#s-text" fill="#FFF"/>
-        </mask>
-
-
-        <g mask="url(#mask-text)">
-            <rect fill="url(#pt-wood)" width="100%" height="100%"/>
-        </g>
-    </svg>
-
+        <div
+            class="
+                live-editor
+                live-editor--elem
+                live-editor--mask
+                live-editor--mask-step2">
+          <div class="live-editor__content">
+            <textarea
+                class="
+                    live-editor__textfield
+                    live-editor__code
+                    live-editor__code--3-lines"
+                    data-dest="#mask-dest"
+                    ><g mask="url(#mask-text)">
+    <rect fill="url(#pt-wood)" width="100%" height="100%"/>
+</g></textarea>
+        </div>
+        <div class="live-editor__view">
+            <svg viewBox="0 0 1024 320" class="demo demo--text">
+                <mask id="mask-text"
+                    maskunits="userSpaceOnUse"
+                    maskcontentunits="userSpaceOnUse">
+                    <use xlink:href="#s-text" fill="#FFF"/>
+                </mask>
+                <g id='mask-dest'>
+                    <g mask="url(#mask-text)">
+    <rect fill="url(#pt-wood)" width="100%" height="100%"/>
+</g>
+                </g>
+            </svg>
+        </div>
+        </div>
     </div></section>
 
     <!-- Slide -->
